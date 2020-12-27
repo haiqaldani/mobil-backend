@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controller\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +24,6 @@ Route::prefix('admin')
         Route::get('/', 'DashboardController@index')
             ->name('dashboard');
     });
+
 
 Auth::routes(['verify'=>true]);
