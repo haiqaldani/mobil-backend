@@ -19,21 +19,9 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="{{ route('travel-package.index') }}">
-      <i class="fas fa-fw fa-hotel"></i>
-      <span>Paket Travel</span></a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('gallery.index') }}">
-      <i class="fas fa-fw fa-images"></i>
-      <span>Galeri Travel</span></a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="{{ route('transaction.index') }}">
-      <i class="fas fa-fw fa-dollar-sign"></i>
-      <span>Transaksi</span></a>
+    <a class="nav-link" href="{{ route('car-type.index') }}">
+      <i class="fas fa-fw fa-car"></i>
+      <span>Kategori Mobil</span></a>
   </li>
 
   <hr class="sidebar-divider">

@@ -18,6 +18,7 @@ class CreateCarsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->year('car_year');
+            $table->integer('car_type_id');
             $table->enum('transmission', array('Otomatis', 'Manual'));
             $table->string('fuel');
             $table->string('edition');

@@ -16,6 +16,7 @@ class CreateCarTypesTable extends Migration
         Schema::create('car_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->text('image');
             $table->softDeletes();
             $table->timestamps();
             
