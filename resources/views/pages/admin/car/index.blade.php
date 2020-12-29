@@ -7,7 +7,7 @@
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Kategori Mobil</h1>
-          <a href="{{ route('car-type.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+          <a href="{{ route('car.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
               <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Kategori Mobil
           </a>
       </div>
@@ -38,10 +38,10 @@
                               <td>{{ $item->fuel }}</td>
                               <td>{{ $item->edision }}</td>
                               <td>
-                                  <a href="{{ route('car-type.edit', $item->id) }}" class="btn btn-info">
+                                  <a href="{{ route('car.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>
                                   </a>
-                                  <form action="{{ route('car-type.destroy', $item->id) }}" method="post" class="d-inline">
+                                  <form action="{{ route('car.destroy', $item->id) }}" method="post" class="d-inline">
                                       @csrf
                                       @method('delete')
                                       <button class="btn btn-danger">

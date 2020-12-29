@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Car;
+use App\CarType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarRequest;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $items = Car::all();
+        $items = Car::with(['car_type'])->get();
 
         return view('pages.admin.car.index',[
             'items' => $items
@@ -30,7 +31,10 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.car.create');
+        $car_types = CarType::all();
+        return view('pages.admin.car.create',[
+            'car_types' => $car_types
+        ]);
     }
 
     /**
@@ -44,7 +48,6 @@ class CarController extends Controller
         $data = $request->all();
 
         Car::create($data);
-        
         return redirect()->route('car.index');
     }
 
@@ -68,9 +71,11 @@ class CarController extends Controller
     public function edit($id)
     {
         $item = Car::findOrFail($id);
+        $car_types = CarType::all();
 
         return view('pages.admin.car.edit',[
-            'item' => $item
+            'item' => $item,
+            'car_types' => $car_types
         ]);
     }
 
