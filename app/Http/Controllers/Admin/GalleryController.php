@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Car;
+use App\Gallery;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CarRequest;
+use App\Http\Requests\Admin\GalleryRequest;
 use Illuminate\Http\Request;
 
-class CarController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,10 @@ class CarController extends Controller
      */
     public function index()
     {
-        $items = Car::all();
+        $items = Gallery::with(['car'])->get();
 
-        return view('pages.admin.car.index',[
-            'items' => $items
+        return view('pages.admin.gallery.index',[
+            'items' => $items,
         ]);
     }
 
@@ -30,7 +31,10 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.car.create');
+        $cars = Car::all();
+        return view('pages.admin.gallery.create',[
+            'cars' => $cars
+        ]);
     }
 
     /**
@@ -39,13 +43,16 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CarRequest $request)
+    public function store(GalleryRequest $request)
     {
         $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/gallery', 'public'
+        );
 
-        Car::create($data);
-        
-        return redirect()->route('car.index');
+        Gallery::create($data);
+
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -67,10 +74,12 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        $item = Car::findOrFail($id);
+        $item = Gallery::findOrFail($id);
+        $cars = Car::all();
 
-        return view('pages.admin.car.edit',[
-            'item' => $item
+        return view('pages.admin.gallery.edit',[
+            'item' => $item,
+            'cars' => $cars
         ]);
     }
 
@@ -81,15 +90,18 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CarRequest $request, $id)
+    public function update(GalleryRequest $request, $id)
     {
         $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/gallery', 'public'
+        );
 
-        $item = Car::findOrFail($id);
+        $item = Gallery::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('car.index');
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -100,10 +112,10 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        $item = Car::findorFail($id);
+        $item = Gallery::findorFail($id);
         $item->delete();
 
-        return redirect()->route('car.index');
+        return redirect()->route('gallery.index');
 
     }
 }

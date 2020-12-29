@@ -4,7 +4,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-text mx-3">
-      NOMADS Admin
+      Mobil Admin
     </div>
   </a>
 
@@ -22,6 +22,18 @@
     <a class="nav-link" href="{{ route('car-type.index') }}">
       <i class="fas fa-fw fa-car"></i>
       <span>Kategori Mobil</span></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('car.index') }}">
+      <i class="fas fa-fw fa-car"></i>
+      <span>Mobil</span></a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('gallery.index') }}">
+      <i class="fas fa-fw fa-images"></i>
+      <span>Gallery</span></a>
   </li>
 
   <hr class="sidebar-divider">

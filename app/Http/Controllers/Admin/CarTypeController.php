@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\CarType;
 use App\Http\Controllers\Controller;
@@ -43,7 +43,7 @@ class CarTypeController extends Controller
     {
         $data = $request->all();
         $data['image'] = $request->file('image')->store(
-            'assets/car-type', 'public'
+            'assets/car-types', 'public'
         );
 
         CarType::create($data);
@@ -88,7 +88,7 @@ class CarTypeController extends Controller
     {
         $data = $request->all();
         $data['image'] = $request->file('image')->store(
-            'assets/car-type', 'public'
+            'assets/car-types', 'public'
         );
 
         $item = CarType::findOrFail($id);

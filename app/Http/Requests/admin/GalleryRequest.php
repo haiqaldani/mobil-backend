@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CarTypeRequest extends FormRequest
+class GalleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CarTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
+            'cars_id' => 'required|integer|exists:cars,id',
             'image' => 'required|image',
         ];
     }
