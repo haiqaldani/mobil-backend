@@ -1,4 +1,7 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
 
 .carousel-open:checked + .carousel-item {
     position: static;
@@ -28,3 +31,4 @@
 #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
 #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
     color: #2b6cb0;  }
+
