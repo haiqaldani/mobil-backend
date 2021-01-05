@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Car;
+use App\CarType;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +15,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $car_types=CarType::all();
+        $cars = Car::with(['galleries'])->get();
+        return view('pages.home',[
+            'car_types' => $car_types,
+            'cars' => $cars
+        ]);
     }
 }

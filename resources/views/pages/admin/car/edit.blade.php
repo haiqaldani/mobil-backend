@@ -52,6 +52,14 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="condition">Kondisi</label>
+                        <select name="condition" required class="form-control">
+                            <option value="{{ $item->condition }}">Pilih Kondisi</option>
+                            <option value="Baru">Otomatis</option>
+                            <option value="Bekas">Manual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="fuel">Bahan Bakar</label>
                         <input type="text" class="form-control" name="fuel" placeholder="Bahan Bakar" value="{{ $item->fuel }}">
                     </div>
