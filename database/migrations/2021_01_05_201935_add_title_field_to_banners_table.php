@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRolesFieldToUsersTable extends Migration
+class AddTitleFieldToBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddRolesFieldToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('roles')->default('USER');
+        Schema::table('banners', function (Blueprint $table) {
+            $table->string('title');
+            $table->string('slug');
         });
     }
 
@@ -25,8 +26,9 @@ class AddRolesFieldToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('roles');
+        Schema::table('banners', function (Blueprint $table) {
+            $table->dropColumn('title');
+            $table->dropColumn('slug');
         });
     }
 }

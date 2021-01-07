@@ -19,6 +19,12 @@
   </li>
 
   <li class="nav-item">
+    <a class="nav-link" href="{{ route('banner.index') }}">
+      <i class="fas fa-fw fa-car"></i>
+      <span>Banner</span></a>
+  </li>
+
+  <li class="nav-item">
     <a class="nav-link" href="{{ route('car-type.index') }}">
       <i class="fas fa-fw fa-car"></i>
       <span>Kategori Mobil</span></a>

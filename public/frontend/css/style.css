@@ -3,7 +3,26 @@
 @tailwind utilities;
 @tailwind screens;
 
-.carousel-open:checked + .carousel-item {
+.owl-prev {
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    position: absolute;
+    top: 42.5%;
+}
+
+.owl-next {
+    right: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    position: absolute;
+    top: 42.5%;
+}
+
+
+/* .carousel-open:checked + .carousel-item {
     position: static;
     opacity: 100;
 }
@@ -30,5 +49,4 @@
 #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
 #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
 #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
-    color: #2b6cb0;  }
-
+    color: #2b6cb0;  } */

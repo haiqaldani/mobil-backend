@@ -29,6 +29,7 @@ Route::prefix('admin')
             ->name('dashboard');
 
         Route::resource('car-type', 'CarTypeController');
+        Route::resource('banner', 'BannerController');
         Route::resource('car', 'CarController');
         Route::resource('gallery', 'GalleryController');
 

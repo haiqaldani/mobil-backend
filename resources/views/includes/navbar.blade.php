@@ -1,7 +1,7 @@
-<div class="container  ">
-    <div class="flex justify-between items-center mx-5 mt-12">
+<div class="container">
+    <div class="flex justify-between items-center mx-5 my-12">
         <div style="height: 35px">
-            <img src="{{ url('images/logo_mobil.png') }}" alt="Logo Mobil" class="h-full">
+            <img src="{{ url('frontend/images/logo_mobil.png') }}" alt="Logo Mobil" class="h-full">
         </div>
         <ul class="flex font-bold">
             <li>
@@ -16,7 +16,7 @@
             @auth
             <li class="px-5">
                 <a href="{{ url('admin') }}">
-                    <img src="{{ url('images/person-black-24dp.svg') }}" alt="My Account"
+                    <img src="{{ url('frontend/images/person-black-24dp.svg') }}" alt="My Account"
                         class="">
                 </a>
             </li>
@@ -34,7 +34,7 @@
                 </li>
                 <li class="px-5">
                     <a href="{{ url('login') }}">
-                        <img src="{{ url('images/person-black-24dp.svg') }}" alt="My Account"
+                        <img src="{{ url('frontend/images/person-black-24dp.svg') }}" alt="My Account"
                             class="">
                     </a>
                 </li>

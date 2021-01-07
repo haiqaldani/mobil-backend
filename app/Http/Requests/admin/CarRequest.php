@@ -29,12 +29,12 @@ class CarRequest extends FormRequest
             'car_types_id' => 'required|integer|exists:car_types,id',
             'transmission' => 'required',
             'fuel' => 'required|max:255',
-            'edition' => 'required|max:255',
-            'cc' => 'required|integer',
-            'kilometers' => 'required|integer',
+            'edition' => 'max:255',
+            'cc' => 'integer',
+            'kilometers' => 'integer',
             'price' => 'required|integer',
             'price_description' => 'required',
-            'color' => 'required|max:255',
+            'color' => 'max:255',
             'vehicle_features' => 'required|max:255',
             'description' => 'required'
         ];
