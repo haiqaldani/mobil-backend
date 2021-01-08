@@ -64,25 +64,27 @@ MOBIL
                 <div class="mt-5 md:mt-0">
                     <h2 class="font-bold md:text-left text-center text-lg md:mr-40 w-full">Lihat bedasarkan budget</h2>
                 </div>
-                <div class="">
-                    <button class="py-4 md:w-11/12 w-full  text-blue-700 font-semibold rounded-lg shadow-md ">
-                        < 100 Juta </button>
-                </div>
-                <div class="">
-                    <button class="py-4 md:w-11/12 w-full text-blue-700 font-semibold rounded-lg shadow-md ">
-                        100 Juta - 300 Juta
-                    </button>
-                </div>
-                <div class="">
-                    <button class="py-4 md:w-11/12 w-full text-blue-700 font-semibold rounded-lg shadow-md ">
-                        300 Juta - 500 Juta
-                    </button>
-                </div>
-                <div class="">
-                    <button class="py-4 md:w-11/12 w-full text-blue-700 font-semibold rounded-lg shadow-md ">
-                        > 500 Juta
-                    </button>
-                </div>
+                <ul class="flex flex-col font-bold">
+                    <li class="my-4">
+                        <a href="#" class="px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                            &lt; 100 Juta</a>
+                    </li>
+                    <li class="my-4">
+                        <a href="#"
+                            class="px-24 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                        100 Juta - 300 Juta </a>
+                    </li>
+                    <li class="my-4">
+                        <a href="#"
+                            class="px-24 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                        300 Juta - 500 Juta</a>
+                    </li>
+                    <li class="my-4">
+                        <a href="#"
+                            class="px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                            &gt; 500 Juta</a>
+                    </li>
+                </ul>
             </div>
             <div class="flex flex-col">
                 <div class="mt-5 md:mt-0">

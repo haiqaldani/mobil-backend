@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')
     ->name('home');
 
-Route::get('/detail/{title}/{slug}', 'DetailController@index')
+    Route::get('/cars', 'CarsController@index')
+    ->name('cars');
+
+Route::get('/detail', 'DetailController@index')
     ->name('detail');
 
 Route::prefix('admin')
