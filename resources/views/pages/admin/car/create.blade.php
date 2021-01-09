@@ -23,6 +23,9 @@
             <div class="card-body">
                 <form action="{{ route('car-type.store') }}" method="post">
                     @csrf
+                    {{-- <div class="form-group"> --}}
+                        <input type="hidden" class="form-control" name="title" placeholder="Title" value="{{ Auth::user()->id }}">
+                    {{-- </div> --}}
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" name="title" placeholder="Title" value="{{ old('title') }}">
@@ -32,7 +35,7 @@
                         <input type="number" class="form-control" name="car_year" placeholder="Tahun Mobil" value="{{ old('car_year') }}">
                     </div>
                     <div class="form-group">
-                        <label for="title">Kategori Mobil</label>
+                        <label for="cars_type_id">Kategori Mobil</label>
                         <select name="car_types_id" required class="form-control">
                             <option value="">Pilih Kategori Mobil</option>
                             @foreach($car_types as $car_type)

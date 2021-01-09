@@ -14,7 +14,6 @@ class Gallery extends Model
     ];
 
     protected $hidden = [
-
     ];
 
     public function cars(){

@@ -24,6 +24,7 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
+            'id_seller' => 'required|integer|exists:user,id',
             'title' => 'required|max:255',
             'car_year' => 'required',
             'car_types_id' => 'required|integer|exists:car_types,id',
@@ -35,7 +36,7 @@ class CarRequest extends FormRequest
             'price' => 'required|integer',
             'price_description' => 'required',
             'color' => 'max:255',
-            'vehicle_features' => 'required|max:255',
+            'vehicle_features' => 'max:255',
             'description' => 'required'
         ];
     }

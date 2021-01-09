@@ -6,9 +6,9 @@
 
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Kategori Mobil</h1>
+        <h1 class="h3 mb-0 text-gray-800">Mobil</h1>
           <a href="{{ route('car.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Kategori Mobil
+              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Mobil
           </a>
       </div>
 
@@ -24,7 +24,7 @@
                           <th>Tahun Mobil</th>
                           <th>Transmisi</th>
                           <th>Bahan Bakar</th>
-                          <th>Edisi</th>
+                          <th>Penjual</th>
                           <th>Action</th>
                       </tr>
                       </thead>
@@ -36,7 +36,7 @@
                               <td>{{ $item->car_year }}</td>
                               <td>{{ $item->transmission }}</td>
                               <td>{{ $item->fuel }}</td>
-                              <td>{{ $item->edision }}</td>
+                              <td>{{ $item->user->name }}</td>
                               <td>
                                   <a href="{{ route('car.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>

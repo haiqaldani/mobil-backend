@@ -21,4 +21,8 @@ class CarType extends Model
         return $this->hasMany( Car::class, 'car_types_id', 'id' );
     }
 
+    public function cars(){
+        return $this->belongsTo( Car::class, 'travel_packages_id', 'id' );
+    }
+
 }

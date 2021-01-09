@@ -19,8 +19,14 @@ class Car extends Model
     {
         return $this->belongsTo(CarType::class, 'car_types_id', 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_seller', 'id');
+    }
     public function galleries()
     {
         return $this->hasMany(Gallery::class, 'cars_id', 'id');
     }
+
+
 }

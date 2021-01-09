@@ -5,7 +5,7 @@
         </div>
         <ul class="flex font-bold">
             <li>
-                <a href="#" class="px-4 py-2 hover:text-blue-500">Home</a>
+                <a href="{{url ('/')}}" class="px-4 py-2 hover:text-blue-500">Home</a>
             </li>
             <li>
                 <a href="#" class="px-4 py-2 hover:text-blue-500">Mobil Baru</a>

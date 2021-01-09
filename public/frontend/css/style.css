@@ -21,8 +21,21 @@
     top: 42.5%;
 }
 
+#sync3 .item {
+    cursor: pointer;
+    background: #c9c9c9;
 
-/* .carousel-open:checked + .carousel-item {
+}
+
+.owl-theme .owl-nav [class*="owl-"] {
+    transition: all 0.3s ease;
+}
+
+.owl-theme .owl-nav [class*="owl-"].disabled:hover {
+    background-color: #d6d6d6;
+
+
+    /* .carousel-open:checked + .carousel-item {
     position: static;
     opacity: 100;
 }
