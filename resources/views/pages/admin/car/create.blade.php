@@ -21,10 +21,10 @@
         @endif
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{ route('car-type.store') }}" method="post">
+                <form action="{{ route('car.store') }}" method="post">
                     @csrf
                     {{-- <div class="form-group"> --}}
-                        <input type="hidden" class="form-control" name="title" placeholder="Title" value="{{ Auth::user()->id }}">
+                        <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller" value="{{ Auth::user()->id }}">
                     {{-- </div> --}}
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -57,8 +57,8 @@
                         <label for="condition">Kondisi</label>
                         <select name="condition" required class="form-control">
                             <option value="">Pilih Kondisi</option>
-                            <option value="Baru">Otomatis</option>
-                            <option value="Bekas">Manual</option>
+                            <option value="Baru">Baru</option>
+                            <option value="Bekas">Bekas</option>
                         </select>
                     </div>
                     <div class="form-group">

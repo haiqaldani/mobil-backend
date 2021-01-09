@@ -36,7 +36,7 @@
                               <td>{{ $item->car_year }}</td>
                               <td>{{ $item->transmission }}</td>
                               <td>{{ $item->fuel }}</td>
-                              <td>{{ $item->user->name }}</td>
+                              <td>{{ $item->users->name }}</td>
                               <td>
                                   <a href="{{ route('car.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>

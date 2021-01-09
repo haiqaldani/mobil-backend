@@ -10,16 +10,16 @@ class Car extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description', 'color', 'color', 'vehicle_features', 'description'
+        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description', 'color', 'vehicle_features', 'description','id_seller'
     ];
 
     protected $hidden = [];
 
-    public function car_type()
+    public function car_types()
     {
         return $this->belongsTo(CarType::class, 'car_types_id', 'id');
     }
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'id_seller', 'id');
     }

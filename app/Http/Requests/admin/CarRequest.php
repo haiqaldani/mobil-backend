@@ -24,7 +24,7 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_seller' => 'required|integer|exists:user,id',
+            'id_seller' => 'integer|exists:users,id',
             'title' => 'required|max:255',
             'car_year' => 'required',
             'car_types_id' => 'required|integer|exists:car_types,id',

@@ -6,7 +6,9 @@ use App\Car;
 use App\CarType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarRequest;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CarController extends Controller
 {
@@ -17,7 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $items = Car::with(['car_type','user'])->get();
+        $items = Car::with(['car_types','users'])->get();
 
         return view('pages.admin.car.index',[
             'items' => $items
@@ -32,8 +34,10 @@ class CarController extends Controller
     public function create()
     {
         $car_types = CarType::all();
+        $users = User::all();
         return view('pages.admin.car.create',[
-            'car_types' => $car_types
+            'car_types' => $car_types,
+            'users' => $users
         ]);
     }
 
@@ -46,6 +50,7 @@ class CarController extends Controller
     public function store(CarRequest $request)
     {
         $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
 
         Car::create($data);
         return redirect()->route('car.index');
@@ -89,6 +94,7 @@ class CarController extends Controller
     public function update(CarRequest $request, $id)
     {
         $data = $request->all();
+        $data['slug'] = Str::title($request->title);
 
         $item = Car::findOrFail($id);
 
