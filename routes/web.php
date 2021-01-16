@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')
     ->name('home');
 
-    Route::get('/cars', 'CarsController@index')
-    ->name('cars');
+    Route::get('/cars/used', 'CarsUsedController@index')
+    ->name('carsused');
 
-Route::get('/detail', 'DetailController@index')
+Route::get('/detail/{slug}', 'DetailController@index')
     ->name('detail');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::prefix('admin')
     ->namespace('Admin')

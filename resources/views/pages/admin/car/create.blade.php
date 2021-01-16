@@ -83,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price_description">Deskripsi Harga</label>
-                        <textarea name="price_description" rows="10" class="d-block w-100 form-control">{{ old('price_description') }}</textarea>
+                        <textarea id="price_description" name="price_description" rows="10">{{ old('price_description') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="color">Warna</label>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea name="description" rows="10" class="d-block w-100 form-control">{{ old('description') }}</textarea>
+                        <textarea id="description" name="description" rows="10" class="d-block w-100 form-control">{{ old('description') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Simpan
@@ -106,3 +106,9 @@
     </div>
     <!-- /.container-fluid -->
 @endsection
+@section('script')
+    <script>
+        CKEDITOR.replace('price_description');
+    </script>
+@endsection
+

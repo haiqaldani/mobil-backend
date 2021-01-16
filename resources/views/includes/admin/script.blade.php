@@ -1,3 +1,4 @@
+
 <!-- Bootstrap core JavaScript-->
   <script src="{{ url('backend/vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -14,3 +15,6 @@
   <!-- Page level custom scripts -->
   <script src="{{ url('backend/js/demo/chart-area-demo.js') }}"></script>
   <script src="{{ url('backend/js/demo/chart-pie-demo.js') }}"></script>
+
+  {{-- Ck editor  --}}
+

@@ -31,6 +31,7 @@
     },
     "dependencies": {
         "@tailwindcss/ui": "^0.7.2",
+        "ckeditor4": "^4.15.1",
         "postcss-cli": "^8.3.1"
     }
 }

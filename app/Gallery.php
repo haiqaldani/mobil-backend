@@ -17,7 +17,7 @@ class Gallery extends Model
     ];
 
     public function cars(){
-        return $this->belongsTo( Car::class, 'travel_packages_id', 'id' );
+        return $this->belongsTo( Car::class, 'cars_id', 'id' );
     }
 
 }

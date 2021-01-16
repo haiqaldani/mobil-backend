@@ -33,9 +33,18 @@
 
 .owl-theme .owl-nav [class*="owl-"].disabled:hover {
     background-color: #d6d6d6;
+}
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+  }
 
-    /* .carousel-open:checked + .carousel-item {
+  .dropdown-menu {
+    right: 0px;
+    top: 40px;
+  }
+
+/* .carousel-open:checked + .carousel-item {
     position: static;
     opacity: 100;
 }

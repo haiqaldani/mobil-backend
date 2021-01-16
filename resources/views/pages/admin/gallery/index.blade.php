@@ -29,7 +29,7 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $item->id }}</td>
-                              <td>{{ $item->car->title }}</td>
+                              <td>{{ $item->cars->title }}</td>
                               <td>
                                   <img src="{{ Storage::url($item->image) }}" alt="" style="width: 200px" class="img-thumbnail">
                               </td>

@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price_description">Deskripsi Harga</label>
-                        <textarea name="price_description" rows="10" class="d-block w-100 form-control">{{ $item->price_description }}</textarea>
+                        <textarea name="price_description" rows="10">{{ $item->price_description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="color">Warna</label>
@@ -89,11 +89,11 @@
                     </div>
                     <div class="form-group">
                         <label for="vehicle_features">Fitur Kendaraan</label>
-                        <textarea name="vehicle_features" rows="10" class="d-block w-100 form-control">{{ $item->vehicle_features }}</textarea>
+                        <textarea id="vehicle_features" name="vehicle_features" rows="10" >{{ $item->vehicle_features }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea name="description" rows="10" class="d-block w-100 form-control">{{ $item->description }}</textarea>
+                        <textarea id="description" name="description" rows="10">{{ $item->description }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
@@ -103,4 +103,11 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('script')
+    <script>
+        CKEDITOR.replace('price_description');
+        CKEDITOR.replace('vehicle_features');
+        CKEDITOR.replace('description');
+    </script>
 @endsection

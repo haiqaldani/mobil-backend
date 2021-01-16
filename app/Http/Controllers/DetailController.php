@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request, $slug){
 
-        $cars = Car::all();
-        // $cars = Car::with(['galleries'])->where('slug', $slug)->firstOrFail();
-        return view ('pages.detail',[
-            'cars' => $cars
+        $wa = $request->fullUrl();
+        $item = Car::with(['galleries', 'users'])->where('slug', $slug)->firstOrFail();
+        return view('pages.detail',[
+            'item' => $item,
+            'wa' => $wa,
         ]);
     }
 }

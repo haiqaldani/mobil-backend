@@ -1967,6 +1967,11 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
 
+"ckeditor4@^4.15.1":
+  "integrity" "sha512-t2q61VG2h0i5DwZ+G3jTesrBSGnhNK0iKVdSzLBKx40PQzcDUDZOWJbMlpbAOuMzAAS096x5J2H4u/IyQRl1vQ=="
+  "resolved" "https://registry.npmjs.org/ckeditor4/-/ckeditor4-4.15.1.tgz"
+  "version" "4.15.1"
+
 "class-utils@^0.3.5":
   "integrity" "sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg=="
   "resolved" "https://registry.npmjs.org/class-utils/-/class-utils-0.3.6.tgz"

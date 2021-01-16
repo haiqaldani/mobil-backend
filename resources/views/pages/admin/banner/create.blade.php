@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea name="description" rows="10" class="d-block w-100 form-control">{{ old('description') }}</textarea>
+                        <textarea id="description" name="description" rows="10">{{ old('description') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Simpan
@@ -43,4 +43,9 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('script')
+    <script>
+        CKEDITOR.replace('description');
+    </script>
 @endsection
