@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Car;
 use Illuminate\Http\Request;
 
-class CarsUsedController extends Controller
+class CarsNewController extends Controller
 {
     /**
      * Show the application dashboard.
@@ -14,8 +14,8 @@ class CarsUsedController extends Controller
      */
     public function index()
     {
-        $items = Car::where('Condition', 'Bekas')->get();
-        return view('pages.carsused',[
+        $items = Car::where('Condition', 'Baru')->get();
+        return view('pages.carsnew',[
             'items' => $items
         ]);
     }
