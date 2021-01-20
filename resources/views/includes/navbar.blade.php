@@ -39,7 +39,7 @@
                 @endguest
                 @auth
 
-                    <div class="dropdown relative flex flex-col items-center h-full px-2 py-2 transition">
+                    <div class="flex dropdown relative flex-col items-center h-full  transition rounded-sm">
                         <button class="flex flex-row items-center  hover:text-blue-600  h-full">
                             <img src="{{ url('frontend/images/person-black-24dp.svg') }}"
                                 alt="My Account" class="">
@@ -47,29 +47,28 @@
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg> --}}
                         </button>
-                    @if(Auth::user()->where('roles', 'ADMIN'))
+                    @if(Auth::user()->isAdmin())
                         <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
                             <li><a href="{{ url('admin') }}"
-                                    class="py-1 px-4 block hover:bg-gray-200 whitespace-no-wrap">Dashboard</a>
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Dashboard</a>
                             </li>
                             <li>
                                 @csrf
                                 <a href="{{ url('logout') }}"
-                                    class="py-1 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
                             </li>
                         </ul>
-                    @else{
+                    @else
                         <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
                             <li><a href="{{ url('profile') }}"
-                                    class="py-1 px-4 block hover:bg-gray-200 whitespace-no-wrap">Profile</a>
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Profile</a>
                             </li>
                             <li>
                                 @csrf
                                 <a href="{{ url('logout') }}"
-                                    class="py-1 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
                             </li>
                         </ul>
-                        }
                     @endif
                     </div>
                 @endauth

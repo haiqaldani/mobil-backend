@@ -40,9 +40,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $maxAttempts = 3;
+
     public function cars()
     {
         return $this->hasMany(Car::class, 'id_seller', 'id');
     }
+
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'roles_id', 'id');
+    }
+
+    public function isAdmin() {
+        return $this->roles()->where('role', 'Admin')->exists();
+     }
+     
 
 }

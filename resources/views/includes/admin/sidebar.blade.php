@@ -19,6 +19,12 @@
   </li>
 
   <li class="nav-item">
+    <a class="nav-link" href="{{ route('role.index') }}">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Role</span></a>
+  </li>
+
+  <li class="nav-item">
     <a class="nav-link" href="{{ route('banner.index') }}">
       <i class="fas fa-fw fa-car"></i>
       <span>Banner</span></a>
@@ -41,6 +47,7 @@
       <i class="fas fa-fw fa-images"></i>
       <span>Gallery</span></a>
   </li>
+  
 
   <hr class="sidebar-divider">
 

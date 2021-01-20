@@ -36,6 +36,7 @@
 }
 
 .dropdown:hover .dropdown-menu {
+    top: 1.5rem;
     display: block;
   }
 

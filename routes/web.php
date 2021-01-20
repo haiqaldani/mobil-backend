@@ -29,6 +29,8 @@ Route::get('/detail/{slug}', 'DetailController@index')
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::post('/login','LoginController@login')->middleware('throttle:10,2');
+
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware(['auth', 'admin'])
@@ -40,6 +42,7 @@ Route::prefix('admin')
         Route::resource('banner', 'BannerController');
         Route::resource('car', 'CarController');
         Route::resource('gallery', 'GalleryController');
+        Route::resource('role', 'RoleController');
 
     });
 
