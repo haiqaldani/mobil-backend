@@ -46,7 +46,7 @@
                         <label for="name" class="font-semibold">{{ __('Name') }}</label>
                 
                         <div class="">
-                            <input class="w-full py-2 border border-blue-400" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none focus:border-black" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                         <label for="email" class="font-semibold">{{ __('E-Mail Address') }}</label>
                 
                         <div class="">
-                            <input class="w-full py-2 border border-blue-400" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none  focus:border-black" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                         <label for="password" class="font-semibold">{{ __('Password') }}</label>
                 
                         <div class="">
-                            <input class="w-full py-2 border border-blue-400" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none  focus:border-black" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                         <label for="password-confirm" class="font-semibold">{{ __('Confirm Password') }}</label>
                 
                         <div class="">
-                            <input class="w-full py-2 border border-blue-400" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none  focus:border-black" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
                 

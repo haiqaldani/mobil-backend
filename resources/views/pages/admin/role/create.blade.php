@@ -21,7 +21,7 @@
         @endif
         <div class="card shadow">
             <div class="card-body">
-                <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('role.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="role">Role</label>

@@ -5,10 +5,16 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Lab404\AuthChecker\Models\HasLoginsAndDevices;
+use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
+use Haruncpi\LaravelUserActivity\Traits\Loggable;
+use Spatie\Activitylog\Models\Activity;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasLoginsAndDevicesInterface
 {
-    use Notifiable;
+    use Notifiable, HasLoginsAndDevices;
+
+    
 
     /**
      * The attributes that are mass assignable.
@@ -56,5 +62,10 @@ class User extends Authenticatable
         return $this->roles()->where('role', 'Admin')->exists();
      }
      
+     
+    public function users()
+    {
+        return $this->hasMany(Activity::class, 'causer_id', 'id');
+    }
 
 }

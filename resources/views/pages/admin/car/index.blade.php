@@ -29,9 +29,10 @@
                       </tr>
                       </thead>
                       <tbody>
+                        @php $no = 1; @endphp
                       @forelse($items as $item)
                           <tr>
-                              <td>{{ $item->id }}</td>
+                              <td>{{ $no++ }}</td>
                               <td>{{ $item->title }}</td>
                               <td>{{ $item->car_year }}</td>
                               <td>{{ $item->transmission }}</td>

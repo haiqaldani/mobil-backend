@@ -50,6 +50,11 @@ class GalleryController extends Controller
         );
 
         Gallery::create($data);
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('gallery.index');
     }
@@ -100,6 +105,12 @@ class GalleryController extends Controller
 
         $item->update($data);
 
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+
         return redirect()->route('gallery.index');
     }
 
@@ -113,6 +124,12 @@ class GalleryController extends Controller
     {
         $item = Gallery::findorFail($id);
         $item->delete();
+
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('gallery.index');
 

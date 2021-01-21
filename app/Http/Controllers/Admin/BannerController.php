@@ -49,6 +49,12 @@ class BannerController extends Controller
 
         Banner::create($data);
 
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+
         return redirect()->route('banner.index');
     }
 
@@ -95,6 +101,12 @@ class BannerController extends Controller
 
         $item->update($data);
 
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+
         return redirect()->route('banner.index');
     }
 
@@ -108,6 +120,12 @@ class BannerController extends Controller
     {
         $item = Banner::findorFail($id);
         $item->delete();
+
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('banner.index');
 

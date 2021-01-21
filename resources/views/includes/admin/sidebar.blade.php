@@ -47,6 +47,11 @@
       <i class="fas fa-fw fa-images"></i>
       <span>Gallery</span></a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('activity-log.index') }}">
+      <i class="fas fa-fw fa-eye"></i>
+      <span>Activity</span></a>
+  </li>
   
 
   <hr class="sidebar-divider">

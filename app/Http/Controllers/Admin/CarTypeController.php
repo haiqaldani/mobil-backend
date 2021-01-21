@@ -47,6 +47,12 @@ class CarTypeController extends Controller
         );
 
         CarType::create($data);
+
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
         
         return redirect()->route('car-type.index');
     }
@@ -95,6 +101,12 @@ class CarTypeController extends Controller
 
         $item->update($data);
 
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+
         return redirect()->route('car-type.index');
     }
 
@@ -108,6 +120,12 @@ class CarTypeController extends Controller
     {
         $item = CarType::findorFail($id);
         $item->delete();
+
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('car-type.index');
 

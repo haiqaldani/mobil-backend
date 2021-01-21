@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest;
 use App\Role;
+use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -45,6 +46,11 @@ class RoleController extends Controller
         $data = $request->all();
 
         Role::create($data);
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('role.index');
     }
@@ -69,6 +75,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         $item = Role::findOrFail($id);
+        
         return view('pages.admin.role.edit',[
             'item' => $item
         ]);
@@ -88,7 +95,11 @@ class RoleController extends Controller
         $item = Role::findOrFail($id);
 
         $item->update($data);
+        $activity = Activity::all()->last();
 
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
         return redirect()->route('role.index');
     }
 
@@ -102,6 +113,11 @@ class RoleController extends Controller
     {
         $item = Role::findorFail($id);
         $item->delete();
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('role.index');
 

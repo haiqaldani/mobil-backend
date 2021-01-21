@@ -25,9 +25,10 @@
                       </tr>
                       </thead>
                       <tbody>
-                      @forelse($items as $item)
+                        @php $no = 1; @endphp
+                      @forelse($items as $item )
                           <tr>
-                              <td>{{ $item->id }}</td>
+                              <td>{{ $no++ }}</td>
                               <td>{{ $item->role }}</td>
                               <td>
                                   <a href="{{ route('role.edit', $item->id) }}" class="btn btn-info">

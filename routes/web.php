@@ -43,6 +43,7 @@ Route::prefix('admin')
         Route::resource('car', 'CarController');
         Route::resource('gallery', 'GalleryController');
         Route::resource('role', 'RoleController');
+        Route::resource('activity-log', 'ActivityLogController');
 
     });
 
