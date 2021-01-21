@@ -19,11 +19,12 @@
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                       <tr>
-                          <th>ID</th>
-                          <th>Log Name</th>
-                          <th>Deskripsi</th>
-                          <th>User</th>
-                          <th>Subject</th>
+                          <th>No</th>
+                          <th>User ID</th>
+                          <th>Ip Address</th>
+                          <th>Platform</th>
+                          <th>Desktop/Mobile</th>
+                          <th>Trusted</th>
                           <th>Action</th>
                       </tr>
                       </thead>
@@ -32,19 +33,31 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $no++ }}</td>
-                              <td>{{ $item->log_name }}</td>
-                              <td>User {{$item->causer_id}} {{ $item->description }}</td>
-                              <td>{{ $item->name }}</td>
-                              <td>{{ $item->subject_type }}</td>
+                              <td>{{ $item->user_id }}</td>
+                              <td>{{ $item->ip_address }}</td>
+                              <td>{{ $item->platform }}</td>
                               <td>
-                                  <form action="{{ route('activity-log.destroy', $item->id) }}" method="post" class="d-inline">
+                                  @if ($item->is_desktop == 1 )
+                                      Desktop
+                                  @elseif ($item->is_mobile == 1 )
+                                      Mobile
+                                  @endif
+                              </td>
+                              <td>
+                                  @if ($item->is_trusted == 1 )
+                                      Trusted
+                                  @else
+                                      Distrusted
+                                  @endif
+                              </td>
+                              <td>
+                                  <form action="{{ route('activity-login.destroy', $item->id) }}" method="post" class="d-inline">
                                       @csrf
                                       @method('delete')
                                       <button class="btn btn-danger">
                                           <i class="fa fa-trash"></i>
                                       </button>
                                   </form>
-
                               </td>
                           </tr>
                       @empty

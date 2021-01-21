@@ -21,6 +21,8 @@ class Role extends Model
     // logging only th changed attributes
     protected static $logOnlyDirty = true;
 
+    protected static $logName = 'Role';
+
     protected static $recordEvent = ['created', 'updated'];
 
     public function getDescriptionForEvent(string $eventName): string

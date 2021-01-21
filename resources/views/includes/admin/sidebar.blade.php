@@ -50,7 +50,12 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ route('activity-log.index') }}">
       <i class="fas fa-fw fa-eye"></i>
-      <span>Activity</span></a>
+      <span>Activity User</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('activity-login.index') }}">
+      <i class="fas fa-fw fa-eye"></i>
+      <span>Activity Login</span></a>
   </li>
   
 

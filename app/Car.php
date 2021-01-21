@@ -36,6 +36,9 @@ class Car extends Model
     // logging only th changed attributes
     protected static $logOnlyDirty = true;
 
+    protected static $logName = 'Car';
+
+
     protected static $recordEvent = ['created', 'updated'];
 
     public function getDescriptionForEvent(string $eventName): string

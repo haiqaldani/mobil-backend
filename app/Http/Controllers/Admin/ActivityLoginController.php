@@ -5,20 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\Activitylog\Models\Activity;
+use Lab404\AuthChecker\Models\Login;
 
-class ActivityLogController extends Controller
+class ActivityLoginController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // $items = Activity::with('users')->get();
-        $items = DB::table('activity_log')->join('users', 'causer_id', '=', 'activity_log.causer_id')->select('activity_log.*', 'users.*')->get();
-        return view('pages.admin.activity-log.index',[
+        $items = DB::table('logins')->join('devices', 'device_id', '=', 'logins.device_id')->select('logins.*', 'devices.*')->get();
+
+        return view('pages.admin.activity-login.index', [
             'items' => $items
         ]);
     }
@@ -31,10 +31,9 @@ class ActivityLogController extends Controller
      */
     public function destroy($id)
     {
-        $item = Activity::findorFail($id);
+        $item = Login::findorFail($id);
         $item->delete();
 
-        return redirect()->route('activity-log.index');
-
+        return redirect()->route('activity-login.index');
     }
 }

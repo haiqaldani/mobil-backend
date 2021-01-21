@@ -21,6 +21,9 @@ class Gallery extends Model
     // logging only th changed attributes
     protected static $logOnlyDirty = true;
 
+    protected static $logName = 'Gallery';
+
+
     protected static $recordEvent = ['created', 'updated'];
 
     public function getDescriptionForEvent(string $eventName): string

@@ -44,6 +44,7 @@ Route::prefix('admin')
         Route::resource('gallery', 'GalleryController');
         Route::resource('role', 'RoleController');
         Route::resource('activity-log', 'ActivityLogController');
+        Route::resource('activity-login', 'ActivityLoginController');
 
     });
 
