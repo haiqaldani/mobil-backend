@@ -23,7 +23,6 @@ class Banner extends Model
 
     protected static $logName = 'Banner';
 
-
     protected static $recordEvent = ['created', 'updated'];
 
     public function getDescriptionForEvent(string $eventName): string

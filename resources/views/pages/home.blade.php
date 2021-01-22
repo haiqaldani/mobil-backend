@@ -28,7 +28,7 @@ MOBIL
         <div class="container mt-10">
             <h1 class="text-center font-bold text-3xl">Temukan Mobil Baru dan Mobil Bekas Impian Anda</h1>
             <div class="mt-5 mb:mt-0 md:mx-20 mx-0">
-                <div class="flex flex-col md:flex-row mb-4">
+                <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 mb-4 mx-5  md:mx-0">
                     <div class="md:flex-1 md:pr-3">
                         <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Merek Semua
                             Mobil</label>
@@ -45,9 +45,9 @@ MOBIL
                             <option value="Semua">Bekas</option>
                         </select>
                     </div>
-                    <div class="md:flex-2 md:pl-3">
+                    <div class="md:flex-2 md:pl-3 mt-3">
                         <button
-                            class="inline-flex md:mt-4 py-4 md:px-4 text-black font-bold rounded-lg border-yellow-300 bg-yellow-300 border-2 hover:border-yellow-400"
+                            class="inline-flex w-full md:w-auto justify-center md:mt-4 py-4 md:px-4 text-black font-bold rounded-lg border-yellow-300 bg-yellow-300 border-2 hover:border-yellow-400"
                             type="submit">Cari Sekarang </button>
                     </div>
                 </div>
@@ -64,25 +64,25 @@ MOBIL
                         <h2 class="font-bold md:text-left text-center text-lg md:mr-40 w-full">Lihat bedasarkan budget
                         </h2>
                     </div>
-                    <ul class="flex flex-col font-bold">
-                        <li class="my-4">
+                    <ul class="flex flex-col font-bold space-y-9 mt-4">
+                        <li class="">
                             <a href="#"
-                                class="px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                class="md:px-32 px-40 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
                                 &lt; 100 Juta</a>
                         </li>
-                        <li class="my-4">
+                        <li class="">
                             <a href="#"
-                                class="px-24 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                class="md:px-24 px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
                                 100 Juta - 300 Juta </a>
                         </li>
-                        <li class="my-4">
+                        <li class="">
                             <a href="#"
-                                class="px-24 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                class="md:px-24 px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
                                 300 Juta - 500 Juta</a>
                         </li>
-                        <li class="my-4">
+                        <li class="">
                             <a href="#"
-                                class="px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                class="md:px-32 px-40 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
                                 &gt; 500 Juta</a>
                         </li>
                     </ul>
@@ -111,24 +111,23 @@ MOBIL
         <div class="container static">
             <div class="md:mx-20 mt-5">
                 <h2 class="md:text-left text-center text-lg font-bold">List rekomendasi</h2>
-                <div class="flex flex-wrap md:justify-start justify-center space-x-4">
+                <div class="flex flex-wrap md:justify-start justify-center space-x-5">
                     @foreach($cars as $car)
                         <div class="border-2 border-gray-50 rounded-lg mb-5 shadow-md">
                             <a href="{{ route('detail', $car->slug) }}">
                                 <div class="mx-1">
-                                    <img class="object-fill object-center md:w-70 md:h-48 w-96 h-48"
-                                        src="{{ Storage::url($car->galleries->first()->image) }}"
-                                        alt="{{ $car->title }}">
+                                    <img class="object-fill object-center md:w-auto md:h-44 w-96 h-48"
+                                        src="{{ Storage::url($car->galleries->count() ? Storage::url($car->galleries->first()->image) : '')}}"
+                                        alt="{{ Str::limit($car->title,25) }}">
                                 </div>
-                                <div class="px-2 py-2">
+                                <div class="mx-2 my-2">
                                     <h3 class="font-bold text-lg">@currency($car->price)</h3>
                                     <p class="text-sm text-gray-500">{{ $car->condition }}</p>
-                                    <h4 class="font-semibold text-base">{{ $car->title }}</h4>
+                                    <h4 class="font-semibold text-base">{{ Str::limit($car->title,25) }}</h4>
                                 </div>
                             </a>
                         </div>
                     @endforeach
-
                 </div>
             </div>
         </div>

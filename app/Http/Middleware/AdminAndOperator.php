@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class AdminAndOperator
@@ -18,8 +19,11 @@ class AdminAndOperator
     {
         if (Auth::user() && Auth::user()->roles_id <= 2 ) {
             return $next($request);
+ 
         }
 
-        return redirect('/');
+        return App::abort(Auth::check() ? 403 :401,
+        Auth::check() ? 'Forbidden' : 'Unauthorized');
+        
     }
 }

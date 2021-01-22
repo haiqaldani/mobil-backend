@@ -26,4 +26,9 @@ class DashboardController extends Controller
             'used_cars' => $used_cars
         ]);
     }
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
 }

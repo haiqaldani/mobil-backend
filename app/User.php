@@ -8,9 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use Lab404\AuthChecker\Models\HasLoginsAndDevices;
 use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
+use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Spatie\Activitylog\Models\Activity;
 
-class User extends Authenticatable implements HasLoginsAndDevicesInterface
+class User extends Authenticatable implements HasLoginsAndDevicesInterface, MustVerifyEmail
 {
     use Notifiable, HasLoginsAndDevices;
 
@@ -69,7 +70,7 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface
     }
     
     public function adminAndOperator() {
-        return $this->roles()->where('id', 1 )->orWhere('id', 2)->exists();
+        return $this->roles()->where('id','<=', 2)->exists();
     }
      
     public function users()

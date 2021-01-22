@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', 'HomeController@index')
     ->name('home');
 
@@ -52,6 +53,6 @@ Route::prefix('admin')
         });
     });
             
-
-
 Auth::routes(['verify' => true]);
+
+

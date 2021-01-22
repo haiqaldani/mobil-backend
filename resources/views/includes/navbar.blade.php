@@ -58,6 +58,17 @@
                                     class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
                             </li>
                         </ul>
+                    {{-- @elseif(Auth::user()->isOperator())
+                        <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
+                            <li><a href="{{ url('admin') }}"
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Dashboard</a>
+                            </li>
+                            <li>
+                                @csrf
+                                <a href="{{ url('logout') }}"
+                                    class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Logout</a>
+                            </li>
+                        </ul> --}}
                     @else
                         <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
                             <li><a href="{{ url('profile') }}"
