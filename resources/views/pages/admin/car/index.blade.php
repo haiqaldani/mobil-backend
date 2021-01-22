@@ -3,22 +3,20 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
-      <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Mobil</h1>
-          <a href="{{ route('car.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Mobil
-          </a>
-      </div>
-
-      <!-- Content Row -->
-      <div class="row">
-          <div class="card-body">
-              <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                      <tr>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 justify-content-between">
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-primary">Car</h3>
+                      <a href="{{ route('car.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Mobil
+                      </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="table_car" class="table" width="100%">
+                        <thead>
+                            <tr>
                           <th>ID</th>
                           <th>Title</th>
                           <th>Tahun Mobil</th>
@@ -37,7 +35,7 @@
                               <td>{{ $item->car_year }}</td>
                               <td>{{ $item->transmission }}</td>
                               <td>{{ $item->fuel }}</td>
-                              <td>{{ $item->users->name }}</td>
+                              <td>{{ $item->users->username }}</td>
                               <td>
                                   <a href="{{ route('car.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>
@@ -64,4 +62,13 @@
       </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('scripts')
+   <script>
+    $(document).ready(function() {
+        $('#table_car').DataTable(
+
+        );
+    });
+    </script>
 @endsection

@@ -22,10 +22,12 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
-        // 'username',
+        'username',
         'password',
+        'profil_picture',
     ];
 
     /**
@@ -59,9 +61,16 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface
     }
 
     public function isAdmin() {
-        return $this->roles()->where('role', 'Admin')->exists();
+        return $this->roles()->where('id', 1)->exists();
      }
-     
+
+    public function isOperator() {
+        return $this->roles()->where('id', 2)->exists();
+    }
+    
+    public function adminAndOperator() {
+        return $this->roles()->where('id', 1 )->orWhere('id', 2)->exists();
+    }
      
     public function users()
     {

@@ -42,13 +42,27 @@
                 <form class="mx-5 my-3 space-y-3" method="POST" action="{{ route('register') }}">
                     @csrf
                     <h4 class="font-semibold text-2xl">Register</h4>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="name" class="font-semibold">{{ __('Name') }}</label>
                 
                         <div class="">
                             <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none focus:border-black" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                 
                             @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div> --}}
+
+                    <div class="form-group">
+                        <label for="username" class="font-semibold">{{ __('Username') }}</label>
+                
+                        <div class="">
+                            <input class="w-full px-2 py-2 border border-blue-400 focus:outline-none focus:border-black" id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                
+                            @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

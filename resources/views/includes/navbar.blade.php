@@ -47,7 +47,7 @@
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg> --}}
                         </button>
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::user()->adminAndOperator())
                         <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
                             <li><a href="{{ url('admin') }}"
                                     class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Dashboard</a>

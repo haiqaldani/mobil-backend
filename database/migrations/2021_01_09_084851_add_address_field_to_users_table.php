@@ -14,9 +14,9 @@ class AddAddressFieldToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('province');
-            $table->string('city');
-            $table->text('address');
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+            $table->text('address')->nullable();
         });
     }
 

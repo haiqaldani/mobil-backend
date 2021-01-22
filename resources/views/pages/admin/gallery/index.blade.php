@@ -3,22 +3,20 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
-      <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Gallery</h1>
-          <a href="{{ route('gallery.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Gallery
-          </a>
-      </div>
-
-      <!-- Content Row -->
-      <div class="row">
-          <div class="card-body">
-              <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                      <tr>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 justify-content-between">
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-primary">Gallery</h3>
+                      <a href="{{ route('gallery.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Gallery
+                      </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="table_gallery" class="table" width="100%">
+                        <thead>
+                            <tr>
                           <th>ID</th>
                           <th>Mobil</th>
                           <th>Gambar</th>
@@ -26,7 +24,9 @@
                       </tr>
                       </thead>
                       <tbody>
-                        @php $no = 1; @endphp
+                        @php 
+                            $no = 1; 
+                        @endphp
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $no++ }}</td>
@@ -60,4 +60,13 @@
       </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('scripts')
+   <script>
+    $(document).ready(function() {
+        $('#table_gallery').DataTable(
+
+        );
+    });
+    </script>
 @endsection

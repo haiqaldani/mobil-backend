@@ -32,6 +32,8 @@
     "dependencies": {
         "@tailwindcss/ui": "^0.7.2",
         "ckeditor4": "^4.15.1",
+        "datatables.net": "^1.10.23",
+        "datatables.net-dt": "^1.10.23",
         "postcss-cli": "^8.3.1"
     }
 }

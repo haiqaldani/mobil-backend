@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::post('/login','LoginController@login')->middleware('throttle:10,2');
 
 Route::prefix('admin')
     ->namespace('Admin')
-    ->middleware(['auth', 'admin'])
+    ->middleware(['auth', 'adminandop'])
     ->group(function () {
         Route::get('/', 'DashboardController@index')
             ->name('dashboard');
@@ -42,11 +43,15 @@ Route::prefix('admin')
         Route::resource('banner', 'BannerController');
         Route::resource('car', 'CarController');
         Route::resource('gallery', 'GalleryController');
-        Route::resource('role', 'RoleController');
-        Route::resource('activity-log', 'ActivityLogController');
-        Route::resource('activity-login', 'ActivityLoginController');
-
+        Route::group(['middleware' => ['auth','admin']], function (){
+            Route::resource('activity-log', 'ActivityLogController');
+            Route::resource('activity-login', 'ActivityLoginController');
+            Route::resource('user', 'UserController');
+            Route::get('changeStatus', 'UserController@ChangeUserStatus');
+            Route::resource('role', 'RoleController');
+        });
     });
+            
 
 
 Auth::routes(['verify' => true]);

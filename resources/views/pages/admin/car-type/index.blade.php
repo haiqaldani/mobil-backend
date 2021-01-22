@@ -3,22 +3,20 @@
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
-      <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Kategori Mobil</h1>
-          <a href="{{ route('car-type.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Kategori Mobil
-          </a>
-      </div>
-
-      <!-- Content Row -->
-      <div class="row">
-          <div class="card-body">
-              <div class="table-responsive">
-                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
-                      <tr>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 justify-content-between">
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-primary">Kategori Mobil</h3>
+                      <a href="{{ route('car-type.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Kategori Mobil
+                      </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="table_cartype" class="table" width="100%">
+                        <thead>
+                            <tr>
                           <th>ID</th>
                           <th>Nama Kategori</th>
                           <th>Gambar</th>
@@ -60,4 +58,13 @@
       </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('scripts')
+   <script>
+    $(document).ready(function() {
+        $('#table_cartype').DataTable(
+
+        );
+    });
+    </script>
 @endsection

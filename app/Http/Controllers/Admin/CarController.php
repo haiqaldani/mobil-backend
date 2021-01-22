@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\CarRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Spatie\Activitylog\Models\Activity;
 
 class CarController extends Controller
 {

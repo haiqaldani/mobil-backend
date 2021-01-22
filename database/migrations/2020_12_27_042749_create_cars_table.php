@@ -21,13 +21,13 @@ class CreateCarsTable extends Migration
             $table->integer('car_types_id');
             $table->enum('transmission', array('Otomatis', 'Manual'));
             $table->string('fuel');
-            $table->string('edition');
-            $table->integer('cc');
+            $table->string('edition')->nullable();
+            $table->integer('cc')->nullable();
             $table->integer('kilometers');
             $table->integer('price');
-            $table->text('price_description');
-            $table->string('color');
-            $table->string('vehicle_features');
+            $table->text('price_description')->nullable();
+            $table->string('color')->nullable();
+            $table->string('vehicle_features')->nullable();
             $table->longText('description');
             $table->text('car_picture');
             $table->softDeletes();
