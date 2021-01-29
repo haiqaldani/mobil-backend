@@ -8,7 +8,7 @@ MOBIL
 {{-- Header slide --}}
 <main class="main-carousel">
     <div class="container">
-        <div id="sync1" class="owl-carousel owl-theme shadow-md mt-10">
+        <div id="sync1" class="owl-carousel owl-theme shadow-md mt-10 mb-10">
             @foreach($banners as $banner)
                 <div class="item">
                     <img class="md:h-96 object-fill object-center" src="{{ Storage::url($banner->image) }}"
@@ -25,10 +25,10 @@ MOBIL
 
     {{-- Search car --}}
     <section class="section-search">
-        <div class="container mt-10">
+        <div class="container mb-5">
             <h1 class="text-center font-bold text-3xl">Temukan Mobil Baru dan Mobil Bekas Impian Anda</h1>
-            <div class="mt-5 mb:mt-0 md:mx-20 mx-0">
-                <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 mb-4 mx-5  md:mx-0">
+            <div class="mt-5 mb:mt-0 lg:mx-20 mx-10">
+                <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 mb-4 md:mx-0">
                     <div class="md:flex-1 md:pr-3">
                         <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Merek Semua
                             Mobil</label>
@@ -57,71 +57,76 @@ MOBIL
 
     {{-- cars type dan filter harga --}}
     <section class="section-type">
-        <div class="container">
-            <div class="flex md:flex-row flex-col md:justify-start mx-10 md:mx-20">
+        <div class="container mb-10">
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 md:justify-start mx-10 lg:mx-20 space-x-5">
                 <div class="flex flex-col">
                     <div class="mt-5 md:mt-0">
-                        <h2 class="font-bold md:text-left text-center text-lg md:mr-40 w-full">Lihat bedasarkan budget
+                        <h2 class="font-bold md:text-left text-center text-lg w-full">Lihat bedasarkan budget
                         </h2>
+                        <ul class="font-bold text-center space-y-2 mr-0  ">
+                            <li class="">
+                                <a href="#"
+                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    &lt; 100 Juta</a>
+                            </li>
+                            <li class="">
+                                <a href="#"
+                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    100 Juta - 300 Juta </a>
+                            </li>
+                            <li class="">
+                                <a href="#"
+                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    300 Juta - 500 Juta</a>
+                            </li>
+                            <li class="">
+                                <a href="#"
+                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    &gt; 500 Juta</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="flex flex-col font-bold space-y-9 mt-4">
-                        <li class="">
-                            <a href="#"
-                                class="md:px-32 px-40 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
-                                &lt; 100 Juta</a>
-                        </li>
-                        <li class="">
-                            <a href="#"
-                                class="md:px-24 px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
-                                100 Juta - 300 Juta </a>
-                        </li>
-                        <li class="">
-                            <a href="#"
-                                class="md:px-24 px-32 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
-                                300 Juta - 500 Juta</a>
-                        </li>
-                        <li class="">
-                            <a href="#"
-                                class="md:px-32 px-40 py-3 border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
-                                &gt; 500 Juta</a>
-                        </li>
-                    </ul>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col md:col-span-2 lg:col-span-3">
                     <div class="mt-5 md:mt-0">
                         <h2 class="font-bold md:text-left text-center text-lg mb-3 md:mb-0">Lihat bedasarkan tipe</h2>
-                    </div>
-                    @foreach($car_types as $car_type)
-                        <div class="flex flex-wrap md:justify-between justify-center border-2 rounded-md">
-                            <a href="#">
-                                <div class="">
-                                    <img class="object-fill object-center w-96 h-48 w: md:w-48 md:h-24"
-                                        src="{{ Storage::url($car_type->image) }}" alt="{{ $car_type->title }}">
+                        <div class="grid lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2 gap-2">
+                            @foreach($car_types as $car_type)
+                                <div class="flex md:justify-between justify-center border-2 rounded-md">
+                                    <a href="#">
+                                        <div class="m-1">
+                                            <img class="object-contain object-center w-full h-24"
+                                                src="{{ Storage::url($car_type->image) }}"
+                                                alt="{{ $car_type->title }}">
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
+
+                                @endforeach
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                    </div>
+                    
             </div>
         </div>
     </section>
 
     {{-- listing mobil --}}
     <section class="section-list">
-        <div class="container static">
-            <div class="md:mx-20 mt-5">
+        <div class="container static mb-10">
+            <div class="lg:mx-20 mx-10 ">
                 <h2 class="md:text-left text-center text-lg font-bold">List rekomendasi</h2>
-                <div class="flex flex-wrap md:justify-start justify-center space-x-5">
+                <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:justify-items-stretch">
                     @foreach($cars as $car)
-                        <div class="border-2 border-gray-50 rounded-lg mb-5 shadow-md">
+                        <div class="border-2 border-gray-50 rounded-lg shadow-md">
                             <a href="{{ route('detail', $car->slug) }}">
-                                <div class="mx-1">
-                                    <img class="object-fill object-center md:w-auto md:h-44 w-96 h-48"
-                                        src="{{ Storage::url($car->galleries->count() ? Storage::url($car->galleries->first()->image) : '')}}"
+                                <div class="m-1">
+                                    <img class=" rounded-md object-fill object-center w-full md:h-44 h-48"
+                                        src="{{ Storage::url($car->galleries->count() ? ($car->galleries->first()->image) : '') }}"
                                         alt="{{ Str::limit($car->title,25) }}">
                                 </div>
                                 <div class="mx-2 my-2">
-                                    <h3 class="font-bold text-lg">@currency($car->price)</h3>
+                                    <h3 class="font-bold text-lg">{{ $car->price }}</h3>
                                     <p class="text-sm text-gray-500">{{ $car->condition }}</p>
                                     <h4 class="font-semibold text-base">{{ Str::limit($car->title,25) }}</h4>
                                 </div>

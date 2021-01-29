@@ -7,6 +7,7 @@ use App\CarType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarRequest;
 use App\User;
+use App\VehicleFeature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\Models\Activity;
@@ -36,9 +37,15 @@ class CarController extends Controller
     {
         $car_types = CarType::all();
         $users = User::all();
+        $eksteriors = VehicleFeature::where('category', 'Eksterior')->get();
+        $interiors = VehicleFeature::where('category', 'Interior')->get();
+        $perlengkapans = VehicleFeature::where('category', 'Perlengkapan')->get();
         return view('pages.admin.car.create',[
             'car_types' => $car_types,
-            'users' => $users
+            'users' => $users,
+            'interiors' => $interiors,
+            'eksteriors' => $eksteriors,
+            'perlengkapans' => $perlengkapans,
         ]);
     }
 
@@ -50,6 +57,8 @@ class CarController extends Controller
      */
     public function store(CarRequest $request)
     {
+
+        $data = $request->validated();
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
 
@@ -84,10 +93,15 @@ class CarController extends Controller
     {
         $item = Car::findOrFail($id);
         $car_types = CarType::all();
-
+        $eksteriors = VehicleFeature::where('category', 'Eksterior')->get();
+        $interiors = VehicleFeature::where('category', 'Interior')->get();
+        $perlengkapans = VehicleFeature::where('category', 'Perlengkapan')->get();
         return view('pages.admin.car.edit',[
             'item' => $item,
-            'car_types' => $car_types
+            'car_types' => $car_types,
+            'interiors' => $interiors,
+            'eksteriors' => $eksteriors,
+            'perlengkapans' => $perlengkapans,
         ]);
     }
 
@@ -100,6 +114,7 @@ class CarController extends Controller
      */
     public function update(CarRequest $request, $id)
     {
+        $data = $request->validated();
         $data = $request->all();
         $data['slug'] = Str::title($request->title);
 

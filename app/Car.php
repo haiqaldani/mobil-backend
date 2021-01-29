@@ -2,15 +2,29 @@
 
 namespace App;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 
 class Car extends Model
 {
-    use SoftDeletes, LogsActivity;
+    use SoftDeletes, LogsActivity, Sluggable, Uuid;
+
+    protected $guarded = [];
+
+    public function setVehicleFeaturesIdAttribute($value)
+    {
+        $this->attributes['vehicle_features_id'] = json_encode($value);
+    }
+
+    public function getVehicleFeaturesIdAttribute($value)
+    {
+        return $this->attributes['vehicle_features_id'] = json_decode($value);
+    }
 
     //log the changed attributes for allevent
     protected static $logAttributes = [
@@ -25,10 +39,12 @@ class Car extends Model
         'price',
         'price_description',
         'color',
-        'vehicle_features',
-        'description'
+        'description',
+        'model',
+        'vehicle_features_id'
 
     ];
+
 
     //changing password and update_at will not trigger an activity being logged
     protected static $ignoreChangedAttributes = ['update_at'];
@@ -48,8 +64,17 @@ class Car extends Model
     }
 
     protected $fillable = [
-        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description', 'color', 'vehicle_features', 'description','id_seller'
+        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description', 'color', 'description','id_seller','model', 'vehicle_features_id'
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => ['title', 'id']
+            ]
+        ];
+    }
 
     protected $hidden = [];
 
@@ -65,6 +90,8 @@ class Car extends Model
     {
         return $this->hasMany(Gallery::class, 'cars_id', 'id');
     }
-
-
+    public function vehicle_features()
+    {
+        return $this->hasMany(VehicleFeature::class, 'vehicle_features_id', 'id');
+    }
 }

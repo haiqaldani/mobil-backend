@@ -18,12 +18,16 @@
         @if (Auth::user()->profil_picture == null)
           <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
         @else
-          <img class="img-profile rounded-circle" src="{{ Storage::url(Auth::user->profil_picture) }}">
+          <img class="img-profile rounded-circle" src="{{ Storage::url(Auth::user()->profil_picture) }}">
         @endif
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="" >
+        <a class="dropdown-item" href="{{route('profile.index')  }}" >
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="{{ ('auth/lock') }}" >
           <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
           Locked
         </a>

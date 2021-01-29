@@ -15,7 +15,7 @@ class DropRolesFieldInUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('roles');
-            $table->integer('roles_id')->default(2);
+            $table->integer('roles_id')->default(3);
         });
     }
 

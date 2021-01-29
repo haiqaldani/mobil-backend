@@ -2,20 +2,19 @@
 
 namespace App;
 
+use App\Traits\Uuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lab404\AuthChecker\Models\HasLoginsAndDevices;
 use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
-use Haruncpi\LaravelUserActivity\Traits\Loggable;
-use Illuminate\Auth\MustVerifyEmail as AuthMustVerifyEmail;
 use Spatie\Activitylog\Models\Activity;
 
 class User extends Authenticatable implements HasLoginsAndDevicesInterface, MustVerifyEmail
 {
-    use Notifiable, HasLoginsAndDevices;
+    use Notifiable, HasLoginsAndDevices, Uuid;
 
-    
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

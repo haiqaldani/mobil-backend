@@ -11,10 +11,13 @@
     
   </head>
   <body>
-    @yield('content')  
+    @include('includes.alternate-navbar')
+    @yield('content')
+     
 
     @stack('prepend-script')
     @include('includes.script')
     @stack('addon-script')
+    @yield('script') 
   </body>
 </html>

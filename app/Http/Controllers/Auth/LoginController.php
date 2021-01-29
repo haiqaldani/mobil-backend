@@ -69,4 +69,9 @@ class LoginController extends Controller
         request()->merge([$field => $login]);
         return $field;
     }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password') + ['status' => 1];
+    }
 }

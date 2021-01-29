@@ -14,20 +14,20 @@ class CreateCarsTable extends Migration
     public function up()
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->year('car_year');
             $table->integer('car_types_id');
-            $table->enum('transmission', array('Otomatis', 'Manual'));
-            $table->string('fuel');
+            $table->enum('transmission', ['Otomatis', 'Manual']);
+            $table->enum('fuel', ['Bensin', 'Diesel', 'Hybrid', 'Listrik']);
             $table->string('edition')->nullable();
             $table->integer('cc')->nullable();
             $table->integer('kilometers');
             $table->integer('price');
-            $table->text('price_description')->nullable();
+            $table->enum('price_description', ['Siap Pakai', 'Belum termasuk pajak dan lain-lain', 'Nego','Kredit tersedia','SKA Pemerintah RI saja (Form A, Form B, dll)', 'OTR'])->nullable();
             $table->string('color')->nullable();
-            $table->string('vehicle_features')->nullable();
+            $table->string('vehicle_features', 500)->nullable();
             $table->longText('description');
             $table->text('car_picture');
             $table->softDeletes();

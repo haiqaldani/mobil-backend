@@ -15,7 +15,7 @@ class AddTitleFieldToBannersTable extends Migration
     {
         Schema::table('banners', function (Blueprint $table) {
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
         });
     }
 

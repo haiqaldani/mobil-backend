@@ -6,6 +6,9 @@ use App\Banner;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BannerRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\Models\Activity;
+
 
 class BannerController extends Controller
 {
@@ -46,6 +49,7 @@ class BannerController extends Controller
         $data['image'] = $request->file('image')->store(
             'assets/banner', 'public'
         );
+        $data['slug'] = Str::slug($request->title);
 
         Banner::create($data);
 
@@ -96,6 +100,7 @@ class BannerController extends Controller
         $data['image'] = $request->file('image')->store(
             'assets/banner', 'public'
         );
+        $data['slug'] = Str::slug($request->title);
 
         $item = Banner::findOrFail($id);
 

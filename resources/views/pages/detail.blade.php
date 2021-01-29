@@ -25,7 +25,7 @@
                         <h2 class="text-lg">{{ $item->title }}</h2>
                         <div class="flex flex-row space-x-3">
                             <h3 class="text-xl font-bold">@currency($item->price)</h3>
-                            <h3 class="text-xl">{{ $item->price_description }}</h3>
+                            <h3 class="text-xl">{{$item->price_description}}</h3>
                         </div>
                         <div id="sync2" class="owl-carousel owl-theme w-3/4">
                             @foreach($item->galleries as $gallery)
@@ -45,7 +45,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>

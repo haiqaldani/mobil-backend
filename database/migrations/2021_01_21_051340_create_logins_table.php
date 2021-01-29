@@ -12,7 +12,7 @@ class CreateLoginsTable extends Migration
             $table->bigIncrements('id');
             $table->ipAddress('ip_address');
             $table->string('type')->default(\Lab404\AuthChecker\Models\Login::TYPE_LOGIN);
-            $table->bigInteger('user_id')->unsigned();
+            $table->string('user_id');
             $table->bigInteger('device_id')->unsigned()->index()->nullable();
             $table->timestamps();
 

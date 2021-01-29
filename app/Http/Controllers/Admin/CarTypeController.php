@@ -6,6 +6,7 @@ use App\CarType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\CarTypeRequest;
 use Illuminate\Support\Str;
+use Spatie\Activitylog\Models\Activity;
 
 class CarTypeController extends Controller
 {

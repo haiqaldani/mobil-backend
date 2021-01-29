@@ -24,7 +24,7 @@ class GalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'cars_id' => 'required|integer|exists:cars,id',
+            'cars_id' => 'required|exists:cars,id',
             'image' => 'required|image',
         ];
     }

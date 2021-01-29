@@ -56,6 +56,7 @@
                 <h6 class="collapse-header">Mobil</h6>
                 <a class="collapse-item" href="{{ route('car-type.index') }}">Kategori Mobil</a>
                 <a class="collapse-item" href="{{ route('car.index') }}">Mobil</a>
+                <a class="collapse-item" href="{{ route('vehicle-feature.index') }}">Fitur Mobil</a>
                 <h6 class="collapse-header">Foto</h6>
                 <a class="collapse-item" href="{{ route('gallery.index') }}">Foto Mobil</a>
                 <div class="collapse-divider"></div>

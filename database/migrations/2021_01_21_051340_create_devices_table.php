@@ -10,7 +10,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->string('user_id');
             $table->string('platform')->nullable();
             $table->string('platform_version')->nullable();
             $table->string('browser')->nullable();

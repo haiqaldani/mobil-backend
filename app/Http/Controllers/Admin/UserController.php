@@ -3,35 +3,68 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Spatie\Activitylog\Models\Activity;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $items = User::all();
+        $users = User::all();
 
-        return view('pages.admin.user.index',[
-            'items' => $items
+        return view('pages.admin.user.index', [
+            'users' => $users
         ]);
     }
-    
-    public function changeUserStatus(Request $request)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $user = User::find($request->id);
-        $user->status = $request->status;
-        $user->save();
-  
-        return response()->json(['success'=>'User status change successfully.']);
+        $item = User::findOrFail($id);
+        return view('pages.admin.user.edit',[
+            'item' => $item
+        ]);
     }
 
-     /**
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $item = User::findOrFail($id);
+
+        $item->update($data);
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+        return redirect()->route('user.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -39,9 +72,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $item = User::findorFail($id);
-        $item->delete();
+        $user = User::findorFail($id);
+        $user->delete();
         return redirect()->route('user.index');
-
     }
 }

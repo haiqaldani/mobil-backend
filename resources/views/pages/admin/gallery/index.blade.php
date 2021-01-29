@@ -7,9 +7,9 @@
             <div class="card-header py-3 justify-content-between">
                 <div class="d-sm-flex align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold text-primary">Gallery</h3>
-                      <a href="{{ route('gallery.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      {{-- <a href="{{ route('gallery.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                           <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Gallery
-                      </a>
+                      </a> --}}
                 </div>
             </div>
             <div class="card-body">

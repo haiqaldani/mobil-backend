@@ -26,12 +26,22 @@ Route::get('/cars/used', 'CarsUsedController@index')
 Route::get('/cars/new', 'CarsNewController@index')
     ->name('carsnew');
 
+Route::get('/profile', 'ProfileController@index')
+    ->name('profile');
+
 Route::get('/detail/{slug}', 'DetailController@index')
     ->name('detail');
 
+Route::get('/listing/create', 'CreateMobilController@index')
+    ->name('create-mobil')->middleware(['auth']);
+
+Route::post('/listing/post-mobil', 'CreateMobilController@store')
+    ->name('post-mobil');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::post('/login','LoginController@login')->middleware('throttle:10,2');
+Route::post('/login', 'LoginController@login')->middleware('throttle:10,2');
+
 
 Route::prefix('admin')
     ->namespace('Admin')
@@ -42,17 +52,17 @@ Route::prefix('admin')
 
         Route::resource('car-type', 'CarTypeController');
         Route::resource('banner', 'BannerController');
+        Route::resource('car-gallery', 'CarGalleryController');
         Route::resource('car', 'CarController');
         Route::resource('gallery', 'GalleryController');
-        Route::group(['middleware' => ['auth','admin']], function (){
+        Route::resource('vehicle-feature', 'VehicleFeatureController');
+        Route::resource('profile', 'ProfileController');
+        Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::resource('activity-log', 'ActivityLogController');
             Route::resource('activity-login', 'ActivityLoginController');
             Route::resource('user', 'UserController');
-            Route::get('changeStatus', 'UserController@ChangeUserStatus');
             Route::resource('role', 'RoleController');
         });
     });
-            
+
 Auth::routes(['verify' => true]);
-
-

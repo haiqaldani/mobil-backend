@@ -7,6 +7,7 @@ use App\Gallery;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GalleryRequest;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class GalleryController extends Controller
 {
@@ -35,6 +36,7 @@ class GalleryController extends Controller
             'cars' => $cars
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
