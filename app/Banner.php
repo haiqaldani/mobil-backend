@@ -30,8 +30,18 @@ class Banner extends Model
         $user = Auth::user()->name;
         return "{$user} have {$eventName} banner";
     }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => ['title', 'id']
+            ]
+        ];
+    }
+
     protected $fillable = [
-        'image', 'description'
+        'title','image', 'description', 'slug'
     ];
 
     protected $hidden = [

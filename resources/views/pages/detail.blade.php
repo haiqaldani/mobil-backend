@@ -62,31 +62,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col bg-white border rounded-md border-gray-700 md:w-21">
-                        <div class="flex flex-col m-5">
-                            <div class="border-b">
-                                <h3 class="text-lg font-bold pb-2">Deskripsi dari Penjual</h3>
-                            </div>
-                            <div class="">
-                                {!! $item->description !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col space-y-5">
-                    <div class="flex flex-col bg-white border rounded-md border-gray-700">
-                        <div class="flex flex-col m-5 space-y-5  md:w-96">
-                            <button
-                                class="bg-green-400 rounded-md py-3 hover:bg-green-500 text-base font-semibold text-white">
-                                Lihat No Telepon
-                            </button>
-                            <a class="flex flex-wrap justify-center space-x-1 bg-green-300 text-center rounded-md py-3 hover:bg-green-400 text-base font-semibold text-white"
-                                href="https://web.whatsapp.com/send?phone={{ $item->users->phone_number }}&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->title }}%20Terima%20kasih!%20{{ $wa }}">
-                                <img class="w-6 h-6" src="{{ url('frontend/images/whatsapp.svg') }}" alt="">
-                                </svg><span>Whatsapp Penjual</span>
-                            </a>
-                        </div>
-                    </div>
                     <div class="max-w-lg mx-auto mt-8">
                         <div class="relative mb-1">
                             <input type="checkbox" id="toggle1" class="toggle hidden" />
@@ -120,6 +95,21 @@
                                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                                     nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-5">
+                    <div class="flex flex-col bg-white border rounded-md border-gray-700">
+                        <div class="flex flex-col m-5 space-y-5  md:w-96">
+                            <button
+                                class="bg-green-400 rounded-md py-3 hover:bg-green-500 text-base font-semibold text-white">
+                                Lihat No Telepon
+                            </button>
+                            <a class="flex flex-wrap justify-center space-x-1 bg-green-300 text-center rounded-md py-3 hover:bg-green-400 text-base font-semibold text-white"
+                                href="https://web.whatsapp.com/send?phone={{ $item->users->phone_number }}&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->title }}%20Terima%20kasih!%20{{ $wa }}">
+                                <img class="w-6 h-6" src="{{ url('frontend/images/whatsapp.svg') }}" alt="">
+                                </svg><span>Whatsapp Penjual</span>
+                            </a>
                         </div>
                     </div>
                     <div class="flex flex-col bg-white border rounded-md border-gray-700">
