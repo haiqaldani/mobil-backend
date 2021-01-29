@@ -3,7 +3,7 @@
 @tailwind utilities;
 @tailwind screens;
 
-.owl-prev {
+#sync1 .owl-prev {
     left: 10px;
     width: 30px;
     height: 50px;
@@ -12,13 +12,33 @@
     top: 42.5%;
 }
 
-.owl-next {
+#sync1 .owl-next {
     right: 10px;
     width: 30px;
     height: 50px;
     margin-top: -20px;
     position: absolute;
     top: 42.5%;
+}
+#sync3 .owl-prev {
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    background-color: #000;
+
+    position: absolute;
+    top: 43%;
+}
+
+#sync3 .owl-next {
+    right: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    background-color: #000;
+    position: absolute;
+    top: 43%;
 }
 
 #sync3 .item {
@@ -31,7 +51,7 @@
 }
 
 .owl-theme .owl-nav [class*="owl-"].disabled:hover {
-    background-color: #d6d6d6;
+    background-color: #ffff;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -103,7 +123,7 @@
     transition: transform 300ms ease;
 }
 
- .input-container .radio-tile-label {
+.input-container .radio-tile-label {
     text-align: center;
     font-size: 0.75rem;
     font-weight: 600;
@@ -111,16 +131,17 @@
     letter-spacing: 1px;
     color: #079ad9;
 }
- .input-container .radio-button:checked + .radio-tile {
+.input-container .radio-button:checked + .radio-tile {
     background-color: #079ad9;
     border: 2px solid #079ad9;
     color: white;
 }
 
-    .input-container
-    .radio-button:checked
-    + .radio-tile
-    .radio-tile-label {
+.input-container .radio-button:checked + .radio-tile .radio-tile-label {
     color: white;
     background-color: #079ad9;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
