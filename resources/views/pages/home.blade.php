@@ -6,7 +6,7 @@
 
 @section('content')
     {{-- Header slide --}}
-    <main class="main-carousel mt-10 mb-10">
+    <main class="main-carousel mb-10">
         <div class="container">
             <div id="sync1" class="owl-carousel owl-theme shadow-md">
                 @foreach ($banners as $banner)

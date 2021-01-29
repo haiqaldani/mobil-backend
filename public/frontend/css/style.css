@@ -20,6 +20,23 @@
     position: absolute;
     top: 42.5%;
 }
+#sync2 .owl-prev {
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    position: absolute;
+    top: 47.5%;
+}
+
+#sync2 .owl-next {
+    right: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    position: absolute;
+    top: 47.5%;
+}
 #sync3 .owl-prev {
     left: 10px;
     width: 30px;
