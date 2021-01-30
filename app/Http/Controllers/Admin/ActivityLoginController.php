@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Lab404\AuthChecker\Models\Login;
 
 class ActivityLoginController extends Controller
@@ -16,10 +14,10 @@ class ActivityLoginController extends Controller
      */
     public function index()
     {
-        $items = DB::table('logins')->join('devices', 'device_id', '=', 'logins.device_id')->select('logins.*', 'devices.*')->get();
-
+        // $items = DB::table('logins')->join('devices', 'device_id', '=', 'logins.device_id')->select('logins.*', 'devices.*')->get();
+        $items = Login::all();
         return view('pages.admin.activity-login.index', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 

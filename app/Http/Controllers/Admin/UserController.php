@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -36,9 +37,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $roles = Role::all();
+        $item = User::with(['roles'])->findOrFail($id);
         return view('pages.admin.user.edit',[
-            'item' => $item
+            'item' => $item,
+            'roles' => $roles
         ]);
     }
 

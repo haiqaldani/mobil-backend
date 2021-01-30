@@ -30,11 +30,11 @@
                               <td>{{ $no++ }}</td>
                               <td>{{ $item->user_id }}</td>
                               <td>{{ $item->ip_address }}</td>
-                              <td>{{ $item->platform }}</td>
+                              <td>{{ $item->device->platform }}</td>
                               <td>
-                                  @if ($item->is_desktop == 1 )
+                                  @if ($item->device->is_desktop == 1 )
                                       Desktop
-                                  @elseif ($item->is_mobile == 1 )
+                                  @elseif ($item->device->is_mobile == 1 )
                                       Mobile
                                   @endif
                               </td>

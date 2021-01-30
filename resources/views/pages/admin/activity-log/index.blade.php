@@ -30,7 +30,7 @@
                               <td>{{ $no++ }}</td>
                               <td>{{ $item->log_name }}</td>
                               <td>User {{$item->causer_id}} {{ $item->description }}</td>
-                              <td>{{ $item->username }}</td>
+                              <td>{{ $item->users->username }}</td>
                               <td>{{ $item->subject_type }}</td>
                               <td>
                                   <div class="">

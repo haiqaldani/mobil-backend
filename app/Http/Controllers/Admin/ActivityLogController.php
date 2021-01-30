@@ -17,8 +17,7 @@ class ActivityLogController extends Controller
      */
     public function index()
     {
-        // $items = Activity::with('users')->get();
-        $items = DB::table('activity_log')->join('users', 'causer_id', '=', 'activity_log.causer_id')->select('activity_log.*', 'users.*')->get();
+        $items = Activity::with('users')->get();
         return view('pages.admin.activity-log.index',[
             'items' => $items
         ]);

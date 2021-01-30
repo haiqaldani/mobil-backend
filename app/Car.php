@@ -15,6 +15,7 @@ class Car extends Model
     use SoftDeletes, LogsActivity, Sluggable, Uuid;
 
     protected $guarded = [];
+    protected $cast = ['vehicle_features_id' => 'array'];
 
     public function setVehicleFeaturesIdAttribute($value)
     {
@@ -90,8 +91,18 @@ class Car extends Model
     {
         return $this->hasMany(Gallery::class, 'cars_id', 'id');
     }
-    public function vehicle_features()
+    // public function vehicle_features()
+    // {
+    //     return $this->belongsToMany(VehicleFeature::class, 'vehicle_features_id' , 'id');
+    // }
+
+    public function cars_vehicle_features()
     {
-        return $this->hasMany(VehicleFeature::class, 'vehicle_features_id', 'id');
+        return $this->hasMany(CarsVehicleFeatures::class, 'cars_id' , 'id');
     }
+
+    // public function vehicle_feature()
+    // {
+    //     return $this->belongsToMany(VehicleFeature::class, 'cars_vehicle_features' ,'vehicle_features_id' , 'cars_id');
+    // }
 }

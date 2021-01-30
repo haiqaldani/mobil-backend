@@ -75,6 +75,17 @@
                             disabled></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="roles_id"></label>
+                        <select name="roles_id" class="form-control">
+                            <option value="{{ $item->roles_id }}">{{ $item->roles->role }}</option>
+                            @foreach ($roles-> as $role)
+                                <option value="{{ $role->id }}">
+                                    {{ $role->role }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-select" name="status" aria-label="Default select example">
                             <option value="1" @if ($item->status = 1) selected @endif>Active</option>

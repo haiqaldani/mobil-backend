@@ -62,18 +62,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="max-w-lg mx-auto mt-8">
+                    <div class="md:w-21 bg-white rounded-md">
                         <div class="relative mb-1">
+
                             <input type="checkbox" id="toggle1" class="toggle hidden" />
                             <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle1">
-                                Title goes here
+                                {{-- {{ print_r($item->vehicle_features_id) }} --}}
                             </label>
                             <div class="content bg-white overflow-hidden">
-                                <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                                <p class="p-4">
+                                        {{-- @foreach ($features->cars_vehicle_features as $items)
+                                            {{ $items->vehicle_features_id }}
+                                        @endforeach --}}
+                                </p>
                             </div>
                         </div>
+
                         <div class="relative mb-1">
                             <input type="checkbox" id="toggle2" class="toggle hidden" />
                             <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle2">
