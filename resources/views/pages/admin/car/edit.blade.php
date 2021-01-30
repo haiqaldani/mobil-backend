@@ -203,8 +203,13 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($eksteriors as $eksterior)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
-                                                        value="{{ $eksterior->id }}">
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
+                                                        value="{{ $eksterior->id }}"
+                                                        @foreach ($item->vehicle_features as $value)
+                                                            @if ($eksterior->id == $value->id)
+                                                                checked
+                                                            @endif
+                                                        @endforeach>
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
                                                             for="{{ $eksterior->feature }}">{{ $eksterior->feature }}</label>
@@ -217,8 +222,14 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($interiors as $interior)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
-                                                        value="{{ $interior->id }}">
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
+                                                        value="{{ $interior->id }}" 
+                                                        @foreach ($item->vehicle_features as $value)
+                                                            @if ($interior->id == $value->id)
+                                                                checked
+                                                            @endif
+                                                        @endforeach
+                                                        >
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
                                                             for="{{ $interior->feature }}">{{ $interior->feature }}</label>
@@ -231,8 +242,13 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($perlengkapans as $perlengkapan)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
-                                                        value="{{ $perlengkapan->id }}">
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
+                                                        value="{{ $perlengkapan->id }}"
+                                                        @foreach ($item->vehicle_features as $value)
+                                                            @if ($perlengkapan->id == $value->id)
+                                                                checked
+                                                            @endif
+                                                        @endforeach>
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
                                                             for="{{ $perlengkapan->feature }}">{{ $interior->feature }}</label>

@@ -11,6 +11,7 @@ use App\VehicleFeature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\Models\Activity;
+use Symfony\Component\Console\Input\Input;
 
 class CarController extends Controller
 {
@@ -58,11 +59,14 @@ class CarController extends Controller
     public function store(CarRequest $request)
     {
 
+        
         $data = $request->validated();
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
 
-        Car::create($data);
+        $car = Car::create($data);
+
+        $car->vehicle_features()->attach($request->vehicle_features);
 
         $activity = Activity::all()->last();
 
@@ -119,8 +123,10 @@ class CarController extends Controller
         $data['slug'] = Str::title($request->title);
 
         $item = Car::findOrFail($id);
-
+        
+        $item->vehicle_features()->attach($request->vehicle_features);
         $item->update($data);
+        
 
         $activity = Activity::all()->last();
 

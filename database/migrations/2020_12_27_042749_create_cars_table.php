@@ -25,7 +25,7 @@ class CreateCarsTable extends Migration
             $table->integer('cc')->nullable();
             $table->integer('kilometers');
             $table->string('price');
-            $table->enum('price_description', ['Siap Pakai', 'Belum termasuk pajak dan lain-lain', 'Nego','Kredit tersedia','SKA Pemerintah RI saja (Form A, Form B, dll)', 'OTR'])->nullable();
+            $table->enum('price_description', ['Siap Pakai', 'Belum termasuk pajak dan lain-lain', 'Nego','Kredit tersedia','SKA Pemerintah RI saja (Form A, Form B, dll)', 'OTR']);
             $table->string('color')->nullable();
             $table->string('vehicle_features', 500)->nullable();
             $table->longText('description');

@@ -65,7 +65,7 @@ class Car extends Model
     }
 
     protected $fillable = [
-        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description', 'color', 'description','id_seller','model', 'vehicle_features_id'
+        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description','condition', 'color', 'description','id_seller','model', 'vehicle_features_id'
     ];
 
     public function sluggable(): array

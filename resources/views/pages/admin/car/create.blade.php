@@ -199,7 +199,7 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($eksteriors as $eksterior)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
                                                         value="{{ $eksterior->id }}">
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
@@ -213,7 +213,7 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($interiors as $interior)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
                                                         value="{{ $interior->id }}">
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
@@ -227,7 +227,7 @@
                                         <div class="radio-tile-group gap-3">
                                             @foreach ($perlengkapans as $perlengkapan)
                                                 <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features_id[]"
+                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
                                                         value="{{ $perlengkapan->id }}">
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
