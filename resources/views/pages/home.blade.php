@@ -113,7 +113,7 @@
                 <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:justify-items-stretch">
                     @foreach ($cars as $car)
                         <div class="border-2 border-gray-50 rounded-lg shadow-md">
-                            <a href="{{ route('detail', $car->slug) }}">
+                            <a href="{{ route('detail', [$car->slug,$car->id]) }}">
                                 <div class="m-1">
                                     <img class=" rounded-md object-fill object-center w-full md:h-44 h-48"
                                         src="{{ Storage::url($car->galleries->count() ? $car->galleries->first()->image : '') }}"

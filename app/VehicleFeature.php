@@ -38,20 +38,20 @@ class VehicleFeature extends Model
     protected $hidden = [
     ];
 
-    // public function cars()
-    // {
-    //     return $this->belongsToMany(Car::class, 'vehicle_features_id', 'id');
-    // }
+    public function cars()
+    {
+        return $this->belongsToMany(Car::class, 'cars_id', 'vehicle_features_id');
+    }
 
     // public function cars()
     // {
     //     return $this->hasOne(Car::class, 'cars_vehicle_features', 'cars_id', 'vehicle_features_id');
     // }
 
-    public function cars_vehicle_features()
-    {
-        return $this->belongsTo(CarsVehicleFeatures::class, 'vehicle_features_id' , 'id');
-    }
+    // public function cars_vehicle_features()
+    // {
+    //     return $this->hasOne(CarsVehicleFeatures::class, 'vehicle_features_id' , 'id');
+    // }
 
     // 
 }

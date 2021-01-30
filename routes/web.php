@@ -29,7 +29,7 @@ Route::get('/cars/new', 'CarsNewController@index')
 Route::get('/profile', 'ProfileController@index')
     ->name('profile');
 
-Route::get('/detail/{slug}', 'DetailController@index')
+Route::get('/detail/{slug}/{id}', 'DetailController@index')
     ->name('detail');
 
 Route::get('/listing/create', 'CreateMobilController@index')

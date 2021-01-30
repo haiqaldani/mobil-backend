@@ -71,9 +71,10 @@
                             </label>
                             <div class="content bg-white overflow-hidden">
                                 <p class="p-4">
-                                        {{-- @foreach ($features->cars_vehicle_features as $items)
-                                            {{ $items->vehicle_features_id }}
-                                        @endforeach --}}
+                                    @foreach ($features->vehicle_features as $items)
+                                        <p>{{ $items->category }}</p>
+                                    @endforeach
+
                                 </p>
                             </div>
                         </div>
