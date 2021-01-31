@@ -251,7 +251,7 @@
                                                         @endforeach>
                                                     <div class="radio-tile">
                                                         <label class="radio-tile-label"
-                                                            for="{{ $perlengkapan->feature }}">{{ $interior->feature }}</label>
+                                                            for="{{ $perlengkapan->feature }}">{{ $perlengkapan->feature }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach

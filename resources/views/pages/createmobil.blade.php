@@ -8,7 +8,7 @@
             <div class="flex flex-col mt-10">
                 <h1 class="font-bold text-center text-3xl">Jual Mobil Anda</h1>
                 <div class="flex flex-col border-2 border-gray-200 mx-56 rounded-md">
-                    <form class="mx-10 my-5 space-y-3" action="{{ route('post-mobil') }}" method="post">
+                    <form class="mx-10 my-5 space-y-3" action="{{ route('post-mobil') }}"  enctype="multipart/form-data" method="POST">
                         @csrf
                         <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
                             value="{{ Auth::user()->id }}">
@@ -304,7 +304,7 @@
                                                         @foreach ($eksteriors as $eksterior)
                                                             <div class="input-container">
                                                                 <input type="checkbox" class="radio-button"
-                                                                    name="vehicle_features_id[]"
+                                                                    name="vehicle_features[]"
                                                                     value="{{ $eksterior->id }}">
                                                                 <div class="radio-tile">
                                                                     <label
@@ -319,7 +319,7 @@
                                                         @foreach ($interiors as $interior)
                                                             <div class="input-container">
                                                                 <input type="checkbox" class="radio-button"
-                                                                    name="vehicle_features_id[]"
+                                                                    name="vehicle_features[]"
                                                                     value="{{ $interior->id }}">
                                                                 <div class="radio-tile">
                                                                     <label
@@ -334,7 +334,7 @@
                                                         @foreach ($perlengkapans as $perlengkapan)
                                                             <div class="input-container">
                                                                 <input type="checkbox" class="radio-button"
-                                                                    name="vehicle_features_id[]"
+                                                                    name="vehicle_features[]"
                                                                     value="{{ $perlengkapan->id }}">
                                                                 <div class="radio-tile">
                                                                     <label
@@ -390,6 +390,32 @@
                             @enderror
 
                         </div>
+
+                        <div class="form-group control-group increment">
+                            <label class="font-semibold" for="galleries">Upload Foto Mobil*</label>
+                            <div class="">
+                                <input type="file" name="galleries[]"
+                                    class="px-2 py-2 w-6/12 border border-black rounded-sm outline-none focus:border-blue-400 ">
+                                <button class="btn-success py-2 bg-blue-500 px-4 text-white" type="button"><i
+                                        class="glyphicon glyphicon-plus"></i>Add</button>
+                            </div>
+
+                            <div class="clone hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                                    <input type="file" name="galleries[]"
+                                        class="px-2 py-2 w-6/12 border border-black rounded-sm outline-none focus:border-blue-400 ">
+                                    <button class="btn-danger py-2 bg-red-500 px-4 text-white" type="button"><i
+                                            class="glyphicon glyphicon-remove"></i>
+                                        Remove</button>
+                                </div>
+                            </div>
+                            @error('image')
+                                <span class="text-red-600 text-sm font-light" role="alert">
+                                    <p>*{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+
                         <button type="submit" class="px-2 py-2 bg-blue-400 text-white hover:bg-blue-500 font-semibold">
                             Jual mobil sekarang
                         </button>
@@ -402,6 +428,18 @@
 @section('script')
     <script>
         CKEDITOR.replace('description');
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-success").click(function() {
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+            $("body").on("click", ".btn-danger", function() {
+                $(this).parents(".control-group").remove();
+            });
+        });
 
     </script>
     <script type="text/javascript">

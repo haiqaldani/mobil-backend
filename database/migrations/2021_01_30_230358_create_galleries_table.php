@@ -15,10 +15,11 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cars_id');
+            $table->foreignUuid('cars_id')->references('id')->on('cars')->onCascade('delete');
             $table->text('image');
             $table->softDeletes();
             $table->timestamps();
+            
         });
     }
 

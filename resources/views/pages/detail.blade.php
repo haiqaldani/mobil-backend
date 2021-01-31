@@ -67,15 +67,12 @@
 
                             <input type="checkbox" id="toggle1" class="toggle hidden" />
                             <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle1">
-                                {{-- {{ print_r($item->vehicle_features_id) }} --}}
+                                Eksterior
                             </label>
                             <div class="content bg-white overflow-hidden">
-                                <p class="p-4">
                                     @foreach ($features->vehicle_features as $items)
-                                        <p>{{ $items->category }}</p>
+                                        <p class="">{{ $items->feature }}</p>
                                     @endforeach
-
-                                </p>
                             </div>
                         </div>
 

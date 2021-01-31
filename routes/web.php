@@ -30,7 +30,10 @@ Route::get('/profile', 'ProfileController@index')
     ->name('profile');
 
 Route::get('/detail/{slug}/{id}', 'DetailController@index')
-    ->name('detail');
+    ->name('detail')
+    ;
+Route::get('/profile/{id}', 'ProfileController@index')
+    ->name('profile');
 
 Route::get('/listing/create', 'CreateMobilController@index')
     ->name('create-mobil')->middleware(['auth']);

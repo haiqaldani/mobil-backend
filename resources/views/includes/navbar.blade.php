@@ -50,7 +50,7 @@
                                 <li><a href="{{ url('admin') }}"
                                         class="item-dropdown rounded-t hover:text-blue-600 py-2 px-4 block whitespace-no-wrap">Dashboard</a>
                                 </li>
-                                <li><a href="{{ url('profile') }}"
+                                <li><a href="{{ url('profile/'.Auth::user()->id) }}"
                                         class="item-dropdown hover:text-blue-600 py-2 px-4 block whitespace-no-wrap">Profile</a>
                                 </li>
                                 <li>
@@ -61,7 +61,7 @@
                             </ul>
                         @else
                             <ul class="dropdown-menu absolute bg-white shadow hidden w-32">
-                                <li><a href="{{ url('profile') }}"
+                                <li><a href="{{ url('profile/'.Auth::user()->id)}}"
                                         class="py-2 px-4 block hover:bg-gray-200 whitespace-no-wrap">Profile</a>
                                 </li>
                                 <li>

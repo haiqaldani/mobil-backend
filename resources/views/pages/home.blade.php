@@ -15,7 +15,8 @@
                     </div>
                 @endforeach
                 <div class="item">
-                    <img class="md:h-96 object-fill object-center" src="{{ url('frontend/images/logo_mobil.png') }}" alt="">
+                    <img class="md:h-96 object-fill object-center" src="{{ url('frontend/images/logo_mobil.png') }}"
+                        alt="">
                 </div>
             </div>
         </div>
@@ -112,20 +113,24 @@
                 <h2 class="md:text-left text-center text-lg font-bold">List rekomendasi</h2>
                 <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:justify-items-stretch">
                     @foreach ($cars as $car)
-                        <div class="border-2 border-gray-50 rounded-lg shadow-md">
-                            <a href="{{ route('detail', [$car->slug,$car->id]) }}">
-                                <div class="m-1">
-                                    <img class=" rounded-md object-fill object-center w-full md:h-44 h-48"
-                                        src="{{ Storage::url($car->galleries->count() ? $car->galleries->first()->image : '') }}"
-                                        alt="{{ Str::limit($car->title, 25) }}">
-                                </div>
-                                <div class="mx-2 my-2">
-                                    <h3 class="font-bold text-lg">{{ $car->price }}</h3>
-                                    <p class="text-sm text-gray-500">{{ $car->condition }}</p>
-                                    <h4 class="font-semibold text-base">{{ Str::limit($car->title, 25) }}</h4>
-                                </div>
-                            </a>
-                        </div>
+                        @if ($car->galleries->count() != 0)
+                            <div class="border-2 border-gray-50 rounded-lg shadow-md">
+                                <a href="{{ route('detail', [$car->slug, $car->id]) }}">
+                                    <div class="m-1">
+                                        <img class=" rounded-md object-fill object-center w-full md:h-44 h-48"
+                                            src="{{ Storage::url($car->galleries->count() ? $car->galleries->first()->image : '') }}"
+                                            alt="{{ Str::limit($car->title, 25) }}">
+                                    </div>
+                                    <div class="mx-2 my-2">
+                                        <h3 class="font-bold text-lg">{{ $car->price }}</h3>
+                                        <p class="text-sm text-gray-500">{{ $car->condition }}</p>
+                                        <h4 class="font-semibold text-base">{{ Str::limit($car->title, 25) }}</h4>
+                                    </div>
+                                </a>
+                            </div>
+
+                        @endif
+
                     @endforeach
                 </div>
             </div>

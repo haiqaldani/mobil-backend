@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\UserRequest;
+use App\Role;
 use App\User;
-use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class ProfileController extends Controller
 {
@@ -12,11 +14,27 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($id)
     {
-       $item = User::all();
-        return view('pages.profile',[
-            'item' => $item
+        $roles = Role::all();
+        $item = User::with(['roles'])->findOrFail($id);
+        return view('pages.profile', [
+            'item' => $item,
+            'roles' => $roles
         ]);
+    }
+    public function update(UserRequest $request, $id)
+    {
+        $data = $request->all();
+
+        $item = User::findOrFail($id);
+
+        $item->update($data);
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+        return redirect()->route('pages.profile');
     }
 }

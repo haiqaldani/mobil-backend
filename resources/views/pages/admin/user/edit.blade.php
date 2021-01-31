@@ -75,10 +75,10 @@
                             disabled></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="roles_id"></label>
+                        <label for="roles_id">Roles</label>
                         <select name="roles_id" class="form-control">
                             <option value="{{ $item->roles_id }}">{{ $item->roles->role }}</option>
-                            @foreach ($roles-> as $role)
+                            @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">
                                     {{ $role->role }}
                                 </option>
