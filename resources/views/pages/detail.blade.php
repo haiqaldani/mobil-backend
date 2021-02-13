@@ -29,18 +29,21 @@
                             <div id="sync2" class="owl-carousel owl-theme mt-2">
                                 @foreach ($item->galleries as $gallery)
                                     <div class="item">
-                                        <img class="rounded-md object-fill object-center lg:h-96 "
+                                        <img class="rounded-md object-fill object-center"
                                             src="{{ Storage::url($gallery->image) }}"
-                                            alt="{{ Str::limit($item->title, 25) }}">
+                                            alt="{{ Str::limit($item->title, 25) }}" style="height: 449px; width: 800px" >
                                     </div>
                                 @endforeach
                             </div>
                             <div id="sync3" class="owl-carousel owl-theme mt-5">
                                 @foreach ($item->galleries as $gallery)
-                                    <div class="item h-32">
-                                        <div class="h-full"
+                                    <div class="item h-32 rounded-md">
+                                        <img class="object-fill object-center"
+                                            src="{{ Storage::url($gallery->image) }}"
+                                            alt="{{ Str::limit($item->title, 25) }}">
+                                        {{-- <div class="h-full"
                                             style="background-image: url({{ Storage::url($gallery->image) }})">
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 @endforeach
                             </div>
@@ -60,6 +63,12 @@
                                 <h3 class="text-sm">Kapasitas Mesin</h3>
                                 <h4 class="text-lg font-semibold">{{ $item->cc }}cc</h4>
                             </div>
+                            @if ($item->kilometers != null)
+                            <div class="flex flex-col">
+                                <h3 class="text-sm">Jarak Tempuh</h3>
+                                <h4 class="text-lg font-semibold">{{ $item->kilometers }}km</h4>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="md:w-21 bg-white rounded-md">

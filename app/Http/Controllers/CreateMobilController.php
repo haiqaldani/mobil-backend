@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Car;
 use App\CarType;
 use App\Gallery;
-use App\Http\Requests\Admin\CarRequest;
+use App\Http\Requests\CreateMobilRequest;
 use App\VehicleFeature;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 
 class CreateMobilController extends Controller
@@ -27,34 +28,88 @@ class CreateMobilController extends Controller
         ]);
     }
 
-    public function store(CarRequest $request)
+    public function store(CreateMobilRequest $request)
     {
 
         $data = $request->validated();
-        $data = $request->all();
+        $data = [
+            'id' => $request->id,
+            'id_seller' => Auth::id(),
+            'title' => $request->title,
+            'car_type' => $request->car_type,
+            'car_year' => $request->car_year,
+            'car_types_id' => $request->car_types_id,
+            'transmission' => $request->transmission,
+            'fuel' => $request->fuel,
+            'cc' => $request->cc,
+            'kilometers' => $request->kilometers,
+            'price' => $request->price,
+            'description' => $request->description,
+            'color' => $request->color,
+            'condition' => $request->condition,
+            'model' => $request->model,
+            'edition' => $request->edition,
+            'price_description' => $request->price_description,
+
+        ];
+        if (isset($request->id)) {
+            return null;
+        } else {
+            $id = [
+                'id' => $request->id
+            ];
+        }
+
+        $save = Car::updateOrcreate($id, $data);
+        $save->vehicle_features()->attach($request->vehicle_features);
+
         
-        $data['slug'] = Str::slug($request->title);
+        if ($request->hasFile('image'))
+        {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $fileName = Carbon::now()->timestamp . '_'. uniqid() . '.jpg';
+                $time = Carbon::now()->toDateTimeString();
+                $path = 'storage/assets/gallery/'.$fileName;
+                Image::make($file)->save($path);
+                $name = 'assets/gallery/'.$fileName;
+                // $file->move(public_path().'/storage/assets/gallery', $name);
+                $store_image[] = [
+                    'image' => $name,
+                    'cars_id' => $save['id'],
+                    'updated_at' =>  $time,
+                    'created_at' =>  $time,
+                ];
+                
+            }
+            Gallery::insert($store_image);
+        }
         
 
-
-        // if($request->hasfile('image'))
-        //  {
-        //     foreach($request->file('image') as $file)
-        //     {
-        //         $name = time().'.'.$file->extension();
-        //         $file->move(public_path().'/asset/car/', $name);  
-        //         $data[] = $name;  
+        // $images = $request->image;
+        // if (is_array($images) || is_object($images)) {
+        //     foreach ($images as $file) {
+        //         $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.jpg';
+        //         Image::make($file['src'])->save('assets/gallery/' . $fileName);
+        //         $image = 'assets/gallery/' . $fileName;
+        //         Gallery::create([
+        //             'image'      => $image,
+        //             'cars_id'    => $save['id']
+        //         ]);
         //     }
-        //  }
+        // }
+        // if ($save) {
+        //     return response()->json([
+        //         'success' => true,
+        //         'data' => $save
+        //     ], 200);
+        // } else {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'data not saved'
+        //     ], 400);
+        // }
 
-        
-        // $file= new Gallery();
-        // $file->image=json_encode($data);
-        // //  $file['cars_id'] = $request->uuid();
-        // $file['cars_id'] = $request->id;
-        // $file->save();
-        $item = Car::create($data);
-        $item->vehicle_features()->attach($request->vehicle_features);
 
         $activity = Activity::all()->last();
 

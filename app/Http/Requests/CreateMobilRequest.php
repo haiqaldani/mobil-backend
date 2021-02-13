@@ -62,7 +62,6 @@ class CreateMobilRequest extends FormRequest
             'price.required'    => 'Deskripsi harga harus diisi',
             'condition.required'    => 'Kondisi harus diisi',
             'description.required'    => 'Deskripsi harus diisi',
-            'image.required'    => 'Gambar harus diisi',
             'image.required'    => 'Gambar harus diisi minimal 1',
             'image.*.image'    => 'File di upload harus gambar',
             'image.*.mimes:jpeg,png,jpg,gif,svg'    => 'File di upload harus dalam bentuk format jpeg, png, jpg, gif, svg',

@@ -394,26 +394,27 @@
                         <div class="form-group control-group increment">
                             <label class="font-semibold" for="galleries">Upload Foto Mobil*</label>
                             <div class="">
-                                <input type="file" name="galleries[]"
+                                <input type="file" name="image[]" accept="image/*"
                                     class="px-2 py-2 w-6/12 border border-black rounded-sm outline-none focus:border-blue-400 ">
                                 <button class="btn-success py-2 bg-blue-500 px-4 text-white" type="button"><i
                                         class="glyphicon glyphicon-plus"></i>Add</button>
                             </div>
 
-                            <div class="clone hide">
-                                <div class="control-group input-group" style="margin-top:10px">
-                                    <input type="file" name="galleries[]"
-                                        class="px-2 py-2 w-6/12 border border-black rounded-sm outline-none focus:border-blue-400 ">
-                                    <button class="btn-danger py-2 bg-red-500 px-4 text-white" type="button"><i
-                                            class="glyphicon glyphicon-remove"></i>
-                                        Remove</button>
-                                </div>
-                            </div>
+                            
                             @error('image')
                                 <span class="text-red-600 text-sm font-light" role="alert">
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
+                        </div>
+                        <div class="clone hide">
+                            <div class="control-group input-group" style="margin-top:10px">
+                                <input type="file" name="image[]" accept="image/*"
+                                    class="px-2 py-2 w-6/12 border border-black rounded-sm outline-none focus:border-blue-400 ">
+                                <button class="btn-danger py-2 bg-red-500 px-4 text-white" type="button"><i
+                                        class="glyphicon glyphicon-remove"></i>
+                                    Remove</button>
+                            </div>
                         </div>
 
                         <button type="submit" class="px-2 py-2 bg-blue-400 text-white hover:bg-blue-500 font-semibold">

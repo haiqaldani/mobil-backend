@@ -44,7 +44,7 @@ class CarTypeController extends Controller
     {
         $data = $request->all();
         $data['image'] = $request->file('image')->store(
-            'assets/car-types', 'public'
+            'assets/car-type', 'public'
         );
 
         CarType::create($data);
@@ -95,7 +95,7 @@ class CarTypeController extends Controller
     {
         $data = $request->all();
         $data['image'] = $request->file('image')->store(
-            'assets/car-types', 'public'
+            'assets/car-type', 'public'
         );
 
         $item = CarType::findOrFail($id);

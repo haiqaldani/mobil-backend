@@ -35,6 +35,9 @@ Route::get('/detail/{slug}/{id}', 'DetailController@index')
 Route::get('/profile/{id}', 'ProfileController@index')
     ->name('profile');
 
+Route::post('/profile/{id}', 'ProfileController@create')
+    ->name('profile-update');
+
 Route::get('/listing/create', 'CreateMobilController@index')
     ->name('create-mobil')->middleware(['auth']);
 

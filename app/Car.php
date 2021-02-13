@@ -72,7 +72,7 @@ class Car extends Model
     {
         return [
             'slug' => [
-                'source' => ['title', 'id']
+                'source' => ['title']
             ]
         ];
     }

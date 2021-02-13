@@ -16,15 +16,15 @@
                         </ul>
                     </div>
                 @endif --}}
-                <div class="border justify-self-auto">
-                    <form action="{{ route('profile.update', $item->id) }}" class="flex flex-col w-2/4 space-y-3"
+                <div class="border">
+                    <div class="card">
+                        <img src="{{ Storage::url($item->profil_picture) }}" class="rounded-full w-52 h-52 shadow-md"
+                            alt="Foto {{ $item->username }}">
+                    </div>
+                    <form action="{{ route('profile-update', $item->id) }}" class="flex flex-col w-2/4 space-y-3"
                         method="post" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                        <div class="card">
-                            <img src="{{ Storage::url($item->profil_picture) }}" class="rounded-full w-52 h-52 shadow-md"
-                                alt="Foto {{ $item->username }}">
-                        </div>
                         <div class="grid grid-flow-col space-x-3">
                             <div class="form-group flex flex-col">
                                 <label for="firstname">First Name</label>

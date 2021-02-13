@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\UserRequest;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
 class ProfileController extends Controller
@@ -23,18 +24,18 @@ class ProfileController extends Controller
             'roles' => $roles
         ]);
     }
-    public function update(UserRequest $request, $id)
+
+    public function create(Request $request, $id)
     {
         $data = $request->all();
 
         $item = User::findOrFail($id);
-
         $item->update($data);
         $activity = Activity::all()->last();
 
         $activity->description; //returns 'created'
         $activity->subject; //returns the instance of NewsItem that was created
         $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
-        return redirect()->route('pages.profile');
+        return redirect()->route('profile');
     }
 }

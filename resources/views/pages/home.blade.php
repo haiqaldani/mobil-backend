@@ -14,10 +14,6 @@
                         <img class="md:h-96 object-fill object-center" src="{{ Storage::url($banner->image) }}" alt="">
                     </div>
                 @endforeach
-                <div class="item">
-                    <img class="md:h-96 object-fill object-center" src="{{ url('frontend/images/logo_mobil.png') }}"
-                        alt="">
-                </div>
             </div>
         </div>
     </main>
@@ -64,22 +60,22 @@
                         <ul class="font-bold text-center space-y-2 mr-0  ">
                             <li class="">
                                 <a href="#"
-                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    class="py-3 block border font-semibold rounded-lg hover:shadow-md hover:text-blue-500 ">
                                     &lt; 100 Juta</a>
                             </li>
                             <li class="">
                                 <a href="#"
-                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    class="py-3 block border font-semibold rounded-lg  hover:shadow-md hover:text-blue-500">
                                     100 Juta - 300 Juta </a>
                             </li>
                             <li class="">
                                 <a href="#"
-                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    class="py-3 block border font-semibold rounded-lg hover:shadow-md hover:text-blue-500">
                                     300 Juta - 500 Juta</a>
                             </li>
                             <li class="">
                                 <a href="#"
-                                    class="py-3 block border-2 font-semibold rounded-lg shadow-md hover:text-blue-500">
+                                    class="py-3 block border font-semibold rounded-lg hover:shadow-md hover:text-blue-500">
                                     &gt; 500 Juta</a>
                             </li>
                         </ul>
@@ -90,13 +86,16 @@
                         <h2 class="font-bold md:text-left text-center text-lg mb-3 md:mb-0">Lihat bedasarkan tipe</h2>
                         <div class="grid lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2 gap-2">
                             @foreach ($car_types as $car_type)
-                                <div class="flex md:justify-between border-2 h-32 rounded-md">
-                                    <a href="#" class="m-0.5">
-                                        <img class="rounded-md object-cover object-center w-full h-full"
-                                            src="{{ Storage::url($car_type->image) }}" alt="{{ $car_type->title }}">
+                                <div class="flex flex-col md:justify-between border-2 h-32 rounded-md hover:shadow-lg hover:border-blue-500">
+                                    <a href="#" class="flex m-0">
+                                        <div class="mx-5 mt-5">
+                                            <img class="rounded-md object-cover object-center w-full"
+                                                src="{{ Storage::url($car_type->image) }}" alt="{{ $car_type->title }}">
+                                            
+                                        </div>
                                     </a>
+                                    <a href="" class="flex justify-center font-semibold pb-2">{{ $car_type->title }} </a>
                                 </div>
-
                             @endforeach
                         </div>
                     </div>
