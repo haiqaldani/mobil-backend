@@ -3,6 +3,14 @@
 @tailwind utilities;
 @tailwind screens;
 
+/* @import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@import "tailwindcss/screens"; */
+
 #sync1 .owl-prev {
     left: 10px;
     width: 30px;

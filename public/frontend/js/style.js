@@ -6,6 +6,7 @@ sync1.owlCarousel({
     items: 1,
     dots: false,
     slidespeed: 1000,
+    removeClass: true,
     responsiveRefreshRate: 200,
     navText: ['<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
         '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
@@ -89,4 +90,12 @@ sync3.on("click", ".owl-item", function (e) {
     e.preventDefault();
     var number = $(this).index();
     sync2.data('owl.carousel').to(number, 300, true);
+});
+
+const btn = document.querySelector("button.mobile-menu-button");
+const menu = document.querySelector(".mobile-menu");
+
+// add event listeners
+btn.addEventListener("click", () => {
+  menu.classList.toggle("hidden");
 });

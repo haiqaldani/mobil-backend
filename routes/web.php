@@ -30,13 +30,16 @@ Route::get('/profile', 'ProfileController@index')
     ->name('profile');
 
 Route::get('/detail/{slug}/{id}', 'DetailController@index')
-    ->name('detail')
-    ;
-Route::get('/profile/{id}', 'ProfileController@index')
-    ->name('profile');
+    ->name('detail');
 
-Route::post('/profile/{id}', 'ProfileController@create')
-    ->name('profile-update');
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/profile', 'ProfileController@edit')
+        ->name('profile-seller.edit');
+
+    Route::patch('/profile', 'ProfileController@update')
+        ->name('profile-seller.update');
+});
 
 Route::get('/listing/create', 'CreateMobilController@index')
     ->name('create-mobil')->middleware(['auth']);
@@ -63,6 +66,7 @@ Route::prefix('admin')
         Route::resource('gallery', 'GalleryController');
         Route::resource('vehicle-feature', 'VehicleFeatureController');
         Route::resource('profile', 'ProfileController');
+        Route::resource('promo', 'PromoController');
         Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::resource('activity-log', 'ActivityLogController');
             Route::resource('activity-login', 'ActivityLoginController');

@@ -43,7 +43,12 @@
       <a class="nav-link" href="{{ route('banner.index') }}">
           <i class="fas fa-fw fa-image"></i>
           <span>Banner</span></a>
-  </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('promo.index') }}">
+          <i class="fas fa-fw fa-certificate"></i>
+          <span>Promo</span></a>
+    </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMobil" aria-expanded="true"

@@ -8,14 +8,19 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: { sans: ['Inter var'] },
+        },
     },
     variants: {
         extend: {},
     },
     plugins: [
-        require('tailwindcss'),
+        require('@tailwindcss/ui'),
         require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+        require('tailwindcss'),
         // require('autoprefixer'),
     ]
 }

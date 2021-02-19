@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class VehicleFeature extends Model
+class Promo extends Model
 {
     use SoftDeletes, LogsActivity;
 
     //log the changed attributes for allevent
-    protected static $logAttributes = ['category','feature'];
+    protected static $logAttributes = ['title','description'];
 
     //changing password and update_at will not trigger an activity being logged
     protected static $ignoreChangedAttributes = ['update_at'];
@@ -20,7 +20,7 @@ class VehicleFeature extends Model
     // logging only th changed attributes
     protected static $logOnlyDirty = true;
 
-    protected static $logName = 'Vehicle Features';
+    protected static $logName = 'Promos';
 
 
     protected static $recordEvent = ['created', 'updated'];
@@ -28,11 +28,11 @@ class VehicleFeature extends Model
     public function getDescriptionForEvent(string $eventName): string
     {
         $user = Auth::user()->name;
-        return "{$user} have {$eventName} vehicle features";
+        return "{$user} have {$eventName} promo";
     }
 
     protected $fillable = [
-        'category', 'feature'
+        'title','promo_type','amount','code','description'
     ];
 
     protected $hidden = [
@@ -40,18 +40,6 @@ class VehicleFeature extends Model
 
     public function cars()
     {
-        return $this->belongsToMany(Car::class, 'cars_vehicle_features', 'vehicle_features_id', 'cars_id');
+        return $this->belongsToMany(Car::class, 'cars_promos', 'promos_id', 'cars_id');
     }
-
-    // public function cars()
-    // {
-    //     return $this->hasOne(Car::class, 'cars_vehicle_features', 'cars_id', 'vehicle_features_id');
-    // }
-
-    // public function cars_vehicle_features()
-    // {
-    //     return $this->hasOne(CarsVehicleFeatures::class, 'vehicle_features_id' , 'id');
-    // }
-
-    // 
 }

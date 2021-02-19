@@ -96,6 +96,11 @@ class Car extends Model
         return $this->belongsToMany(VehicleFeature::class, 'cars_vehicle_features', 'cars_id', 'vehicle_features_id');
     }
 
+    public function promos()
+    {
+        return $this->belongsToMany(Promo::class, 'cars_promos', 'cars_id', 'promos_id');
+    }
+
     // public function cars_vehicle_features()
     // {
     //     return $this->hasMany(CarsVehicleFeatures::class, 'cars_id' , 'id');
