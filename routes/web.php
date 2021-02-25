@@ -47,6 +47,12 @@ Route::get('/listing/create', 'CreateMobilController@index')
 Route::post('/listing/post-mobil', 'CreateMobilController@store')
     ->name('post-mobil');
 
+Route::get('/claim-promo', 'ClaimPromoController@index')
+    ->name('claim-promo');
+
+Route::post('/claim-promo/claim', 'ClaimPromoController@store')
+    ->name('claim');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('/login', 'LoginController@login')->middleware('throttle:10,2');
@@ -63,6 +69,9 @@ Route::prefix('admin')
         Route::resource('banner', 'BannerController');
         Route::resource('car-gallery', 'CarGalleryController');
         Route::resource('car', 'CarController');
+        Route::resource('merk', 'MerkController');
+        Route::resource('car-model', 'CarModelController');
+        Route::resource('car-variant', 'CarVariantController');
         Route::resource('gallery', 'GalleryController');
         Route::resource('vehicle-feature', 'VehicleFeatureController');
         Route::resource('profile', 'ProfileController');

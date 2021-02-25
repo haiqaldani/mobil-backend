@@ -73,7 +73,8 @@
                     <div class="flex space-x-4">
                         <!-- logo -->
                         <div>
-                            <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                            <a href="{{ url('/') }}"
+                                class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
                                 <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -85,25 +86,26 @@
 
                     </div>
                     <div class="hidden md:flex items-center font-medium font-sans  space-x-1">
-                        <a href="{{ url('/') }}" class="py-5 px-3 text-white hover:text-teal-400">Home</a>
-                        <a href="{{ url('cars/new') }}" class="py-5 px-3 text-white hover:text-teal-400">Mobil
+                        <a href="{{ url('/') }}" class="py-5 px-3 text-white hover:text-green-400">Home</a>
+                        <a href="{{ url('cars/new') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
                             Baru</a>
-                        <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-teal-400">Mobil
+                        <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
                             Bekas</a>
-                        <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-teal-400">Promo</a>
+                        <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-green-400">Promo</a>
                     </div>
 
                     <!-- secondary nav -->
                     @guest
                         <div class="hidden md:flex items-center space-x-1">
                             <a href="{{ url('login') }}"
-                                class="px-6 py-2 text-white font-semibold bg-teal-400 hover:bg-teal-500 border-transparent rounded-md">Masuk</a>
+                                class="px-6 py-2 text-white font-semibold bg-green-400 hover:bg-green-500 border-transparent rounded-md">Masuk</a>
                         </div>
                     @endguest
                     @auth
                         <div class="hidden md:flex items-center space-x-1">
                             <div class="dropdown inline-block relative">
-                                <button class="text-white font-semibold py-2 rounded inline-flex items-center space-x-2">
+                                <button
+                                    class="text-white font-semibold py-2 rounded focus:outline-none inline-flex items-center space-x-2">
                                     <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full"
                                         alt="">
                                     <span class="mr-1">Hi, {{ Auth::user()->first_name }}</span>
@@ -115,21 +117,21 @@
                                 </button>
                                 <ul class="dropdown-menu absolute hidden pt-5 z-10">
                                     <li class=""><a
-                                            class="rounded-t bg-white hover:bg-teal-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="rounded-t bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
                                             href="{{ route('profile-seller.edit') }}">Profile</a></li>
                                     @if (Auth::user()->adminAndOperator())
                                         <li class=""><a
-                                                class="bg-white hover:bg-teal-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                                class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
                                                 href="{{ url('admin') }}">Dashboard</a></li>
                                     @endif
                                     <li class=""><a
-                                            class="bg-white hover:bg-teal-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
                                             href="#">Mobil Tersimpan</a></li>
                                     <li class=""><a
-                                            class="bg-white border-b hover:bg-teal-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
-                                            href="#">Klaim Promo</a></li>
+                                            class="bg-white border-b hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            href="{{ url('claim-promo') }}">Voucher</a></li>
                                     <li class=""><a
-                                            class="rounded-b bg-white hover:bg-teal-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="rounded-b bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
                                             href="{{ url('logout') }}">Keluar</a></li>
                                 </ul>
                             </div>
@@ -153,18 +155,26 @@
 
             <!-- mobile menu -->
             <div class="mobile-menu hidden md:hidden">
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Home</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Mobil Baru</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Mobil Bekas</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400 border-b">Promo</a>
-                <div class="flex flex-row py-4 px-4">
-                    <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full" alt="">
-                    <p class="text-white font-semibold px-2 py-1" >Hi, {{ Auth::user()->first_name }}</p>
+                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Home</a>
+                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Baru</a>
+                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Bekas</a>
+                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Promo</a>
+                @guest
+                <div class="block py-4 px-4">
+                    <a href="#" class="flex w-full text-sm text-white rounded-sm justify-center py-3 border-transparent bg-green-400 hover:bg-green-500 border-b">Masuk</a>
                 </div>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Profile</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Mobil Tersimpan</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400 border-b">Profile</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-teal-400">Keluar</a>
+                @endguest
+                @auth
+                    <div class="flex flex-row py-4 px-4">
+                        <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full" alt="">
+                        <p class="text-white font-semibold px-2 py-1">Hi, {{ Auth::user()->first_name }}</p>
+                    </div>
+                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Profile</a>
+                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Tersimpan</a>
+                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Profile</a>
+                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Keluar</a>
+                @endauth
+
 
             </div>
         </nav>

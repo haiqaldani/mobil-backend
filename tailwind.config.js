@@ -21,6 +21,7 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss'),
+        require('autoprefixer'),
         // require('autoprefixer'),
     ]
 }
