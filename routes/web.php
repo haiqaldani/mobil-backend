@@ -23,7 +23,7 @@ Route::get('/', 'HomeController@index')
 Route::get('/cars/used', 'CarsUsedController@index')
     ->name('carsused');
 
-Route::get('/cars/new', 'CarsNewController@index')
+Route::get('/cars', 'CarsNewController@index')
     ->name('carsnew');
 
 Route::get('/profile', 'ProfileController@index')
@@ -32,26 +32,43 @@ Route::get('/profile', 'ProfileController@index')
 Route::get('/detail/{slug}/{id}', 'DetailController@index')
     ->name('detail');
 
+Route::get('/cars/merk/{merk}', 'MerkDetailController@index')
+    ->name('merk-list');
+
+
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/profile', 'ProfileController@edit')
+    Route::get('/account/profile', 'ProfileController@edit')
         ->name('profile-seller.edit');
 
-    Route::patch('/profile', 'ProfileController@update')
+    Route::patch('/account/profile', 'ProfileController@update')
         ->name('profile-seller.update');
+
+    Route::get('/account/change-password', 'PasswordController@index')
+        ->name('change-password');
+
+    Route::patch('/account/change-password', 'PasswordController@update')
+        ->name('change-password.update');
+
+    Route::patch('/account/wishlist', 'ProfileController@index')
+        ->name('wishlist');
+
+    Route::get('/claim-promo', 'ClaimPromoController@index')
+        ->name('claim-promo');
+
+    Route::post('/claim-promo/claim', 'ClaimPromoController@store')
+        ->name('claim');
 });
 
 Route::get('/listing/create', 'CreateMobilController@index')
     ->name('create-mobil')->middleware(['auth']);
 
+Route::get('/get-model-list', 'CreateMobilController@getModel')->name('create-mobil.getmodel');
+
+Route::get('/get-variant-list', 'CreateMobilController@getVariant')->name('create-mobil.getvariant');
+
 Route::post('/listing/post-mobil', 'CreateMobilController@store')
     ->name('post-mobil');
-
-Route::get('/claim-promo', 'ClaimPromoController@index')
-    ->name('claim-promo');
-
-Route::post('/claim-promo/claim', 'ClaimPromoController@store')
-    ->name('claim');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -68,6 +85,9 @@ Route::prefix('admin')
         Route::resource('car-type', 'CarTypeController');
         Route::resource('banner', 'BannerController');
         Route::resource('car-gallery', 'CarGalleryController');
+        Route::resource('model-image', 'ModelImageController');
+        Route::resource('model-variant', 'ModelVariantController');
+        Route::post('uploadbanner', 'UploadController@uploadbanner');
         Route::resource('car', 'CarController');
         Route::resource('merk', 'MerkController');
         Route::resource('car-model', 'CarModelController');

@@ -83,6 +83,18 @@ class Car extends Model
     {
         return $this->belongsTo(CarType::class, 'car_types_id', 'id');
     }
+    public function merks()
+    {
+        return $this->belongsTo(Merk::class, 'merk_id', 'id');
+    }
+    public function car_models()
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id', 'id');
+    }
+    public function car_variants()
+    {
+        return $this->belongsTo(CarVariant::class, 'car_variant_id', 'id');
+    }
     public function users()
     {
         return $this->belongsTo(User::class, 'id_seller', 'id');

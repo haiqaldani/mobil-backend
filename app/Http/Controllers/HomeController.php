@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Car;
 use App\CarType;
+use App\Merk;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,11 +19,13 @@ class HomeController extends Controller
     {
         $car_types=CarType::all();
         $banners=Banner::all();
+        $merks=Merk::all();
         $cars = Car::with(['galleries'])->get();
         return view('pages.home',[
             'car_types' => $car_types,
             'cars' => $cars,
-            'banners' => $banners
+            'banners' => $banners,
+            'merks' => $merks
         ]);
     }
 

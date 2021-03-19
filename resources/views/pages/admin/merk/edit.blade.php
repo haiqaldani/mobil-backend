@@ -23,12 +23,23 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="title">Kategori Mobil</label>
-                        <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $item->title }}">
+                        <label for="merk">Nama Merk</label>
+                        <input type="text" class="form-control" name="merk" placeholder="Merk" value="{{ $item->merk }}">
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" name="image" placeholder="Image" >
+                        <label for="image">Gambar</label>
+                        {{-- <input type="file" class="form-control" name="image" placeholder="Image"> --}}
+                        <div class="file-upload ">
+                            <div class="file-select">
+                                <div class="file-select-button" id="fileName">Pilih Gambar</div>
+                                <div class="file-select-name" id="noFile">Tidak ada gambar terpilih</div>
+                                <input type="file" name="image" accept="image/*" id="chooseFile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Deskripsi</label>
+                        <textarea id="description" name="description" rows="10">{{ $item->description }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
@@ -38,4 +49,10 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('script')
+    <script>
+        CKEDITOR.replace('description');
+
+    </script>
 @endsection

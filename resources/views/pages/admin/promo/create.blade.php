@@ -32,8 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="promo_type">Tipe Promo</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-3">
                                 <input type="radio" class="radio-button" name="promo_type" value="Discount">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="promo_type">Diskon</label>

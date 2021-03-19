@@ -66,7 +66,7 @@
 <header>
     <div class="container">
         <!-- navbar goes here -->
-        <nav class="bg-blue-900">
+        <nav class="bg-blue-600">
             <div class="max-w-6xl mx-auto px-4 py-3">
                 <div class="flex justify-between">
 
@@ -74,20 +74,20 @@
                         <!-- logo -->
                         <div>
                             <a href="{{ url('/') }}"
-                                class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                                class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-600">
                                 <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                 </svg>
-                                <span class="font-bold text-white">MOBIL</span>
+                                <span class="font-bold text-white">MOBILO</span>
                             </a>
                         </div>
 
                     </div>
                     <div class="hidden md:flex items-center font-medium font-sans  space-x-1">
                         <a href="{{ url('/') }}" class="py-5 px-3 text-white hover:text-green-400">Home</a>
-                        <a href="{{ url('cars/new') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
+                        <a href="{{ url('cars') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
                             Baru</a>
                         <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
                             Bekas</a>
@@ -108,7 +108,7 @@
                                     class="text-white font-semibold py-2 rounded focus:outline-none inline-flex items-center space-x-2">
                                     <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full"
                                         alt="">
-                                    <span class="mr-1">Hi, {{ Auth::user()->first_name }}</span>
+                                    <span class="mr-1">Hi, {{ Str::before(Auth::user()->full_name, ' ') }}</span>
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
                                         <path

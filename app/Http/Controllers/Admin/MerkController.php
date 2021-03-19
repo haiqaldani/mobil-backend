@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MerkRequest;
 use App\Merk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\Models\Activity;
 
 class MerkController extends Controller
@@ -46,6 +47,7 @@ class MerkController extends Controller
         $data['image'] = $request->file('image')->store(
             'assets/merk', 'public'
         );
+        $data['slug'] = Str::slug($request->merk);
 
         Merk::create($data);
 
@@ -97,7 +99,8 @@ class MerkController extends Controller
         $data['image'] = $request->file('image')->store(
             'assets/merk', 'public'
         );
-
+        $data['slug'] = Str::slug($request->merk);
+    
         $item = Merk::findOrFail($id);
 
         $item->update($data);

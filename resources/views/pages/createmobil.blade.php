@@ -8,7 +8,8 @@
             <div class="flex flex-col mt-10">
                 <h1 class="font-bold text-center text-3xl">Jual Mobil Anda</h1>
                 <div class="flex flex-col border-2 border-gray-200 mx-56 rounded-md">
-                    <form class="mx-10 my-5 space-y-3" action="{{ route('post-mobil') }}"  enctype="multipart/form-data" method="POST">
+                    <form class="mx-10 my-5 space-y-3" action="{{ route('post-mobil') }}" enctype="multipart/form-data"
+                        method="POST">
                         @csrf
                         <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
                             value="{{ Auth::user()->id }}">
@@ -26,7 +27,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="model">Model Mobil*</label>
                             <div class="">
                                 <input
@@ -39,7 +40,7 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label class="font-semibold" for="car_year">Tahun*</label>
                             <div class="">
@@ -73,6 +74,59 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label class="font-semibold" for="merk_id">Merk*</label>
+                            <div class="">
+                                <select name="merk_id" id="merk_id"
+                                    class="px-2 py-2 w-6/12 border placeholder-opacity-75  border-black rounded-sm outline-none focus:border-blue-400 ">
+                                    <option value="">Pilih Merk</option>
+                                    {{-- @foreach ($merks as $id => $merk)
+                                        <option class="text-black" value="{{ $id }}">
+                                            {{ $merk }}
+                                        </option>
+                                    @endforeach --}}
+                                    @foreach ($merks as $id => $merk)
+                                        <option class="text-black" value="{{ $id }}">
+                                            {{ $merk }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('merk_id')
+                                <span class="text-red-600 text-sm font-light" role="alert">
+                                    <p>*{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-semibold" for="car_model_id">Model Mobil*</label>
+                            <div class="">
+                                <select name="car_model_id" id="car_model_id"
+                                    class="px-2 py-2 w-6/12 border placeholder-opacity-75  border-black rounded-sm outline-none focus:border-blue-400 ">
+                                    <option value="">Pilih Model</option>
+                                </select>
+                            </div>
+                            @error('car_model_id')
+                                <span class="text-red-600 text-sm font-light" role="alert">
+                                    <p>*{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-semibold" for="car_variant_id">Model Variant*</label>
+                            <div class="">
+                                <select name="car_variant_id" id="car_variant_id"
+                                    class="px-2 py-2 w-6/12 border placeholder-opacity-75  border-black rounded-sm outline-none focus:border-blue-400 ">
+                                    <option value="">Pilih Variant</option>
+                                </select>
+                            </div>
+                            @error('car_model_id')
+                                <span class="text-red-600 text-sm font-light" role="alert">
+                                    <p>*{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </div>
+
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="transmission">Transmisi*</label>
                             <div class="flex flex-wrap space-x-3">
                                 <div class="input-container">
@@ -94,8 +148,8 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="condition">Kondisi*</label>
                             <div class="flex flex-wrap space-x-3">
                                 <div class="input-container">
@@ -117,8 +171,8 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="fuel">Bahan Bakar*</label>
                             <div class="flex flex-wrap space-x-3">
                                 <div class="input-container">
@@ -152,8 +206,8 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="edition">Edisi</label>
                             <div class="">
                                 <input
@@ -165,7 +219,7 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label class="font-semibold" for="kilometers">Jarak Tempuh*</label>
                             <div class="">
@@ -186,7 +240,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="cc">CC</label>
                             <div class="">
                                 <div class="flex flex-wrap">
@@ -204,7 +258,7 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label class="font-semibold" for="price">Harga*</label>
                             <div class="">
@@ -400,7 +454,7 @@
                                         class="glyphicon glyphicon-plus"></i>Add</button>
                             </div>
 
-                            
+
                             @error('image')
                                 <span class="text-red-600 text-sm font-light" role="alert">
                                     <p>*{{ $message }}</p>
@@ -469,31 +523,83 @@
         }
 
     </script>
-    <script type="text/javascript">
-        var rupiah = document.getElementById('price');
-        rupiah.addEventListener('keyup', function(e) {
-            // tambahkan 'Rp.' pada saat form di ketik
-            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            rupiah.value = formatRupiah(this.value, 'Rp. ');
+    <script>
+        $(document).ready(function() {
+
+            // Format mata uang.
+            $('#price').mask('000.000.000', {
+                reverse: true
+            });
+
+        })
+
+    </script>
+    {{-- <script type="text/javascript">
+        $(function() {
+            $('#merk_id').on('change', function() {
+                axios.post('{{ route('create-mobil.getmodel') }}', {
+                        id: $(this).val()
+                })
+                .then(function(response) {
+                        $('#car_model_id').empty();
+
+                    $.each(response.data, function(id, merk) {
+                        $('#car_model_id').append(new Option(merk, id))
+                    })
+                })
+            });
         });
+    </script> --}}
+    <script>
+        $('#merk_id').change(function() {
+            var merksID = $(this).val();
+            if (merksID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('get-model-list') }}?merk_id=" + merksID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_model_id").empty();
+                            $("#car_model_id").append('<option>Pilih Model</option>');
+                            $.each(res, function(key, value) {
+                                $("#car_model_id").append('<option value="' + key + '">' + value +
+                                    '</option>');
+                            });
 
-        /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+                        } else {
+                            $("#car_model_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_model_id").empty();
+                $("#car_variant_id").empty();
+            }
+        });
+        $('#car_model_id').on('change', function() {
+            var car_modelsID = $(this).val();
+            if (car_modelsID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('get-variant-list') }}?car_model_id=" + car_modelsID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_variant_id").empty();
+                            $.each(res, function(key, value) {
+                                $("#car_variant_id").append('<option value="' + key + '">' + value +
+                                    '</option>');
+                            });
 
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
+                        } else {
+                            $("#car_variant_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_variant_id").empty();
             }
 
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-        }
+        });
 
     </script>
 @endsection

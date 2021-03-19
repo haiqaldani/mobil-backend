@@ -11,6 +11,18 @@
 
 @import "tailwindcss/screens"; */
 
+/* owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+.owl-item {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+} */
+
 #sync1 .owl-prev {
     left: 10px;
     width: 30px;
@@ -28,25 +40,9 @@
     position: absolute;
     top: 42.5%;
 }
-#sync2 .owl-prev {
-    left: 10px;
-    width: 30px;
-    height: 50px;
-    margin-top: -20px;
-    position: absolute;
-    top: 47.5%;
-}
 
-#sync2 .owl-next {
-    right: 10px;
-    width: 30px;
-    height: 50px;
-    margin-top: -20px;
-    position: absolute;
-    top: 47.5%;
-}
-#sync3 .owl-prev {
-    left: 10px;
+#sync2 .owl-prev {
+    left: -15px;
     width: 30px;
     height: 50px;
     margin-top: -20px;
@@ -54,6 +50,43 @@
 
     position: absolute;
     top: 43%;
+}
+
+#sync2 .owl-next {
+    right: -15px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    background-color: #000;
+    position: absolute;
+    top: 43%;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: none;
+}
+.card-image {
+    background: #f4f8fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.card-body {
+    padding: 0 10px 10px;
+    position: relative;
+}
+
+#sync3 .owl-prev {
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    position: absolute;
+    top: 47.5%;
 }
 
 #sync3 .owl-next {
@@ -61,12 +94,31 @@
     width: 30px;
     height: 50px;
     margin-top: -20px;
+    position: absolute;
+    top: 47.5%;
+}
+#sync4 .owl-prev {
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
+    background-color: #000;
+
+    position: absolute;
+    top: 43%;
+}
+
+#sync4 .owl-next {
+    right: 10px;
+    width: 30px;
+    height: 50px;
+    margin-top: -20px;
     background-color: #000;
     position: absolute;
     top: 43%;
 }
 
-#sync3 .item {
+#sync4 .item {
     cursor: pointer;
     background: #c9c9c9;
 }
@@ -173,10 +225,10 @@
 
 .title {
     color: #7a7572;
-  }
-  
-  .title::after,
-  .title::before {
+}
+
+.title::after,
+.title::before {
     content: "";
     position: absolute;
     right: 1.25em;
@@ -185,22 +237,99 @@
     height: 0.75em;
     background-color: #7a7572;
     transition: all 0.2s;
-  }
-  
-  .title::after {
+}
+
+.title::after {
     transform: rotate(90deg);
-  }
-  
-  .content {
+}
+
+.content {
     max-height: 0;
-  }
-  
-  .toggle:checked + .title, .toggle:checked + .title + .content {
+}
+
+.toggle:checked + .title,
+.toggle:checked + .title + .content {
     box-shadow: 3px 3px 6px #ddd, -3px 3px 6px #ddd;
-  }
-  .toggle:checked + .title + .content {
+}
+.toggle:checked + .title + .content {
     max-height: 500px;
-  }
-  .toggle:checked + .title::before {
+}
+.toggle:checked + .title::before {
     transform: rotate(90deg) !important;
-  }
+}
+
+[data-expandable] [data-expand-text] {
+    --line-height: 1.5;
+    --lines-to-show: 3;
+    position: relative;
+    box-sizing: border-box;
+    line-height: var(--line-height);
+    overflow: hidden;
+    height: calc(var(--line-height) * var(--lines-to-show) * 1em);
+}
+
+[data-overflow="false"] [data-expand-text] {
+    height: initial;
+}
+
+[data-expandable].expanded [data-expand-text] {
+    height: initial;
+}
+
+[data-overflow="false"] [data-expand-button] {
+    display: none;
+}
+
+[data-expandable] [data-expand-text]::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+[data-overflow="false"] [data-expand-text]::before,
+[data-expandable].expanded [data-expand-text]::before {
+    background: initial;
+}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated.faster {
+    -webkit-animation-duration: 500ms;
+    animation-duration: 500ms;
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

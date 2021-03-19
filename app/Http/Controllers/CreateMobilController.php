@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\CarModel;
 use App\CarType;
+use App\CarVariant;
 use App\Gallery;
 use App\Http\Requests\CreateMobilRequest;
+use App\Merk;
 use App\VehicleFeature;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
@@ -17,6 +21,7 @@ class CreateMobilController extends Controller
     public function index()
     {
         $car_types = CarType::all();
+        $merks = Merk::pluck('merk', 'id');
         $eksteriors = VehicleFeature::where('category', 'Eksterior')->get();
         $interiors = VehicleFeature::where('category', 'Interior')->get();
         $perlengkapans = VehicleFeature::where('category', 'Perlengkapan')->get();
@@ -25,7 +30,28 @@ class CreateMobilController extends Controller
             'interiors' => $interiors,
             'eksteriors' => $eksteriors,
             'perlengkapans' => $perlengkapans,
+            'merks' => $merks,
         ]);
+    }
+
+    // public function getMerk()
+    // {
+    //     $merks = Merk::pluck('merk', 'id');
+    //     return view('pages.createmobil', compact('merks'));
+    // }
+
+    public function getModel(Request $request)
+    {
+        $car_models = CarModel::where('merk_id', $request->get('merk_id'))->pluck('model', 'id');
+
+    return response()->json($car_models);
+    }
+
+    public function getVariant(Request $request)
+    {
+        $car_variants = CarVariant::where('car_model_id', $request->get('car_model_id'))->pluck('edition', 'id');
+
+    return response()->json($car_variants);
     }
 
     public function store(CreateMobilRequest $request)
@@ -36,19 +62,16 @@ class CreateMobilController extends Controller
             'id' => $request->id,
             'id_seller' => Auth::id(),
             'title' => $request->title,
-            'car_type' => $request->car_type,
             'car_year' => $request->car_year,
             'car_types_id' => $request->car_types_id,
-            'transmission' => $request->transmission,
-            'fuel' => $request->fuel,
-            'cc' => $request->cc,
+            'merk_id' => $request->merk_id,
+            'car_model_id' => $request->car_model_id,
+            'car_variant_id' => $request->car_variant_id,
             'kilometers' => $request->kilometers,
             'price' => $request->price,
             'description' => $request->description,
             'color' => $request->color,
             'condition' => $request->condition,
-            'model' => $request->model,
-            'edition' => $request->edition,
             'price_description' => $request->price_description,
 
         ];
@@ -63,16 +86,15 @@ class CreateMobilController extends Controller
         $save = Car::updateOrcreate($id, $data);
         $save->vehicle_features()->attach($request->vehicle_features);
 
-        
-        if ($request->hasFile('image'))
-        {
+
+        if ($request->hasFile('image')) {
             $files = $request->file('image');
             foreach ($files as $file) {
-                $fileName = Carbon::now()->timestamp . '_'. uniqid() . '.jpg';
+                $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.jpg';
                 $time = Carbon::now()->toDateTimeString();
-                $path = 'storage/assets/gallery/'.$fileName;
+                $path = 'storage/assets/gallery/' . $fileName;
                 Image::make($file)->save($path);
-                $name = 'assets/gallery/'.$fileName;
+                $name = 'assets/gallery/' . $fileName;
                 // $file->move(public_path().'/storage/assets/gallery', $name);
                 $store_image[] = [
                     'image' => $name,
@@ -80,11 +102,10 @@ class CreateMobilController extends Controller
                     'updated_at' =>  $time,
                     'created_at' =>  $time,
                 ];
-                
             }
             Gallery::insert($store_image);
         }
-        
+
 
         // $images = $request->image;
         // if (is_array($images) || is_object($images)) {

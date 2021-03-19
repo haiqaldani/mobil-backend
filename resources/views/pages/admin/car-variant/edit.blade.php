@@ -56,6 +56,29 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="transmission">Bahan Bakar</label>
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-2">
+                                <input type="radio" class="radio-button" name="fuel" value="Diesel">
+                                <div class="radio-tile">
+                                    <label class="radio-tile-label" for="fuel">Diesel</label>
+                                </div>
+                            </div>
+                            <div class="input-container mr-2">
+                                <input type="radio" class="radio-button" name="fuel" value="Bensin">
+                                <div class="radio-tile">
+                                    <label class="radio-tile-label" for="fuel">Bensin</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input type="radio" class="radio-button" name="fuel" value="Listrik">
+                                <div class="radio-tile">
+                                    <label class="radio-tile-label" for="fuel">Listrik</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="cc">CC</label>
                         <input type="number" class="form-control" name="cc" placeholder="Cth: 1000"
                             value="{{ $item->cc }}">
@@ -65,6 +88,17 @@
                         <input type="text" class="form-control" name="variant" placeholder="Cth: Luxury"
                             value="{{ $item->variant }}">
                     </div>
+                    <div class="form-group">
+                        <label for="price">Harga</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Rp. </span>
+                            </div>
+                            <input type="text" class="form-control" id="price" name="price" placeholder="Cth: 2000000"
+                                value="{{ old('price') }}">
+                        </div>
+
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
                     </button>
@@ -73,4 +107,18 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+
+            // Format mata uang.
+            $('#price').mask('000.000.000', {
+                reverse: true
+            });
+
+        })
+
+    </script>
+
 @endsection

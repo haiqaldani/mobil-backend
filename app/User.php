@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lab404\AuthChecker\Models\HasLoginsAndDevices;
 use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Spatie\Activitylog\Models\Activity;
 
 class User extends Authenticatable implements HasLoginsAndDevicesInterface, MustVerifyEmail
 {
-    use Notifiable, HasLoginsAndDevices, Uuid;
+    use Notifiable, HasLoginsAndDevices, Uuid, Favoriter;
 
     public $incrementing = false;
 

@@ -11,9 +11,9 @@
     
   </head>
   <body>
-    @include('includes.navbar')    
+    {{-- @include('includes.navbar')     --}}
     @yield('content')
-    @include('includes.alternate-footer')    
+    {{-- @include('includes.alternate-footer')     --}}
 
     @stack('prepend-script')
     @include('includes.script')

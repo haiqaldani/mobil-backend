@@ -33,16 +33,12 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->car_year }}</td>
-                                    <td>{{ $item->transmission }}</td>
-                                    <td>{{ $item->fuel }}</td>
+                                    <td>{{ $item->car_variants->transmission }}</td>
+                                    <td>{{ $item->car_variants->fuel }}</td>
                                     <td>{{ $item->users->username }}</td>
                                     <td>
                                         <a href="{{ route('car.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
-                                        </a>
-
-                                        <a clas href="{{ route('car-gallery.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fa fa-plus"></i> Tambah Gambar
                                         </a>
                                         <a clas href="{{ route('car.show', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-eye"></i>

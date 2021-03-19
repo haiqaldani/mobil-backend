@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{{ url('frontend/libraries/owlcarousel/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{ url('frontend/libraries/owlcarousel/owl.theme.default.min.css')}}">
 
+<link rel="stylesheet" href="{{ url('frontend/libraries/datetime/build/jquery.datetimepicker.css') }}">
+{{-- <script src="{{ url('frontend/libraries/datetime/css/bootstrap-datetimepicker.min.css') }}"></script> --}}
 
 <script src="{{ url('backend/libraries/ckeditor/ckeditor.js') }}"></script>
 

@@ -22,7 +22,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $items = Car::with(['car_types','users'])->get();
+        $items = Car::with(['car_types','users', 'car_models', 'merks', 'car_variants'])->get();
 
         return view('pages.admin.car.index',[
             'items' => $items

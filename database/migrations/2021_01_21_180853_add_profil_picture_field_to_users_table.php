@@ -15,7 +15,7 @@ class AddProfilPictureFieldToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->text('profil_picture')->nullable();
-            $table->string('username');
+            $table->string('username')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

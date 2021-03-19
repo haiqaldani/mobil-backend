@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Car;
+use App\CarModel;
 use App\CarType;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -14,7 +15,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $cars = Car::count();
+        $cars = CarModel::count();
         $car_types = CarType::count();
         $new_cars = Car::where('Condition', 'Baru')->count();
         $used_cars = Car::where('Condition', 'Bekas')->count();

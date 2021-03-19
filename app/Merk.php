@@ -12,7 +12,7 @@ class Merk extends Model
     use SoftDeletes, LogsActivity;
 
     //log the changed attributes for allevent
-    protected static $logAttributes = ['merk','image'];
+    protected static $logAttributes = ['merk','image', 'slug','description'];
 
     //changing password and update_at will not trigger an activity being logged
     protected static $ignoreChangedAttributes = ['update_at'];
@@ -31,15 +31,18 @@ class Merk extends Model
         return "{$user} have {$eventName} merk";
     }
     protected $fillable = [
-        'merk', 'image'
+        'merk', 'image', 'slug','description'
     ];
 
     protected $hidden = [
 
     ];
 
-    public function models(){
-        return $this->hasMany( Model::class, 'merk_id', 'id' );
+    public function car_models(){
+        return $this->hasMany( CarModel::class, 'merk_id', 'id' );
+    }
+    public function cars(){
+        return $this->hasMany( Car::class, 'merk_id', 'id' );
     }
 
 

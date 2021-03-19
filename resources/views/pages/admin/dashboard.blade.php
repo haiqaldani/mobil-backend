@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mobil</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Model Mobil</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"> {{ $cars }} </div>
                         </div>
                         <div class="col-auto">

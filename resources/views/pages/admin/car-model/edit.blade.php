@@ -38,10 +38,6 @@
                         <input type="text" class="form-control" name="model" placeholder="cth: Avanza"
                             value="{{ $item->model }}">
                     </div>
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" name="image" placeholder="Image">
-                    </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
                     </button>

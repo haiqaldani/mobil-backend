@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CarGallery;
 use App\CarModel;
+use App\CarVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarModelRequest;
 use App\Merk;
@@ -18,10 +20,13 @@ class CarModelController extends Controller
      */
     public function index()
     {
-        $items = CarModel::all();
-
+        $items = CarModel::with(['merks', 'car_galleries', 'car_variants'])->get();
+        // $images = CarGallery::with(['car_models'])->get();
+        // $variant = CarVariant::with(['car_models'])->get();
         return view('pages.admin.car-model.index', [
-            'items' => $items
+            'items' => $items,
+            // 'images' => $images,
+            // 'variant' => $variant,
         ]);
     }
 
@@ -47,10 +52,6 @@ class CarModelController extends Controller
     public function store(CarModelRequest $request)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/car-model',
-            'public'
-        );
 
         CarModel::create($data);
 
@@ -100,10 +101,6 @@ class CarModelController extends Controller
     public function update(CarModelRequest $request, $id)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/car-model',
-            'public'
-        );
 
         $item = CarModel::findOrFail($id);
 

@@ -26,7 +26,6 @@ class CarModelRequest extends FormRequest
         return [
             'merk_id' => 'required|exists:merks,id',
             'model' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 
@@ -35,11 +34,7 @@ class CarModelRequest extends FormRequest
         return[
             'merk_id.required'    => 'Merk  Mobil harus diisi',
             'model.required'    => 'Model  Mobil harus diisi',
-            'model.max:255'    => 'Model  Mobil maksimal 255 huruf',
-            'image.required'    => 'Gambar model  harus diisi',
-            'image.image'    => 'Harus berupa image',
-            'image.mimes:jpeg,png,jpg,gif,svg'    => 'Format harus jpeg, png, jpg, gif, svg',
-            'image.max:2048'    => 'Maksimal size image harus 2mb',
+            'model.max:255'    => 'Model  Mobil maksimal 255 huruf'
         ];
     }
 }

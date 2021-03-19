@@ -49,13 +49,29 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
+        $message = array(
+            'full_name.required' => 'Please enter a full name',
+            'full_name.max' => 'Maximum is 255 characters',
+            'phone_number.required' => 'Please enter a phone number',
+            'phone_number.max' => 'Maximum is 14 digits',
+            'email.required' => 'Please enter a email',
+            'email.email' => 'Please enter a valid email',
+            'email.unique:users' => 'Email is already registered',
+            'password.required' => 'Please enter a password',
+            'password.min' => 'Minimum 8 characters'
+
+
+        );
+
         return Validator::make($data, [
-            // 'name' => ['required', 'string', 'max:255'],
-            'username'=> ['required', 'string', 'max:255', 'unique:users'],
+            'full_name' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'numeric', 'max:14'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:8'],
+        ], $message);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -67,8 +83,9 @@ class RegisterController extends Controller
     {
         return User::create([
             // 'name' => $data['name'],
+            'full_name' => $data['full_name'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
-            'username'=> $data['username'],
             'password' => Hash::make($data['password']),
         ]);
     }

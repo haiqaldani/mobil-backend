@@ -18,8 +18,7 @@ class CarVariantController extends Controller
      */
     public function index()
     {
-        $items = CarVariant::all();
-
+        $items = CarVariant::with(['car_models'])->get();
         return view('pages.admin.car-variant.index', [
             'items' => $items
         ]);
@@ -47,11 +46,6 @@ class CarVariantController extends Controller
     public function store(CarVariantRequest $request)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/car-variant',
-            'public'
-        );
-
         CarVariant::create($data);
 
         $activity = Activity::all()->last();
@@ -100,11 +94,6 @@ class CarVariantController extends Controller
     public function update(CarVariantRequest $request, $id)
     {
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/car-variant',
-            'public'
-        );
-
         $item = CarVariant::findOrFail($id);
 
         $item->update($data);

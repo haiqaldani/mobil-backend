@@ -24,8 +24,37 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="role">Role</label>
-                        <input type="text" class="form-control" name="role" placeholder="Role" value="{{ $item->role }}">
+                        <label for="title">Promo</label>
+                        <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $item->title }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Total Diskon/Cashback</label>
+                        <input type="number" class="form-control" name="amount" placeholder="Total Diskon/Cashback" value="{{ $item->amount }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="promo_type">Tipe Promo</label>
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-3">
+                                <input type="radio" class="radio-button" name="promo_type" value="Discount">
+                                <div class="radio-tile">
+                                    <label class="radio-tile-label" for="promo_type">Diskon</label>
+                                </div>
+                            </div>
+                            <div class="input-container">
+                                <input type="radio" class="radio-button" name="promo_type" value="Cashback">
+                                <div class="radio-tile">
+                                    <label class="radio-tile-label" for="promo_type">Cashback</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Kode Promo</label>
+                        <input type="text" class="form-control" name="code" placeholder="Code" value="{{ $item->code }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Deskripsi</label>
+                        <textarea id="description" name="description" rows="10">{{ $item->description }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
@@ -35,4 +64,10 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('script')
+<script>
+    CKEDITOR.replace('description');
+
+</script>
 @endsection
