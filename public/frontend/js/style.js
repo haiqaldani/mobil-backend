@@ -25,14 +25,21 @@ sync2
         responsive: {
             0: {
                 items: 1,
-                nav: true
+                nav: true,
+                loop: false
             },
             600: {
-                items: 3,
-                nav: false
+                items: 2,
+                nav: true,
+                loop: false
             },
             1000: {
-                items: 5,
+                items: 3,
+                nav: true,
+                loop: false
+            },
+            1200: {
+                items: 4,
                 nav: true,
                 loop: false
             }

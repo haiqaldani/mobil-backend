@@ -148,10 +148,9 @@
                                         akan Anda dapatkan </p>
                                     <!--Body-->
                                     <div class="my-5">
-                                        <form action="" class="space-y-3">
-
-                                            <input type="hidden" name="car_model_id" id="car_model_id" disabled>
-
+                                        <form action="{{ route('interest.store') }}" class="space-y-3" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="car_model_id" id="car_model_id">
                                             <div class="flex flex-col">
                                                 <label for="name">Nama <span class="font-light italic"> (Harus
                                                         diisi)</span></label>
@@ -178,7 +177,8 @@
                                             <div class="flex flex-col">
                                                 <label for="city">Atur jadwal survey*</label>
                                                 <input type="text" name="schedule"
-                                                    class="p-3 border rounded focus:outline-none" id="schedule">
+                                                    class="p-3 border rounded focus:outline-none" id="schedule"
+                                                    placeholder="Pilih jadwal berkunjung anda">
                                             </div>
 
                                             <div class="flex flex-col">
@@ -196,15 +196,16 @@
 
                                                 </div>
                                             </div>
+                                            <div class="flex justify-end pt-2">
+                                                {{-- <button
+                                                    class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button> --}}
+                                                <button type="submit"
+                                                    class="focus:outline-none px-4 border bg-green-500 text-white p-3 ml-3 rounded-lg hover:bg-teal-400">Confirm</button>
+                                            </div>
                                         </form>
                                     </div>
                                     <!--Footer-->
-                                    <div class="flex justify-end pt-2">
-                                        {{-- <button
-                                            class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button> --}}
-                                        <button
-                                            class="focus:outline-none px-4 border bg-green-500 text-white p-3 ml-3 rounded-lg hover:bg-teal-400">Confirm</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -256,7 +257,8 @@
     {{-- <script>
         $("#schedule").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
    </script> --}}
-   <script>
-       jQuery('#schedule').datetimepicker();
-   </script>
+    <script>
+        jQuery('#schedule').datetimepicker();
+
+    </script>
 @endprepend

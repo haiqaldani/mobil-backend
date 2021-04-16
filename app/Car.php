@@ -14,35 +14,32 @@ class Car extends Model
 {
     use SoftDeletes, LogsActivity, Sluggable, Uuid;
 
-    protected $guarded = [];
-    protected $cast = ['vehicle_features_id' => 'array'];
+    // protected $guarded = [];
+    // protected $cast = ['vehicle_features_id' => 'array'];
 
-    public function setVehicleFeaturesIdAttribute($value)
-    {
-        $this->attributes['vehicle_features_id'] = json_encode($value);
-    }
+    // public function setVehicleFeaturesIdAttribute($value)
+    // {
+    //     $this->attributes['vehicle_features_id'] = json_encode($value);
+    // }
 
-    public function getVehicleFeaturesIdAttribute($value)
-    {
-        return $this->attributes['vehicle_features_id'] = json_decode($value);
-    }
+    // public function getVehicleFeaturesIdAttribute($value)
+    // {
+    //     return $this->attributes['vehicle_features_id'] = json_decode($value);
+    // }
 
     //log the changed attributes for allevent
     protected static $logAttributes = [
         'title',
         'car_year',
         'car_types_id',
-        'transmission',
-        'fuel',
-        'edition',
-        'cc',
         'kilometers',
         'price',
-        'price_description',
         'color',
         'description',
-        'model',
-        'vehicle_features_id'
+        'merk_id',
+        'car_model_id',
+        'car_variant_id',
+        'condition'
 
     ];
 
@@ -65,7 +62,7 @@ class Car extends Model
     }
 
     protected $fillable = [
-        'title', 'slug', 'car_year', 'car_types_id', 'transmission', 'fuel', 'edition', 'cc', 'kilometers', 'price', 'price_description','condtion', 'color', 'description','id_seller','model', 'vehicle_features_id'
+        'title', 'slug', 'car_year', 'car_types_id', 'condition', 'kilometers', 'price', 'color', 'description', 'id_seller', 'merk_id', 'car_model_id', 'car_variant_id', 'status'
     ];
 
     public function sluggable(): array

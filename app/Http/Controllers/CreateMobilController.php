@@ -11,6 +11,7 @@ use App\Http\Requests\CreateMobilRequest;
 use App\Merk;
 use App\VehicleFeature;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
@@ -69,12 +70,14 @@ class CreateMobilController extends Controller
             'car_variant_id' => $request->car_variant_id,
             'kilometers' => $request->kilometers,
             'price' => $request->price,
+            'condition' => $request->condition,
             'description' => $request->description,
             'color' => $request->color,
-            'condition' => $request->condition,
-            'price_description' => $request->price_description,
 
         ];
+
+        // dd($data);
+
         if (isset($request->id)) {
             return null;
         } else {
@@ -83,9 +86,12 @@ class CreateMobilController extends Controller
             ];
         }
 
-        $save = Car::updateOrcreate($id, $data);
-        $save->vehicle_features()->attach($request->vehicle_features);
 
+        $save = Car::updateOrcreate($id, $data);
+
+        // $save->vehicle_features()->attach($request->vehicle_features);
+
+        
 
         if ($request->hasFile('image')) {
             $files = $request->file('image');

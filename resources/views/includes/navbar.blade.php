@@ -91,7 +91,7 @@
                             Baru</a>
                         <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-green-400">Mobil
                             Bekas</a>
-                        <a href="{{ url('cars/used') }}" class="py-5 px-3 text-white hover:text-green-400">Promo</a>
+                        <a href="{{ url('promo') }}" class="py-5 px-3 text-white hover:text-green-400">Promo</a>
                     </div>
 
                     <!-- secondary nav -->
@@ -108,34 +108,37 @@
                                     class="text-white font-semibold py-2 rounded focus:outline-none inline-flex items-center space-x-2">
                                     <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full"
                                         alt="">
-                                    <span class="mr-1">Hi, {{ Str::before(Auth::user()->full_name, ' ') }}</span>
+                                    {{-- <span class="mr-1">Hi, {{ Str::before(Auth::user()->full_name, ' ') }}</span> --}}
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
                                         <path
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
                                 </button>
+                                
                                 <ul class="dropdown-menu absolute hidden pt-5 z-10">
                                     <li class=""><a
-                                            class="rounded-t bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="rounded-t bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                             href="{{ route('profile-seller.edit') }}">Profile</a></li>
                                     @if (Auth::user()->adminAndOperator())
                                         <li class=""><a
-                                                class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                                class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                                 href="{{ url('admin') }}">Dashboard</a></li>
                                     @endif
                                     <li class=""><a
-                                            class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                             href="#">Mobil Tersimpan</a></li>
                                     <li class=""><a
-                                            class="bg-white border-b hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="bg-white border-b hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                             href="{{ url('claim-promo') }}">Voucher</a></li>
                                     <li class=""><a
-                                            class="rounded-b bg-white hover:bg-green-400 hover:text-white py-2 px-4 block whitespace-no-wrap"
+                                            class="rounded-b bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                             href="{{ url('logout') }}">Keluar</a></li>
                                 </ul>
                             </div>
+                            <a href="{{ route('create-mobil') }}" class="text-white font-semibold px-3 py-2.5 rounded bg-yellow-500">Pasang Iklan</a>
                         </div>
+                        
                     @endauth
 
 

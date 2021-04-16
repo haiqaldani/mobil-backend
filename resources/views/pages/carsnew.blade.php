@@ -39,23 +39,34 @@
                 <div class="">
                     <div class="my-3">
                         <div id="sync2" class="owl-carousel">
-                            <div class="item">
-                                <a href="">
-                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md ">
+                            @foreach ($models as $model)
+                                <div class="item">
+                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md cursor-pointer" onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; ">
                                         <div class="ring-1 rounded ring-gray-300">
                                             <div class="card-image">
                                                 <img class="object-fill object-center rounded"
                                                     src="{{ url('/frontend/images/login.jpg') }}" alt="">
                                             </div>
                                             <div class="card-body">
-                                                <h3 class="font-semibold text-lg">Magnite</h3>
-                                                <p class="text-gray-500 mb-3">Rp. 200.000.000</p>
+                                                <h3 class="font-semibold text-lg">{{ $model->model }}</h3>
+                                                <p class="text-gray-500 mb-3">
+                                                    @if ($model->car_variants->count() == 1)
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                    @elseif ( $model->car_variants->count() == 0 )
+                                                        Harga Belum Ada
+                                                    @else
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        -
+                                                        {{ $model->car_variants->count() ? $model->car_variants->last()->price : '' }}
+                                                    @endif
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     {{-- </div> --}}

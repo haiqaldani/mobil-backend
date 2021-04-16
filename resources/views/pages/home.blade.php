@@ -79,29 +79,52 @@
     <section class="section-cars mb-10">
         <div class="container">
             <div class="md:mx-20 mx-10">
-                <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
-                    Terbaru</h2>
+                <div class="grid grid-cols-2 justify-between">
+                    <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
+                        Terbaru</h2>
+                    <div class="justify-self-end">
+                        <a href="{{ route('carsnew') }}" class="border-blue-600 border p-2 rounded text-sm hover:bg-blue-600 hover:text-white">
+                            Tampilkan Semua Mobil >>
+                        </a>
+                    </div>
+                </div>
+
                 {{-- <div class="flex justify-center "> --}}
                 <div class="">
                     <div class="my-3">
                         <div id="sync2" class="owl-carousel">
-                            <div class="item">
-                                <a href="">
-                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md ">
+                            @foreach ($models as $model)
+                                <div class="item cursor-default">
+                                    {{-- <a href=""> --}}
+                                    <div onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; "
+                                        class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md ">
                                         <div class="ring-1 rounded ring-gray-300">
                                             <div class="card-image">
                                                 <img class="object-fill object-center rounded"
                                                     src="{{ url('/frontend/images/login.jpg') }}" alt="">
                                             </div>
                                             <div class="card-body">
-                                                <h3 class="font-semibold text-lg">Magnite</h3>
-                                                <p class="text-gray-500 mb-3">Rp. 200.000.000</p>
+                                                <h3 class="font-semibold text-lg"> {{ $model->model }} </h3>
+                                                <p class="text-gray-500 mb-3">  
+                                                    @if ($model->car_variants->count() == 1)
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                    @elseif ( $model->car_variants->count() == 0 )
+                                                        Harga Belum Ada
+                                                    @else
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        -
+                                                        {{ $model->car_variants->count() ? $model->car_variants->last()->price : '' }}
+                                                    @endif
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-                                
-                            </div>
+                                    {{-- </a> --}}
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                     {{-- </div> --}}
@@ -114,9 +137,9 @@
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
                 <div class="border-transparent rounded-lg" style="background-image: url('{{ url('frontend/images/login.jpg') }}'); 
-                                background-repeat: no-repeat;
-                                background-size: 2000px;
-                                background-position: center;  ">
+                                            background-repeat: no-repeat;
+                                            background-size: 2000px;
+                                            background-position: center;  ">
                     <div class="px-5 py-3">
                         <p class="uppercase font-medium text-sm text-white mb-10">Penawaran Mobil Baru</p>
                         <h2 class="text-white font-bold text-4xl">
@@ -170,7 +193,8 @@
                                     </div>
                                     <div class="col-span-2 grid grid-cols-8 ">
                                         <div class="bg-white py-3.5">
-                                            <img src="{{ url('/frontend/images/logo_mobil.png') }}" class="h-5 object-contain" alt="">
+                                            <img src="{{ url('/frontend/images/logo_mobil.png') }}"
+                                                class="h-5 object-contain" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +218,7 @@
                             <div class="m-1.5 justify-center">
                                 <img class="h-20" src="{{ Storage::url($merk->image) }}" alt="">
                             </div>
-                            <hr/>
+                            <hr />
                             <p class="text-center font-medium text-gray-600 m-3">{{ $merk->merk }}</p>
                         </a>
                     @endforeach

@@ -44,6 +44,11 @@
             <span>Banner</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('interest-buyer.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Pembeli Berminat</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('promo.index') }}">
             <i class="fas fa-fw fa-certificate"></i>
             <span>Promo</span></a>

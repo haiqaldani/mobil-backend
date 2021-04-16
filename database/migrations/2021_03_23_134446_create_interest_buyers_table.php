@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingsTable extends Migration
+class CreateInterestBuyersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('interest_buyers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone_number');
             $table->string('city');
-            $table->enum('payment', ['credit', 'cash']);
+            $table->enum('payment', ['Kredit', 'Tunai']);
             $table->timestamp('schedule');
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('interest_buyers');
     }
 }

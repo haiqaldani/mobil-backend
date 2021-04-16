@@ -29,11 +29,20 @@ Route::get('/cars', 'CarsNewController@index')
 Route::get('/profile', 'ProfileController@index')
     ->name('profile');
 
-Route::get('/detail/{slug}/{id}', 'DetailController@index')
-    ->name('detail');
+Route::get('/promo', 'PromoListController@index')
+    ->name('promo');
+
+Route::get('/promo/{promo}', 'PromoListController@show')
+    ->name('promo-detail');
 
 Route::get('/cars/merk/{merk}', 'MerkDetailController@index')
     ->name('merk-list');
+
+Route::get('/cars/merk/{merk}/{model}', 'CarDetailController@index')
+    ->name('model-detail');
+
+Route::post('/cars/merk/interest', 'InterestController@store')
+    ->name('interest.store');
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -90,6 +99,7 @@ Route::prefix('admin')
         Route::post('uploadbanner', 'UploadController@uploadbanner');
         Route::resource('car', 'CarController');
         Route::resource('merk', 'MerkController');
+        Route::resource('interest-buyer', 'InterestBuyerController');
         Route::resource('car-model', 'CarModelController');
         Route::resource('car-variant', 'CarVariantController');
         Route::resource('gallery', 'GalleryController');

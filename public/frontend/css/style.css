@@ -223,10 +223,6 @@
     display: block;
 }
 
-.title {
-    color: #7a7572;
-}
-
 .title::after,
 .title::before {
     content: "";
@@ -248,9 +244,9 @@
 }
 
 .toggle:checked + .title,
-.toggle:checked + .title + .content {
+/* .toggle:checked + .title + .content {
     box-shadow: 3px 3px 6px #ddd, -3px 3px 6px #ddd;
-}
+} */
 .toggle:checked + .title + .content {
     max-height: 500px;
 }

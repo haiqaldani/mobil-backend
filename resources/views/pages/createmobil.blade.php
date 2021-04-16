@@ -149,7 +149,7 @@
                                 </span>
                             @enderror
                         </div> --}}
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label class="font-semibold" for="condition">Kondisi*</label>
                             <div class="flex flex-wrap space-x-3">
                                 <div class="input-container">
@@ -164,14 +164,13 @@
                                         <label for="condition">Bekas</label>
                                     </div>
                                 </div>
-
                             </div>
                             @error('condition')
                                 <span class="text-red-600 text-sm font-light" role="alert">
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div> --}}
+                        </div>
                         {{-- <div class="form-group">
                             <label class="font-semibold" for="fuel">Bahan Bakar*</label>
                             <div class="flex flex-wrap space-x-3">
@@ -275,7 +274,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="price_description">Deskripsi Harga*</label>
                             <div class="grid grid-cols-3 gap-3 w-7/12">
                                 <div class="input-container">
@@ -323,8 +322,8 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <label class="font-semibold" for="vehicle_features">Fitur kendaraan</label>
                             <div class="flex flex-wrap" id="tabs-id">
                                 <div class="w-7/12">
@@ -409,7 +408,7 @@
                                     <p>*{{ $message }}</p>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label class="font-semibold" for="color">Warna</label>
                             <div class="">
@@ -585,6 +584,7 @@
                     success: function(res) {
                         if (res) {
                             $("#car_variant_id").empty();
+                            $("#car_variant_id").append('<option>Pilih Variant</option>');
                             $.each(res, function(key, value) {
                                 $("#car_variant_id").append('<option value="' + key + '">' + value +
                                     '</option>');
