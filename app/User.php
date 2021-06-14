@@ -23,10 +23,10 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface, Must
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'full_name',
         'email',
         'username',
+        'phone_number',
         'password',
         'profil_picture',
     ];

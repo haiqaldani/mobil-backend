@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card shadow">
         <div class="card-header py-3 justify-content-between">
-            <h3 class="m-0 font-weight-bold text-primary">Model Mobil</h3>
+            <h3 class="m-0 font-weight-bold text-primary">Merk</h3>
         </div>
 
         <div class="card-body">
@@ -23,8 +23,8 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="merk">Model Mobil</label>
-                    <input type="text" class="form-control" name="merk" placeholder="Cth: Avanza"
+                    <label for="merk">Merk</label>
+                    <input type="text" class="form-control" name="merk" placeholder="Cth: Datsun"
                         value="{{ old('merk') }}">
                 </div>
                 <div class="form-group">

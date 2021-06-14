@@ -106,7 +106,7 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- <div class="md:w-21 bg-white rounded-md">
+                        <div class="md:w-21 bg-white rounded-md">
                             <div class="relative mb-1">
 
                                 <input type="checkbox" id="toggle1" class="toggle hidden" />
@@ -142,7 +142,7 @@
                                         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="flex flex-col border rounded-md border-gray-700">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Deskripsi</h3>
@@ -156,8 +156,8 @@
                     <div class="flex flex-col col-span-3 space-y-5">
                         <div class="flex flex-col bg-white border rounded-md border-gray-700">
                             <div class="flex flex-col m-5 space-y-3">
-                                <a class="flex flex-wrap justify-center space-x-1 bg-green-500 text-center rounded-md py-3 hover:bg-green-700 text-base font-semibold text-white"
-                                    href="https://web.whatsapp.com/send?phone=6285359186052&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->model }}%20Terima%20kasih!%20"> <img class="w-6 h-6"
+                                <a class="flex flex-wrap justify-center space-x-1 bg-green-500 text-center rounded-md py-3 hover:bg-green-700 text-base font-semibold text-white" target="_blank"
+                                    href="https://api.whatsapp.com/send?phone=6285359186052&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->model }}%20Terima%20kasih!%20"> <img class="w-6 h-6"
                                     src="{{ url('frontend/images/whatsapp.svg') }}" alt="">
                                     </svg><span>Via Whatsapp</span>
                                 </a>

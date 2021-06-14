@@ -54,7 +54,8 @@ class RegisterController extends Controller
             'full_name.required' => 'Please enter a full name',
             'full_name.max' => 'Maximum is 255 characters',
             'phone_number.required' => 'Please enter a phone number',
-            'phone_number.max' => 'Maximum is 14 digits',
+            'phone_number.min' => 'Minimum is 13 digits',
+            'phone_number.max' => 'Maximum is 13 digits',
             'email.required' => 'Please enter a email',
             'email.email' => 'Please enter a valid email',
             'email.unique:users' => 'Email is already registered',
@@ -66,8 +67,8 @@ class RegisterController extends Controller
 
         return Validator::make($data, [
             'full_name' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'numeric', 'max:14'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'numeric', 'digits_between:9,13'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ], $message);
     }
@@ -82,9 +83,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            // 'name' => $data['name'],
             'full_name' => $data['full_name'],
-            'phone_number' => $data['phone_number'],
+            'phone_number' => (62 . $data['phone_number']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

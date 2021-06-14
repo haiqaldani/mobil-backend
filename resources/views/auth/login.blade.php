@@ -62,10 +62,8 @@
 
                 <hr class="my-6 border-gray-300 w-full">
 
-                <p class="mt-8">Need an account? <a href="{{ route('register') }}"
-                        class="text-blue-500 hover:text-blue-700 font-semibold">Create
-                        an
-                        account</a></p>
+                <p class="mt-8">Belum punya akun? <a href="{{ route('register') }}"
+                        class="text-blue-500 hover:text-blue-700 font-semibold">Daftar</a></p>
 
                 <p class="text-sm text-gray-500 mt-12">&copy; 2020 Mobil - All Rights Reserved.</p>
             </div>

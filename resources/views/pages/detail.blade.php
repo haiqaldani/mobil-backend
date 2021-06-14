@@ -53,29 +53,8 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="flex flex-col bg-white border rounded-md border-gray-700 md:w-21">
-                            <div class="flex flex-row m-5 justify-around">
-                                <div class="flex flex-col">
-                                    <h3 class="text-sm">Transmisi</h3>
-                                    <h4 class="text-lg font-semibold">{{ $item->transmission }}</h4>
-                                </div>
-                                <div class="flex flex-col">
-                                    <h3 class="text-sm">Bahan Bakar</h3>
-                                    <h4 class="text-lg font-semibold">{{ $item->fuel }}</h4>
-                                </div>
-                                <div class="flex flex-col">
-                                    <h3 class="text-sm">Kapasitas Mesin</h3>
-                                    <h4 class="text-lg font-semibold">{{ $item->cc }}cc</h4>
-                                </div>
-                                @if ($item->kilometers != null)
-                                    <div class="flex flex-col">
-                                        <h3 class="text-sm">Jarak Tempuh</h3>
-                                        <h4 class="text-lg font-semibold">{{ $item->kilometers }}km</h4>
-                                    </div>
-                                @endif
-                            </div>
-                        </div> --}}
-                        {{-- <div class="md:w-21 bg-white rounded-md">
+                        c
+                        <div class="md:w-21 bg-white rounded-md">
                             <div class="relative mb-1">
 
                                 <input type="checkbox" id="toggle1" class="toggle hidden" />
@@ -89,29 +68,8 @@
                                 </div>
                             </div>
 
-                            <div class="relative mb-1">
-                                <input type="checkbox" id="toggle2" class="toggle hidden" />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle2">
-                                    Title goes here
-                                </label>
-                                <div class="content bg-white overflow-hidden">
-                                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                                </div>
-                            </div>
-                            <div class="relative mb-1">
-                                <input type="checkbox" id="toggle3" class="toggle hidden" />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle3">
-                                    Title goes here
-                                </label>
-                                <div class="content bg-white overflow-hidden">
-                                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                                </div>
-                            </div>
-                        </div> --}}
+                           
+                        </div>
                         <div class="flex flex-col border rounded-md border-gray-700">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Deskripsi</h3>
@@ -121,7 +79,6 @@
                                     nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                                 </p>
                             </div>
-
                         </div>
                     </div>
                     <div class="flex flex-col space-y-5">

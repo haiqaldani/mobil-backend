@@ -39,7 +39,7 @@
                             @foreach ($models as $model)
                                 @if ($model->merk_id == $item->id)
                                     <div class="border rounded-md cursor-pointer" id="myCard">
-                                        <div class="" onclick="location.href='#';">
+                                        <div class="" onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}';">
                                             <img class="object-scale-down border-b"
                                                 src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
                                                 alt="">

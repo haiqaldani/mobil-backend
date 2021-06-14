@@ -215,8 +215,8 @@
                 <div class="grid lg:grid-cols-8 md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-3">
                     @foreach ($merks as $merk)
                         <a class="border rounded" href="{{ route('merk-list', $merk->slug) }}">
-                            <div class="m-1.5 justify-center">
-                                <img class="h-20" src="{{ Storage::url($merk->image) }}" alt="">
+                            <div class="m-2">
+                                <img class="h-20 m-auto" src="{{ Storage::url($merk->image) }}" alt="">
                             </div>
                             <hr />
                             <p class="text-center font-medium text-gray-600 m-3">{{ $merk->merk }}</p>

@@ -17,15 +17,15 @@
 
                 <a href="{{ url('/') }}" class="text-xl font-bold">Mobil</a>
 
-                <h1 class="text-xl md:text-2xl font-bold leading-tight mt-5">Create your account</h1>
+                <h1 class="text-xl md:text-2xl font-bold leading-tight mt-5">Daftar</h1>
 
                 <form class="mt-6 space-y-3" method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="">
-                        <label class="block text-gray-700" for="fullname">Full Name</label>
+                        <label class="block text-gray-700" for="full_name">Nama Lengkap</label>
                         <input id="fullname" type="text"
                             class="w-full px-4 py-3 mt-2 rounded-lg bg-gray-200  border focus:border-blue-500 focus:bg-white focus:outline-none  @error('full_name') is-invalid @enderror"
-                            name="full_name" value="{{ old('full_name') }}" placeholder="Enter your Full Name" autocomplete
+                            name="full_name" value="{{ old('full_name') }}" placeholder="Masukkan Nama Lengkap" autocomplete
                             autofocus>
 
                         @error('full_name')
@@ -39,7 +39,7 @@
                         <label class="block text-gray-700">Email</label>
                         <input id="email" type="text"
                             class="w-full px-4 py-3 mt-2 rounded-lg bg-gray-200  border   focus:border-blue-500 focus:bg-white focus:outline-none @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" placeholder="Enter your Email" autocomplete autofocus>
+                            name="email" value="{{ old('email') }}" placeholder="Masukkan Email" autocomplete autofocus>
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                             <p class="flex px-4 py-3 bg-blue-600 text-white rounded-l-lg font">+62</p>
                             <input id="phone_number" type="text"
                                 class="flex w-full px-4 py-3 rounded-r-lg bg-gray-200 border focus:border-blue-500 focus:bg-white focus:outline-none @error('phone_number') is-invalid @enderror"
-                                name="phone_number" value="{{ old('phone_number') }}"  placeholder="Enter your Phone Number" autocomplete
+                                name="phone_number" value="{{ old('phone_number') }}"  placeholder="Masukkan Nomor Telepon" autocomplete
                                 autofocus>
                         </div>
 
@@ -66,9 +66,9 @@
                         @enderror
                     </div>
                     <div class="">
-                        <label class="block text-gray-700">Password</label>
+                        <label class="block text-gray-700">Kata Sandi</label>
 
-                        <input type="password" name="password" id="password" placeholder="At least 8 characters"
+                        <input type="password" name="password" id="password" placeholder="Minimal 8 Karakter"
                             class="w-full px-4 py-3 mt-2 rounded-lg bg-gray-200  border focus:border-blue-500 focus:bg-white focus:outline-none @error('password') is-invalid @enderror">
 
                         @error('password')
@@ -79,13 +79,13 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full block bg-blue-600 hover:bg-blue-500 focus:bg-blue-500 text-white font-semibold rounded-lg px-4 py-3">Register</button>
+                        class="w-full block bg-blue-600 hover:bg-blue-500 focus:bg-blue-500 text-white font-semibold rounded-lg px-4 py-3">Daftar</button>
                 </form>
 
                 <hr class="my-5 border-gray-300 w-full">
 
-                <p class="mt-3">Have already an account? <a href="{{ route('login') }}"
-                        class="text-blue-500 hover:text-blue-700 font-semibold">Login</a></p>
+                <p class="mt-3">Sudah mempunyai akun? <a href="{{ route('login') }}"
+                        class="text-blue-500 hover:text-blue-700 font-semibold">Masuk</a></p>
 
                 <p class="text-sm text-gray-500 mt-12">&copy; 2020 Mobil - All Rights Reserved.</p>
             </div>
