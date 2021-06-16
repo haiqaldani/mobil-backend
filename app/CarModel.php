@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Overtrue\LaravelFavorite\Favorite;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class CarModel extends Model
 {
-    use SoftDeletes, LogsActivity;
+    use SoftDeletes, LogsActivity, Favoriteable;
 
     //log the changed attributes for allevent
     protected static $logAttributes = ['merk_id', 'model'];
@@ -31,7 +33,7 @@ class CarModel extends Model
         return "{$user} have {$eventName} model";
     }
     protected $fillable = [
-        'merk_id', 'model'
+        'merk_id', 'model', 'description'
     ];
 
     protected $hidden = [
@@ -46,8 +48,8 @@ class CarModel extends Model
         return $this->hasMany( CarGallery::class, 'car_model_id', 'id' );
     }
 
-    public function cars(){
-        return $this->hasMany( Car::class, 'car_model_id', 'id' );
+    public function favoriters(){
+        return $this->belongsTo( Favorite::class, 'id', 'favoriteable_id' );
     }
 
     public function car_variants(){
@@ -55,6 +57,10 @@ class CarModel extends Model
     }
     public function interest_buyers(){
         return $this->hasMany( InterestBuyer::class, 'car_model_id', 'id' );
+    }
+
+    public function colors(){
+        return $this->hasMany( Color::class, 'car_model_id', 'id' );
     }
 
 

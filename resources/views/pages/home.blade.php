@@ -83,7 +83,8 @@
                     <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
                         Terbaru</h2>
                     <div class="justify-self-end">
-                        <a href="{{ route('carsnew') }}" class="border-blue-600 border p-2 rounded text-sm hover:bg-blue-600 hover:text-white">
+                        <a href="{{ route('carsnew') }}"
+                            class="border-blue-600 border p-2 rounded text-sm hover:bg-blue-600 hover:text-white">
                             Tampilkan Semua Mobil >>
                         </a>
                     </div>
@@ -105,7 +106,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-semibold text-lg"> {{ $model->model }} </h3>
-                                                <p class="text-gray-500 mb-3">  
+                                                <p class="text-gray-500 mb-3">
                                                     @if ($model->car_variants->count() == 1)
                                                         Rp.
                                                         {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
@@ -137,9 +138,9 @@
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
                 <div class="border-transparent rounded-lg" style="background-image: url('{{ url('frontend/images/login.jpg') }}'); 
-                                            background-repeat: no-repeat;
-                                            background-size: 2000px;
-                                            background-position: center;  ">
+                                                background-repeat: no-repeat;
+                                                background-size: 2000px;
+                                                background-position: center;  ">
                     <div class="px-5 py-3">
                         <p class="uppercase font-medium text-sm text-white mb-10">Penawaran Mobil Baru</p>
                         <h2 class="text-white font-bold text-4xl">
@@ -228,3 +229,63 @@
         </div>
     </section>
 @endsection
+@prepend('addon-script')
+    <script>
+        var sync1 = $("#sync1");
+        sync1
+            .owlCarousel({
+                loop: true,
+                nav: true,
+                items: 1,
+                dots: false,
+                slidespeed: 1000,
+                removeClass: true,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel");
+
+        var sync2 = $("#sync2");
+        sync2
+            .owlCarousel({
+                nav: true,
+                margin: 15,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true,
+                        loop: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: true,
+                        loop: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true,
+                        loop: false
+                    },
+                    1200: {
+                        items: 4,
+                        nav: true,
+                        loop: false
+                    }
+                },
+                removeClass: true,
+                // slidespeed: 1000,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel");
+
+    </script>
+@endprepend

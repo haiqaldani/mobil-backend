@@ -41,11 +41,17 @@ Route::get('/cars/merk/{merk}', 'MerkDetailController@index')
 Route::get('/cars/merk/{merk}/{model}', 'CarDetailController@index')
     ->name('model-detail');
 
-Route::post('/cars/merk/interest', 'InterestController@store')
+Route::post('/cars/merk/interest', 'CarDetailController@store')
     ->name('interest.store');
+
+Route::post('/favoriteRequest/{id}', 'FavoriteController@favoriteRequest')->name('favoriteRequest');
+Route::delete('/deleteFavorite/{id}', 'FavoriteController@deleteFavorite')->name('deleteFavorite');
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/favoriteRequest/{id}', 'FavoriteController@favoriteRequest')->name('favoriteRequest');
+    Route::post('/deleteFavorite/{id}', 'FavoriteController@deleteFavorite')->name('deleteFavorite');
 
     Route::get('/account/profile', 'ProfileController@edit')
         ->name('profile-seller.edit');

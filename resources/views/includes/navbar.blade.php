@@ -106,7 +106,7 @@
                             <div class="dropdown inline-block relative">
                                 <button
                                     class="text-white font-semibold py-2 rounded focus:outline-none inline-flex items-center space-x-2">
-                                    <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-10"
+                                    <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-10 rounded-full"
                                         alt="">
                                     <span class="mr-1">Hi, {{ Str::before(Auth::user()->full_name, ' ') }}</span>
                                     <svg class="fill-curren= h-4 w-4" xmlns="http://www.w3.org/2000/svg"

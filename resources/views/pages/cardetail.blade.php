@@ -22,15 +22,41 @@
                     <div class="col-span-8 flex flex-col space-y-5">
                         <div class="bg-white border rounded-md border-gray-700">
                             <div class="m-5">
+                                <div class="grid grid-cols-5">
+                                    <div class="flex flex-col col-span-4">
+                                        <p class="text-xl font-semibold">{{ $item->merks->merk }} {{ $item->model }}
+                                        </p>
+                                        <p class="text-3xl font-semibold">Rp.
+                                            {{ $item->car_variants->count() ? Str::limit($item->car_variants->first()->price, 3, '') : '' }}
+                                            -
+                                            {{ $item->car_variants->count() ? Str::limit($item->car_variants->last()->price, 3, ' Juta') : '' }}
+                                        </p>
+                                        <p class="text-gray-500 text-xs">Diperbaharui pada: 21 Maret 2021</p>
+                                    </div>
+                                    <div class="text-right">
+                                        @if ($item->favoriters != null)
+                                        <form action="{{ route('deleteFavorite', $item->favoriters->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="focus:outline-none">
+                                                <span style="font-size: 1.5em; color: red; ">
+                                                    <i class="fas fa-heart"></i>
+                                                </span></button>
+                                        </form>
+                                        @else
+                                        <form action="{{ route('favoriteRequest', Auth::user()->id) }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="favoriteable_id" value="{{ $item->id }}">
+                                            <button type="submit" class="focus:outline-none">
+                                                <span style="font-size: 1.5em; color: red; ">
+                                                    <i class="far fa-heart"></i>
+                                                </span></button>
+                                        </form>
+                                        @endif
+                                       
+                                    </div>
+                                </div>
 
-                                <h2 class="text-xl font-semibold col-span-2">{{ $item->merks->merk }} {{ $item->model }}
-                                </h2>
-                                <h2 class="text-3xl font-semibold">Rp.
-                                    {{ $item->car_variants->count() ? Str::limit($item->car_variants->first()->price, 3, '') : '' }}
-                                    -
-                                    {{ $item->car_variants->count() ? Str::limit($item->car_variants->last()->price, 3, ' Juta') : '' }}
-                                </h2>
-                                <p class="text-gray-500 text-xs">Diperbaharui pada: 21 Maret 2021</p>
                                 <div id="sync3" class="owl-carousel owl-theme mt-2">
                                     @foreach ($item->car_galleries as $gallery)
                                         <div class="item">
@@ -42,14 +68,12 @@
                                 </div>
                                 <div id="sync4" class="owl-carousel owl-theme mt-5">
                                     @foreach ($item->car_galleries as $gallery)
-                                        
+                                        <div class="item rounded-md">
+                                            <img class="object-fill object-center"
+                                                src="{{ Storage::url($gallery->image) }}"
+                                                alt="{{ Str::limit($item->model) }}">
+                                        </div>
                                     @endforeach
-                                    <div class="item rounded-md">
-                                        <img class="object-fill object-center"
-                                            src="{{ Storage::url($gallery->image) }}"
-                                            alt="{{ Str::limit($item->model) }}">
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +83,7 @@
                                     <h3 class="text-sm">Transmisi</h3>
                                     <h4 class="text-lg font-semibold">
                                         @if ($item->car_variants->contains('fuel', 'Listrik'))
-                                        Otomatis
+                                            Otomatis
                                         @elseif($item->car_variants->contains('transmission','Otomatis'))
                                             Otomatis
                                         @elseif($item->car_variants->contains('transmission','Manual'))
@@ -74,9 +98,9 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <h3 class="text-sm">Bahan Bakar</h3>
-                                    <h4 class="text-lg font-semibold"> 
+                                    <h4 class="text-lg font-semibold">
                                         @if ($item->car_variants->contains('fuel', 'Listrik'))
-                                        Listrik
+                                            Listrik
                                         @elseif ($item->car_variants->contains('fuel','Bensin'))
                                             Bensin
                                         @elseif ($item->car_variants->contains('fuel','Diesel'))
@@ -95,7 +119,7 @@
                                 <div class="flex flex-col">
                                     <h3 class="text-sm">Kapasitas Mesin</h3>
                                     <h4 class="text-lg font-semibold">
-                                        {{ $item->car_variants->count() ? $item->car_variants->first()->cc : '' }}cc    
+                                        {{ $item->car_variants->count() ? $item->car_variants->first()->cc : '' }}cc
                                     </h4>
                                 </div>
                                 @if ($item->kilometers != null)
@@ -106,17 +130,14 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="md:w-21 bg-white rounded-md">
+                        {{-- <div class="md:w-21 bg-white rounded-md">
                             <div class="relative mb-1">
 
                                 <input type="checkbox" id="toggle1" class="toggle hidden" />
                                 <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle1">
                                     Eksterior
                                 </label>
-                                <div class="content bg-white overflow-hidden">
-                                    {{-- @foreach ($features->vehicle_features as $items)
-                                        <p class="">{{ $items->feature }}</p>
-                                    @endforeach --}}
+                                <div class="content bg-white overflow-hidden"></div>
                                 </div>
                             </div>
 
@@ -142,28 +163,74 @@
                                         nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
                                 </div>
                             </div>
+                        </div> --}}
+                        <div class="flex flex-col border rounded-md border-gray-700">
+                            <div class="m-5">
+                                <h3 class="font-semibold text-lg">Daftar Harga {{ $item->model }}</h3>
+                                <div id="sync5" class="owl-carousel owl-theme mt-5">
+                                    @foreach ($item->car_variants as $item)
+                                        <div class="item border rounded-md p-2">
+                                            <p class="text-base">Edisi : {{ $item->edition }}</p>
+                                            <p class="text-base font-semibold">Rp. {{ $item->price }}</p>
+                                            <div class="grid grid-cols-2 text-xs mt-1">
+                                                <div class="flex flex-row space-x-1">
+                                                    <p>CC :</p>
+                                                    <p> {{ $item->cc }}</p>
+                                                </div>
+                                                <div class="flex flex-row space-x-1">
+                                                    <p>Bahan Bakar :</p>
+                                                    <p> {{ $item->fuel }}</p>
+                                                </div>
+                                                <div class="flex flex-row space-x-1">
+                                                    <p>Varian :</p>
+                                                    <p> {{ $item->variant }}</p>
+                                                </div>
+
+                                                <div class="flex flex-row space-x-1">
+                                                    <p>Transmisi :</p>
+                                                    <p> {{ $item->transmission }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
                         <div class="flex flex-col border rounded-md border-gray-700">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Deskripsi</h3>
-                                <p class="m-5">
-
-                                </p>
+                                {!! $color->description !!}
                             </div>
 
+                        </div>
+                        <div class="flex flex-col border rounded-md border-gray-700">
+                            <div class="m-5">
+                                <h3 class="font-semibold text-lg">Warna Tersedia</h3>
+                                <div id="sync6" class="owl-carousel owl-theme text-center mt-3">
+                                    @foreach ($color->colors as $i)
+                                        <div class="border py-2 rounded-md">
+                                            <p>{{ $i->color_name }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-col col-span-3 space-y-5">
                         <div class="flex flex-col bg-white border rounded-md border-gray-700">
                             <div class="flex flex-col m-5 space-y-3">
-                                <a class="flex flex-wrap justify-center space-x-1 bg-green-500 text-center rounded-md py-3 hover:bg-green-700 text-base font-semibold text-white" target="_blank"
-                                    href="https://api.whatsapp.com/send?phone=6285359186052&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->model }}%20Terima%20kasih!%20"> <img class="w-6 h-6"
-                                    src="{{ url('frontend/images/whatsapp.svg') }}" alt="">
+                                <a class="flex flex-wrap justify-center space-x-1 bg-green-500 text-center rounded-md py-3 hover:bg-green-700 text-base font-semibold text-white"
+                                    target="_blank"
+                                    href="https://api.whatsapp.com/send?phone=6285359186052&text=Halo,%20saya%20menemukan%20iklan%20Anda%20di%20Mobil.%20Saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20{{ $item->model }}%20Terima%20kasih!%20">
+                                    <img class="w-6 h-6" src="{{ url('frontend/images/whatsapp.svg') }}" alt="">
                                     </svg><span>Via Whatsapp</span>
                                 </a>
                                 <p class="text-center">or</p>
-                                <p class="text-lg font-medium text-center" >Via Pesan</p>
-                                <p class="text-sm text-gray-500">Isi detail Anda dan dapatkan penawaran terbaik dari Mobilo</p>
+                                <p class="text-lg font-medium text-center">Via Pesan</p>
+                                <p class="text-sm text-gray-500">Isi detail Anda dan dapatkan penawaran terbaik dari Mobilo
+                                </p>
                                 <form action="{{ route('interest.store') }}" class="space-y-3" method="POST">
                                     @csrf
                                     <input type="hidden" name="car_model_id" id="car_model_id" value="{{ $item->id }}">
@@ -171,7 +238,7 @@
                                         <label for="name">Nama <span class="font-light italic"> (Harus
                                                 diisi)</span></label>
                                         <input type="text" class="p-3 border rounded focus:outline-none"
-                                            placeholder="Masukkan nama anda" name="name" id="name">
+                                            placeholder="Masukkan nama anda" name="name" id="name" @auth value="@if (Auth::user()->full_name != null) {{ Auth::user()->full_name }} @endif" @endauth>
                                     </div>
                                     <div class="flex flex-col">
                                         <label for="phone_number">Nomor Handphone <span class="font-light italic">
@@ -180,7 +247,7 @@
                                             <p class="p-3">+62</p>
                                             <input type="text" name="phone_number"
                                                 class="p-3 border rounded focus:outline-none w-full"
-                                                placeholder="Cth: 85359186052" id="phone_number">
+                                                placeholder="Cth: 85359186052" id="phone_number" @auth value="@if (Auth::user()->phone_number != null) {{ Auth::user()->phone_number }} @endif" @endauth>
 
                                         </div>
                                     </div>
@@ -188,13 +255,12 @@
                                         <label for="city">Kota <span class="font-light italic"> (Harus
                                                 diisi)</span></label>
                                         <input type="text" name="city" class="p-3 border rounded focus:outline-none"
-                                            placeholder="Medan, Sumatera Utara" id="city">
+                                            placeholder="Medan, Sumatera Utara" id="city" @auth value="@if (Auth::user()->city != null) {{ Auth::user()->city }} @endif" @endauth>
                                     </div>
                                     <div class="flex flex-col">
                                         <label for="city">Atur jadwal survey*</label>
-                                        <input type="text" name="schedule"
-                                            class="p-3 border rounded focus:outline-none" id="schedule"
-                                            placeholder="Pilih jadwal berkunjung anda">
+                                        <input type="text" name="schedule" class="p-3 border rounded focus:outline-none"
+                                            id="schedule" placeholder="Pilih jadwal berkunjung anda">
                                     </div>
 
                                     <div class="flex flex-col">
@@ -215,20 +281,20 @@
                                     <div class="flex">
                                         {{-- <button
                                             class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button> --}}
-                                    <button type="submit"
-                                            class="focus:outline-none px-4 border w-full bg-green-500 text-white p-3 rounded hover:bg-teal-400">Confirm</button>
+                                        <button type="submit"
+                                            class="focus:outline-none px-4 border w-full bg-green-500 text-white p-3 rounded hover:bg-teal-400">Kirim</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="flex flex-col bg-white border rounded-md border-gray-700">
+                        {{-- <div class="flex flex-col bg-white border rounded-md border-gray-700">
                             <div class="flex flex-col m-5 space-y-5">
                                 <div class="flex border-b border-gray-300">
                                     <h3 class="text-base font-semibold pb-2">Seller Information</h3>
                                 </div>
                                 <div class="flex flex-row">
                                     <div class="flex w-36 h-36"></div>
-                                    {{-- <div class="flex flex-col">
+                                    <div class="flex flex-col">
                                         <h4 class="text-lg font-semibold">
                                             {{ $item->users->name }}
                                         </h4>
@@ -236,10 +302,11 @@
                                         <p class="text-sm">{{ $item->users->address }}, {{ $item->users->city }},
                                             {{ $item->users->province }}
                                         </p>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="flex flex-col bg-white border rounded-md border-gray-700">
                             <div class="flex flex-col m-5 space-y-5">
                                 <div class="flex border-b border-gray-300">
@@ -254,19 +321,156 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
             </div>
     </main>
+
 @endsection
 @prepend('addon-script')
     {{-- <script>
         $("#schedule").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
    </script> --}}
+
     <script>
         jQuery('#schedule').datetimepicker();
+
+    </script>
+
+    <script>
+        var sync3 = $("#sync3");
+        var sync4 = $("#sync4");
+        var slidesPerPage = 4; //globaly define number of elements per page
+        var syncedSecondary = true;
+
+        sync3
+            .owlCarousel({
+                items: 1,
+                slideSpeed: 2000,
+                // autoWidth: true,
+                nav: true,
+                dots: false,
+                loop: true,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="ml-1.5"  width="50%" height="50%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #ffff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="ml-2" width="50%" height="50%" viewBox="0 0 11 20" version="1.1"><path style="stroke: #ffff ;fill:none;stroke-width: 1px;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel", syncPosition);
+
+        sync4
+            .on("initialized.owl.carousel", function() {
+                sync4
+                    .find(".owl-item")
+                    .eq(0)
+                    .addClass("current");
+            })
+            .owlCarousel({
+                items: slidesPerPage,
+                dots: false,
+                nav: true,
+                margin: 5,
+                smartSpeed: 200,
+                slideSpeed: 500,
+                slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+                responsiveRefreshRate: 100,
+                navText: [
+                    '<svg class="ml-1.5"  width="50%" height="50%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #ffff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="ml-2" width="50%" height="50%" viewBox="0 0 11 20" version="1.1"><path style="stroke: #ffff ;fill:none;stroke-width: 1px;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel", syncPosition2);
+
+        function syncPosition(el) {
+            //if you set loop to false, you have to restore this next line
+            //var current = el.item.index;
+
+            //if you disable loop you have to comment this block
+            var count = el.item.count - 1;
+            var current = Math.round(el.item.index - el.item.count / 2 - 0.5);
+
+            if (current < 0) {
+                current = count;
+            }
+            if (current > count) {
+                current = 0;
+            }
+
+            //end block
+
+            sync4
+                .find(".owl-item")
+                .removeClass("current")
+                .eq(current)
+                .addClass("current");
+            var onscreen = sync4.find(".owl-item.active").length - 1;
+            var start = sync4
+                .find(".owl-item.active")
+                .first()
+                .index();
+            var end = sync4
+                .find(".owl-item.active")
+                .last()
+                .index();
+
+            if (current > end) {
+                sync4.data("owl.carousel").to(current, 100, true);
+            }
+            if (current < start) {
+                sync4.data("owl.carousel").to(current - onscreen, 100, true);
+            }
+        }
+
+        function syncPosition2(el) {
+            if (syncedSecondary) {
+                var number = el.item.index;
+                sync3.data("owl.carousel").to(number, 100, true);
+            }
+        }
+
+        sync4.on("click", ".owl-item", function(e) {
+            e.preventDefault();
+            var number = $(this).index();
+            sync3.data("owl.carousel").to(number, 300, true);
+        });
+        var sync1 = $("#sync5");
+        sync1
+            .owlCarousel({
+                loop: false,
+                nav: true,
+                items: 3,
+                margin: 5,
+                dots: false,
+                slidespeed: 1000,
+                removeClass: true,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel");
+
+        var sync1 = $("#sync6");
+        sync1
+            .owlCarousel({
+                loop: false,
+                nav: true,
+                items: 5,
+                margin: 5,
+                dots: false,
+                slidespeed: 1000,
+                removeClass: true,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel");
 
     </script>
 @endprepend

@@ -41,7 +41,8 @@
                         <div id="sync2" class="owl-carousel">
                             @foreach ($models as $model)
                                 <div class="item">
-                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md cursor-pointer" onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; ">
+                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md cursor-pointer"
+                                        onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; ">
                                         <div class="ring-1 rounded ring-gray-300">
                                             <div class="card-image">
                                                 <img class="object-fill object-center rounded"
@@ -75,3 +76,46 @@
         </div>
     </section>
 @endsection
+@prepend('addon-script')
+    <script>
+        var sync2 = $("#sync2");
+        sync2
+            .owlCarousel({
+                nav: true,
+                margin: 15,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true,
+                        loop: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: true,
+                        loop: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true,
+                        loop: false
+                    },
+                    1200: {
+                        items: 4,
+                        nav: true,
+                        loop: false
+                    }
+                },
+                removeClass: true,
+                // slidespeed: 1000,
+                responsiveRefreshRate: 200,
+                navText: [
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg class="pl-2 w-5 h-8" width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #f7f7f7;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ]
+            })
+            .on("changed.owl.carousel");
+
+    </script>
+@endprepend

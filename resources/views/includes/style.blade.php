@@ -14,3 +14,6 @@
 
 <script src="{{ url('backend/libraries/ckeditor/ckeditor.js') }}"></script>
 
+<link href="{{ url('frontend/libraries/fontawesome/css/all.css') }}" rel="stylesheet">
+<script defer src="{{ url('frontend/libraries/fontawesome/js/all.js') }}"></script>
+
