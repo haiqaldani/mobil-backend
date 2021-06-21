@@ -21,7 +21,7 @@ class CarGalleryController extends Controller
     public function index()
     {
         $items = CarGallery::with(['car_models'])->get();
-        return view('pages.admin.gallery.index', [
+        return view('pages.admin.car-gallery.index', [
             'items' => $items,
         ]);
     }

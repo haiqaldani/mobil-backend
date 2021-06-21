@@ -25,7 +25,7 @@ class GalleryRequest extends FormRequest
     {
         return [
             'cars_id' => 'required|exists:cars,id',
-            'image' => 'required|image',
+            'image' => 'required',
         ];
     }
 }

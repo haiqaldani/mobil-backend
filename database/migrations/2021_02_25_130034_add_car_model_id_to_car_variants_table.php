@@ -14,7 +14,7 @@ class AddCarModelIdToCarVariantsTable extends Migration
     public function up()
     {
         Schema::table('car_variants', function (Blueprint $table) {
-            $table->integer('car_model_id');
+            $table->bigInteger('car_model_id');
         });
     }
 

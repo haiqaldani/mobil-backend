@@ -15,7 +15,7 @@ class CreateCarGalleriesTable extends Migration
     {
         Schema::create('car_galleries', function (Blueprint $table) {
             $table->id();
-            $table->integer('car_model_id');
+            $table->bigInteger('car_model_id');
             $table->text('image');
             $table->timestamps();
             $table->softDeletes();

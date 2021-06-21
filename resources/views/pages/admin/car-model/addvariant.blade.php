@@ -99,16 +99,16 @@
     <!-- /.container-fluid -->
 @endsection
 @section('scripts')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
 
-            // Format mata uang.
-            $('#price').mask('000.000.000', {
-                reverse: true
-            });
+        // Format mata uang.
+        $('#price').mask('#.##0', {
+            reverse: true
+        });
 
-        })
+    })
 
-    </script>
+</script>
 
 @endsection

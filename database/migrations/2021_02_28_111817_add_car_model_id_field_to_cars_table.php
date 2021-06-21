@@ -14,9 +14,9 @@ class AddCarModelIdFieldToCarsTable extends Migration
     public function up()
     {
         Schema::table('cars', function (Blueprint $table) {
-            $table->integer('merk_id');
-            $table->integer('car_model_id');
-            $table->integer('car_variant_id');
+            $table->bigInteger('merk_id');
+            $table->bigInteger('car_model_id');
+            $table->bigInteger('car_variant_id');
         });
     }
 

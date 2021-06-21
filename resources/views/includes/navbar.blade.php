@@ -127,7 +127,7 @@
                                     @endif
                                     <li class=""><a
                                             class="bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
-                                            href="#">Mobil Tersimpan</a></li>
+                                            href="{{ route('favorite') }}">Mobil Tersimpan</a></li>
                                     <li class=""><a
                                             class="bg-white border-b hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
                                             href="{{ url('claim-promo') }}">Voucher</a></li>
@@ -158,7 +158,7 @@
 
             <!-- mobile menu -->
             <div class="mobile-menu hidden md:hidden">
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Home</a>
+                <a href="" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Home</a>
                 <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Baru</a>
                 <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Bekas</a>
                 <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Promo</a>

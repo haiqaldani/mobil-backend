@@ -23,24 +23,66 @@
                     @method('PUT')
                     @csrf
                     {{-- <div class="form-group"> --}}
-                        <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
-                            value="{{ $item->id_seller }}">
-                        {{--
-                    </div> --}}
+                    <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
+                        value="{{ $item->id_seller }}">
+                    {{-- </div> --}}
                     <div class="form-group">
                         <label for="title">Judul Iklan</label>
                         <input type="text" class="form-control" name="title" placeholder="Judul Iklan"
                             value="{{ $item->title }}">
                     </div>
                     <div class="form-group">
-                        <label for="model">Tipe Mobil</label>
-                        <input type="text" class="form-control" name="model" placeholder="Tipe Mobil"
-                            value="{{ $item->model }}">
-                    </div>
-                    <div class="form-group">
                         <label for="car_year">Tahun Mobil</label>
                         <input type="number" class="form-control" name="car_year" placeholder="Tahun Mobil"
                             value="{{ $item->car_year }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-semibold" for="merk_id">Merk*</label>
+                        <select name="merk_id" id="merk_id" class="form-control">
+                            <option value="{{ $item->merks->id }}">Pilih jika diganti ({{ $item->merks->merk }})</option>
+                            {{-- @foreach ($merks as $id => $merk)
+                                    <option class="text-black" value="{{ $id }}">
+                                        {{ $merk }}
+                                    </option>
+                                @endforeach --}}
+                            @foreach ($merks as $id => $merk)
+                                <option class="text-black" value="{{ $id }}">
+                                    {{ $merk }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('merk_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-semibold" for="car_model_id">Model Mobil*</label>
+
+                        <select name="car_model_id" id="car_model_id" class="form-control">
+                            <option value="{{ $item->car_models->id }}">Pilih jika diganti ({{ $item->car_models->model }})</option>
+                        </select>
+
+                        @error('car_model_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-semibold" for="car_variant_id">Model Variant*</label>
+
+                        <select name="car_variant_id" id="car_variant_id" class="form-control">
+                            <option value="{{ $item->car_variants->id }}">Pilih jika diganti ({{ $item->car_variants->edition }})</option>
+                        </select>
+
+                        @error('car_model_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="cars_type_id">Kategori Mobil</label>
@@ -56,13 +98,13 @@
                     <div class="form-group">
                         <label for="transmission">Transmisi</label>
                         <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="transmission" value="Otomatis" @if ($item->transmission == 'Otomatis') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="transmission">Otomatis</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="transmission" value="Manual" @if ($item->transmission == 'Manual') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="transmission">Manual</label>
@@ -73,13 +115,13 @@
                     <div class="form-group">
                         <label for="condition">Kondisi</label>
                         <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="condition" value="Baru" @if ($item->condition == 'Baru') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="condition">Baru</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="condition" value="Bekas" @if ($item->condition == 'Bekas') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="condition">Bekas</label>
@@ -89,41 +131,32 @@
                     </div>
                     <div class="form-group">
                         <label for="fuel">Bahan Bakar</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Diesel" @if ($item->fuel == 'Diesel') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Diesel</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Bensin" @if ($item->fuel == 'Bensin') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Bensin</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Hybrid" @if ($item->fuel == 'Hybrid') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Hybrid</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Listrik" @if ($item->fuel == 'Listrik') checked @endif>
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Listrik</label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="edition">Edisi</label>
-                        <input type="text" class="form-control" name="edition" placeholder="Edisi"
-                            value="{{ $item->edition }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="cc">CC</label>
-                        <input type="number" class="form-control" name="cc" placeholder="CC Mobil" value="{{ $item->cc }}">
                     </div>
                     <div class="form-group">
                         <label for="kilometers">Kilometer</label>
@@ -134,51 +167,6 @@
                         <label for="price">Harga</label>
                         <input type="text" class="form-control" id="price" name="price" placeholder="Harga"
                             value="{{ $item->price }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="price_description">Deskripsi Harga</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
-                                <input type="radio" class="radio-button" name="price_description" value="Tidak Ada" @if ($item->price_description == 'Tidak Ada') checked @endif>
-                                <div class="radio-tile">
-                                    <label for="price_description" class="radio-tile-label">Tidak ada</label>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <input type="radio" class="radio-button" name="price_description" value="Siap pakai" @if ($item->price_description == 'Siap Pakai') checked @endif>
-                                <div class="radio-tile">
-                                    <label class="radio-tile-label" for="price_description">Siap pakai</label>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <input type="radio" class="radio-button" name="price_description" value="Nego" @if ($item->price_description == 'Nego') checked @endif>
-                                <div class="radio-tile">
-                                    <label class="radio-tile-label" for="price_description">Nego</label>
-                                </div>
-                            </div>
-                            <div class="input-container col-span-3">
-                                <input type="radio" class="radio-button" name="price_description" value="SKA Pemerintah RI"
-                                    @if ($item->price_description == 'SKA Pemerintah RI') checked @endif>
-                                <div class="radio-tile">
-                                    <label class="radio-tile-label" for="price_description">SKA Pemerintah RI saja (Form A,
-                                        Form B, dll)</label>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <input type="radio" class="radio-button" name="price_description" value="Kredit tersedia"
-                                    @if ($item->price_description == 'Kredit Tersedia') checked @endif>
-                                <div class="radio-tile">
-                                    <label class="radio-tile-label" for="price_description">Kredit tersedia</label>
-                                </div>
-                            </div>
-                            <div class="input-container">
-                                <input type="radio" class="radio-button" name="price_description" value="OTR" @if ($item->price_description == 'OTR') checked @endif>
-                                <div class="radio-tile">
-                                    <label class="radio-tile-label" for="price_description">OTR</label>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-semibold" for="vehicle_features">Fitur kendaraan</label>
@@ -204,79 +192,70 @@
                                             @foreach ($eksteriors as $eksterior)
                                                 <div class="input-container">
                                                     <input type="checkbox" class="radio-button" name="vehicle_features[]"
-                                                        value="{{ $eksterior->id }}"
-                                                        @foreach ($item->vehicle_features as $value)
-                                                            @if ($eksterior->id == $value->id)
-                                                                checked
-                                                            @endif
-                                                        @endforeach>
-                                                    <div class="radio-tile">
-                                                        <label class="radio-tile-label"
-                                                            for="{{ $eksterior->feature }}">{{ $eksterior->feature }}</label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                                        value="{{ $eksterior->id }}" @foreach ($item->vehicle_features as $value)  @if ($eksterior->id==$value->id)
+                                                    checked @endif
+                                            @endforeach>
+                                            <div class="radio-tile">
+                                                <label class="radio-tile-label"
+                                                    for="{{ $eksterior->feature }}">{{ $eksterior->feature }}</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab_default_2">
-                                        <div class="radio-tile-group gap-3">
-                                            @foreach ($interiors as $interior)
-                                                <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
-                                                        value="{{ $interior->id }}" 
-                                                        @foreach ($item->vehicle_features as $value)
-                                                            @if ($interior->id == $value->id)
-                                                                checked
-                                                            @endif
-                                                        @endforeach
-                                                        >
-                                                    <div class="radio-tile">
-                                                        <label class="radio-tile-label"
-                                                            for="{{ $interior->feature }}">{{ $interior->feature }}</label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab_default_3">
-                                        <div class="radio-tile-group gap-3">
-                                            @foreach ($perlengkapans as $perlengkapan)
-                                                <div class="input-container">
-                                                    <input type="checkbox" class="radio-button" name="vehicle_features[]"
-                                                        value="{{ $perlengkapan->id }}"
-                                                        @foreach ($item->vehicle_features as $value)
-                                                            @if ($perlengkapan->id == $value->id)
-                                                                checked
-                                                            @endif
-                                                        @endforeach>
-                                                    <div class="radio-tile">
-                                                        <label class="radio-tile-label"
-                                                            for="{{ $perlengkapan->feature }}">{{ $perlengkapan->feature }}</label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-
+                                        @endforeach
                                     </div>
                                 </div>
+                                <div class="tab-pane" id="tab_default_2">
+                                    <div class="radio-tile-group gap-3">
+                                        @foreach ($interiors as $interior)
+                                            <div class="input-container">
+                                                <input type="checkbox" class="radio-button" name="vehicle_features[]"
+                                                    value="{{ $interior->id }}" @foreach ($item->vehicle_features as $value)  @if ($interior->id==$value->id)
+                                                checked @endif
+                                        @endforeach
+                                        >
+                                        <div class="radio-tile">
+                                            <label class="radio-tile-label"
+                                                for="{{ $interior->feature }}">{{ $interior->feature }}</label>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
+                            <div class="tab-pane" id="tab_default_3">
+                                <div class="radio-tile-group gap-3">
+                                    @foreach ($perlengkapans as $perlengkapan)
+                                        <div class="input-container">
+                                            <input type="checkbox" class="radio-button" name="vehicle_features[]"
+                                                value="{{ $perlengkapan->id }}" @foreach ($item->vehicle_features as $value) 
+                                                @if ($perlengkapan->id==$value->id)
+                                            checked @endif
+                                    @endforeach>
+                                    <div class="radio-tile">
+                                        <label class="radio-tile-label"
+                                            for="{{ $perlengkapan->feature }}">{{ $perlengkapan->feature }}</label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="color">Warna</label>
-                        <input type="text" class="form-control" name="color" placeholder="Warna Mobil"
-                            value="{{ $item->color }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Deskripsi</label>
-                        <textarea id="description" name="description" rows="10">{{ $item->description }}</textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Simpan
-                    </button>
-                </form>
             </div>
         </div>
+    </div>
+    <div class="form-group">
+        <label for="color">Warna</label>
+        <input type="text" class="form-control" name="color" placeholder="Warna Mobil" value="{{ $item->color }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Deskripsi</label>
+        <textarea id="description" name="description" rows="10">{{ $item->description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">
+        Simpan
+    </button>
+    </form>
+    </div>
+    </div>
     </div>
     <!-- /.container-fluid -->
 @endsection
@@ -311,33 +290,74 @@
         }
 
     </script>
+
+
+@endsection
+@section('scripts')
     <script type="text/javascript">
-        var rupiah = document.getElementById('price');
-        rupiah.addEventListener('keyup', function(e) {
-            // tambahkan 'Rp.' pada saat form di ketik
-            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        $('#merk_id').change(function() {
+            var merksID = $(this).val();
+            if (merksID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('admin/get-model-list') }}?merk_id=" + merksID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_model_id").empty();
+                            $("#car_model_id").append('<option>Pilih Model</option>');
+                            $.each(res, function(key, value) {
+                                $("#car_model_id").append('<option value="' + key + '">' +
+                                    value +
+                                    '</option>');
+                            });
+
+                        } else {
+                            $("#car_model_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_model_id").empty();
+                $("#car_variant_id").empty();
+            }
         });
+        $('#car_model_id').on('change', function() {
+            var car_modelsID = $(this).val();
+            if (car_modelsID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('admin/get-variant-list') }}?car_model_id=" + car_modelsID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_variant_id").empty();
+                            $("#car_variant_id").append('<option>Pilih Variant</option>');
+                            $.each(res, function(key, value) {
+                                $("#car_variant_id").append('<option value="' + key + '">' +
+                                    value +
+                                    '</option>');
+                            });
 
-        /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
+                        } else {
+                            $("#car_variant_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_variant_id").empty();
             }
 
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-        }
+        });
 
     </script>
+     <script>
+        $(document).ready(function() {
 
+            // Format mata uang.
+            $('#price , #km').mask('#.##0', {
+                reverse: true
+            });
 
+        })
+
+    </script>
 @endsection

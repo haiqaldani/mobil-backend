@@ -55,44 +55,17 @@ class CreateMobilController extends Controller
     return response()->json($car_variants);
     }
 
-    public function store(CreateMobilRequest $request)
+    public function carUpdate(CreateMobilRequest $request, $id)
     {
 
-        $data = $request->validated();
-        $data = [
-            'id' => $request->id,
-            'id_seller' => Auth::id(),
-            'title' => $request->title,
-            'car_year' => $request->car_year,
-            'car_types_id' => $request->car_types_id,
-            'merk_id' => $request->merk_id,
-            'car_model_id' => $request->car_model_id,
-            'car_variant_id' => $request->car_variant_id,
-            'kilometers' => $request->kilometers,
-            'price' => $request->price,
-            'condition' => $request->condition,
-            'description' => $request->description,
-            'color' => $request->color,
+        $data = $request->all;
 
-        ];
-
-        // dd($data);
-
-        if (isset($request->id)) {
-            return null;
-        } else {
-            $id = [
-                'id' => $request->id
-            ];
-        }
-
-
-        $save = Car::updateOrcreate($id, $data);
+        $item = Car::findOrFail($id);
+        $item->update($data);
 
         // $save->vehicle_features()->attach($request->vehicle_features);
 
         
-
         if ($request->hasFile('image')) {
             $files = $request->file('image');
             foreach ($files as $file) {
@@ -104,7 +77,7 @@ class CreateMobilController extends Controller
                 // $file->move(public_path().'/storage/assets/gallery', $name);
                 $store_image[] = [
                     'image' => $name,
-                    'cars_id' => $save['id'],
+                    'cars_id' => $id,
                     'updated_at' =>  $time,
                     'created_at' =>  $time,
                 ];
@@ -113,37 +86,36 @@ class CreateMobilController extends Controller
         }
 
 
-        // $images = $request->image;
-        // if (is_array($images) || is_object($images)) {
-        //     foreach ($images as $file) {
-        //         $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.jpg';
-        //         Image::make($file['src'])->save('assets/gallery/' . $fileName);
-        //         $image = 'assets/gallery/' . $fileName;
-        //         Gallery::create([
-        //             'image'      => $image,
-        //             'cars_id'    => $save['id']
-        //         ]);
-        //     }
-        // }
-        // if ($save) {
-        //     return response()->json([
-        //         'success' => true,
-        //         'data' => $save
-        //     ], 200);
-        // } else {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => 'data not saved'
-        //     ], 400);
-        // }
-
-
         $activity = Activity::all()->last();
 
         $activity->description; //returns 'created'
         $activity->subject; //returns the instance of NewsItem that was created
         $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
-        return redirect()->route('profil');
+        return redirect()->route('mycar');
+    }
+    public function carEdit($id)
+    {
+        $car_types = CarType::all();
+        $merks = Merk::pluck('merk', 'id');
+        $item = Car::with(['merks', 'galleries', 'car_models', 'car_variants'])->findOrFail($id);
+        return view('pages.mycar-edit',[
+            'item' => $item,
+            'car_types' => $car_types,
+            'merks' => $merks
+        ]);
+    }
+
+    public function deleteImage($id)
+    {
+        $item = Gallery::findorFail($id);
+        $item->delete();
+        
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+        return redirect()->back();
     }
 }

@@ -14,7 +14,7 @@ class CarsUsedController extends Controller
      */
     public function index()
     {
-        $items = Car::where('Condition', 'Bekas')->get();
+        $items = Car::with('galleries')->get();
         return view('pages.carsused',[
             'items' => $items
         ]);

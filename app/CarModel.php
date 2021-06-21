@@ -44,6 +44,8 @@ class CarModel extends Model
         return $this->belongsTo( Merk::class, 'merk_id', 'id' );
     }
 
+   
+
     public function car_galleries(){
         return $this->hasMany( CarGallery::class, 'car_model_id', 'id' );
     }

@@ -6,6 +6,8 @@ use App\Car;
 use App\Gallery;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GalleryRequest;
+use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
@@ -18,7 +20,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $items = Gallery::with(['cars'])->get();
+        $items = Gallery::with('cars')->get();
         return view('pages.admin.gallery.index',[
             'items' => $items,
         ]);
@@ -46,12 +48,23 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
-        $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/gallery', 'public'
-        );
-
-        Gallery::create($data);
+        $files = $request->file('image');
+        foreach ($files as $file) {
+            $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.jpg';
+            $time = Carbon::now()->toDateTimeString();
+            $path = 'storage/assets/gallery/' . $fileName;
+            Image::make($file)->save($path);
+            $name = 'assets/gallery/' . $fileName;
+            // $file->move(public_path().'/storage/assets/gallery', $name);
+            $store_image[] = [
+                'image' => $name,
+                'cars_id' => $request->cars_id,
+                'updated_at' =>  $time,
+                'created_at' =>  $time,
+            ];
+        }
+        Gallery::insert($store_image);
+        
         $activity = Activity::all()->last();
 
         $activity->description; //returns 'created'

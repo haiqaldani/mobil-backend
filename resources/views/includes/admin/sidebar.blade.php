@@ -53,12 +53,17 @@
             <i class="fas fa-fw fa-certificate"></i>
             <span>Promo</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('favorite.index') }}">
+            <i class="fas fa-fw fa-star"></i>
+            <span>Favorite</span></a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMerk" aria-expanded="true"
             aria-controls="collapseMerl">
             <i class="fas fa-fw fa-square"></i>
-            <span>Merk</span>
+            <span>Mobil Baru</span>
         </a>
         <div id="collapseMerk" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -66,6 +71,8 @@
                 <a class="collapse-item" href="{{ route('merk.index') }}">Merk</a>
                 <a class="collapse-item" href="{{ route('car-model.index') }}">Model Mobil</a>
                 <a class="collapse-item" href="{{ route('car-variant.index') }}">Varian Mobil</a>
+                <h6 class="collapse-header">Foto</h6>
+                <a class="collapse-item" href="{{ route('car-gallery.index') }}">Foto Mobil</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
@@ -91,11 +98,11 @@
         </div>
     </li>
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="{{ route('car.index') }}">
             <i class="fas fa-fw fa-car"></i>
             <span>Mobil</span></a>
-    </li>
+    </li> --}}
 
     <hr class="sidebar-divider">
     @if (Auth::user()->isAdmin())

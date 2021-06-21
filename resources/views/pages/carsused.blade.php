@@ -22,7 +22,8 @@
                         <div class="md:w-21 bg-white rounded-md">
                             <div class="relative mb-1 border-b rounded">
                                 <input type="checkbox" id="toggle1" class="toggle hidden" checked />
-                                <label class="title rounded block font-bold bg-white text-sm p-4 cursor-pointer" for="toggle1">
+                                <label class="title rounded block font-bold bg-white text-sm p-4 cursor-pointer"
+                                    for="toggle1">
                                     Harga
                                 </label>
                                 <div class="content bg-white overflow-hidden">
@@ -36,7 +37,7 @@
                             </div>
                             <div class="relative mb-1">
                                 <input type="checkbox" id="toggle2" class="toggle hidden" checked />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle2">
+                                <label class="title block font-bold bg-white p-4 cursor-pointer text-sm" for="toggle2">
                                     Title goes here
                                 </label>
                                 <div class="content bg-white overflow-hidden">
@@ -46,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="border shadow-sm rounded-md bg-white ">
+                        {{-- <div class="border shadow-sm rounded-md bg-white ">
                             <div class="my-5 mx-3 space-y-5">
                                 <h4 class="font-semibold text-sm">Harga</h4>
                                 <div class="mx-1 space-y-5">
@@ -57,7 +58,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-span-4">
@@ -68,11 +69,30 @@
                             <p class="font-semibold"> &gt; </p>
                             <a class="px-1 font-semibold  text-blue-600 hover:text-black"
                                 href="{{ url('/cars/used') }}">Mobil</a>
-                            <p class="font-semibold"> &gt; </p>
+                            {{-- <p class="font-semibold"> &gt; </p> --}}
                         </div>
                     </div>
                     <div class="md:justify-start justify-center space-x-4">
+                        <div class="grid grid-cols-3 gap-5">
+                            @foreach ($items as $item)
+                                <div class="border"  onclick="location.href='{{ route('detail', $item->slug) }}'; " >
+                                    <div class="relative">
+                                        @if ($item->galleries)
+                                            <img src="{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}"
+                                                alt="" class="p-2" style="max-width: 290px; max-height: 210px">
+                                        @endif
+                                        <div class="absolute bottom-0 right-0 bg-gray-700 opacity-80">
+                                            <p class="text-white m-3 opacity-100">{{ $item->condition }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="m-2">
+                                        <p>{{ $item->title }}</p>
+                                        <p class="font-semibold">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
 
+                        </div>
 
                     </div>
                 </div>

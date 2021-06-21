@@ -6,7 +6,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 justify-content-between">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-primary">Gallery</h3>
+                    <h3 class="m-0 font-weight-bold text-primary">Model Gallery</h3>
                       {{-- <a href="{{ route('gallery.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                           <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Gallery
                       </a> --}}
@@ -30,7 +30,7 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $no++ }}</td>
-                              <td>{{ $item->cars->title }}</td>
+                              <td>{{ $item->car_models->model }}</td>
                               <td>
                                   <img src="{{ Storage::url($item->image) }}" alt="" style="width: 200px" class="img-thumbnail">
                               </td>
@@ -38,7 +38,7 @@
                                   {{-- <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>
                                   </a> --}}
-                                  <form action="{{ route('gallery.destroy', $item->id) }}" method="post" class="d-inline">
+                                  <form action="{{ route('car-gallery.destroy', $item->id) }}" method="post" class="d-inline">
                                       @csrf
                                       @method('delete')
                                       <button class="btn btn-danger">

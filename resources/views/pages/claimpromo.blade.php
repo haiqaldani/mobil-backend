@@ -34,11 +34,11 @@
                     {{-- @if ($items->users_id == Auth::user()->id) --}}
 
                     @foreach ($items->promos as $item)
-                        <div class="grid grid-cols-3 border">
-                            <div class="flex border-r items-stretch bg-green-400">
+                        <div class="grid grid-cols-3 border @if(Carbon\Carbon::parse($item->expired) < $now) bg-gray-400 @endif">
+                            <div class="flex border-r items-stretch @if(Carbon\Carbon::parse($item->expired) < $now) bg-gray-400 @else bg-green-400 @endif ">
                                 <p class="m-3 self-center text-center text-white font-semibold text-xl">{{ $item->promo_type }}</p>
                             </div>
-                            <div class="col-span-2">    
+                            <div class="col-span-2"> 
                                 <div class="m-3">
                                     <p class="font-medium" >Voucher Cashback Imlek</p>
                                     @if( Carbon\Carbon::parse($item->expired) >= $now )
@@ -46,10 +46,7 @@
                                     @else
                                         <p>Expired {{ Carbon\Carbon::parse($item->expired)->format('d-m-Y') }}</p>
                                     @endif
-
-
                                 </div>
-
                             </div>
                         </div>
                     @endforeach

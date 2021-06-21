@@ -33,8 +33,8 @@
     <section class="section-cars mb-10">
         <div class="container">
             <div class="md:mx-20 mx-10">
-                <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
-                    Terbaru</h2>
+                <p class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
+                    Terbaru</p>
                 {{-- <div class="flex justify-center "> --}}
                 <div class="">
                     <div class="my-3">
@@ -45,22 +45,29 @@
                                         onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; ">
                                         <div class="ring-1 rounded ring-gray-300">
                                             <div class="card-image">
-                                                <img class="object-fill object-center rounded"
-                                                    src="{{ url('/frontend/images/login.jpg') }}" alt="">
+                                                @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white">
+                                                    <img class="object-fill object-center rounded max-h-36 my-auto p-2" src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}" alt="">
+                                                </div>
+                                                   
+                                                @else
+                                                <div class="bg-gray-300 w-80 h-36">
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-semibold text-lg">{{ $model->model }}</h3>
                                                 <p class="text-gray-500 mb-3">
                                                     @if ($model->car_variants->count() == 1)
                                                         Rp.
-                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
                                                     @elseif ( $model->car_variants->count() == 0 )
                                                         Harga Belum Ada
                                                     @else
                                                         Rp.
-                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
                                                         -
-                                                        {{ $model->car_variants->count() ? $model->car_variants->last()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
                                                     @endif
                                                 </p>
                                             </div>

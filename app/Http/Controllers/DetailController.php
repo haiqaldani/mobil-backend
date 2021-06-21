@@ -9,16 +9,16 @@ use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
-    public function index(Request $request, $slug, $id){
+    public function index(Request $request, $slug){
 
         $wa = $request->fullUrl();
         $item = Car::with(['galleries', 'users', 'vehicle_features'])->where('slug', $slug)->firstOrFail();
-        $features = Car::with(['vehicle_features'])->find($id);
+        // $features = Car::with(['vehicle_features'])->where('slug', $slug)->get();
         // $features = CarsVehicleFeatures::with(['vehicle_features'])->findOrFail($item);
         return view('pages.detail',[
             'item' => $item,
             'wa' => $wa,
-            'features' => $features
+            // 'features' => $features
         ]);
     }
 }

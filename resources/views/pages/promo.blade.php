@@ -10,12 +10,11 @@
                 <div class="grid grid-cols-4 gap-5">
                     @foreach ($items as $item)
                         <div class="border rounded cursor-pointer" onclick="location.href='{{ route('promo-detail', $item->slug) }}' ; ">
-                            <img class="object-fill object-center rounded" src="{{ url('/frontend/images/login.jpg') }}" alt="">
+                            <img class="object-cover object-center w-full h-36 rounded" src="{{ Storage::url($item->image) }}" alt="">
                             <div class="m-2">
                                 <p class="font-semibold text-lg" >{{ $item->title }}</p>
                                 <p class="text-xs text-gray-500">Periode : {{ strftime("%d %b %Y",strtotime($item->created_at)) }} - {{ strftime("%d %b %Y",strtotime($item->expired)) }}</p>
                             </div>
-                           
                         </div>
                     @endforeach
                 </div>

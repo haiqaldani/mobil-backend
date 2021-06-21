@@ -22,17 +22,61 @@
                 <form action="{{ route('car.store') }}" method="post">
                     @csrf
                     {{-- <div class="form-group"> --}}
-                        <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
-                            value="{{ Auth::user()->id }}">
-                        {{--
-                    </div> --}}
+                    <input type="hidden" class="form-control" name="id_seller" placeholder="Id Seller"
+                        value="{{ Auth::user()->id }}">
+                    {{-- </div> --}}
                     <div class="form-group">
                         <label for="title">Judul Iklan</label>
-                        <input type="text" class="form-control" name="title" placeholder="Judul Iklan" value="{{ old('title') }}">
+                        <input type="text" class="form-control" name="title" placeholder="Judul Iklan"
+                            value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
-                        <label for="model">Tipe Mobil</label>
-                        <input type="text" class="form-control" name="model" placeholder="Tipe Mobil" value="{{ old('model') }}">
+                        <label class="font-semibold" for="merk_id">Merk*</label>
+                        <select name="merk_id" id="merk_id" class="form-control">
+                            <option value="">Pilih Merk</option>
+                            {{-- @foreach ($merks as $id => $merk)
+                                    <option class="text-black" value="{{ $id }}">
+                                        {{ $merk }}
+                                    </option>
+                                @endforeach --}}
+                            @foreach ($merks as $id => $merk)
+                                <option class="text-black" value="{{ $id }}">
+                                    {{ $merk }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('merk_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-semibold" for="car_model_id">Model Mobil*</label>
+
+                        <select name="car_model_id" id="car_model_id" class="form-control">
+                            <option value="">Pilih Model</option>
+                        </select>
+
+                        @error('car_model_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-semibold" for="car_variant_id">Model Variant*</label>
+
+                        <select name="car_variant_id" id="car_variant_id" class="form-control">
+                            <option value="">Pilih Variant</option>
+                        </select>
+
+                        @error('car_model_id')
+                            <span class="text-red-600 text-sm font-light" role="alert">
+                                <p>*{{ $message }}</p>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="car_year">Tahun Mobil</label>
@@ -52,14 +96,14 @@
                     </div>
                     <div class="form-group">
                         <label for="transmission">Transmisi</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                        <div class="radio-tile-group ">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="transmission" value="Otomatis">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="transmission">Otomatis</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="transmission" value="Manual">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="transmission">Manual</label>
@@ -69,14 +113,14 @@
                     </div>
                     <div class="form-group">
                         <label for="condition">Kondisi</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="condition" value="Baru">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="condition">Baru</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="condition" value="Bekas">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="condition">Bekas</label>
@@ -86,26 +130,26 @@
                     </div>
                     <div class="form-group">
                         <label for="fuel">Bahan Bakar</label>
-                        <div class="radio-tile-group gap-3">
-                            <div class="input-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Diesel">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Diesel</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Bensin">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Bensin</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Hybrid">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Hybrid</label>
                                 </div>
                             </div>
-                            <div class="input-container">
+                            <div class="input-container mr-2">
                                 <input type="radio" class="radio-button" name="fuel" value="Listrik">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="fuel">Listrik</label>
@@ -114,25 +158,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="edition">Edisi</label>
-                        <input type="text" class="form-control" name="edition" placeholder="Edisi"
-                            value="{{ old('edition') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="cc">CC</label>
-                        <input type="number" class="form-control" name="cc" placeholder="CC Mobil" value="{{ old('cc') }}">
-                    </div>
-                    <div class="form-group">
                         <label for="kilometers">Kilometer</label>
-                        <input type="number" class="form-control" name="kilometers" placeholder="Kilometer"
+                        <input type="number" class="form-control" name="kilometers" id="km" placeholder="Kilometer"
                             value="{{ old('kilometers') }}">
                     </div>
                     <div class="form-group">
                         <label for="price">Harga</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="Harga"
+                        <input type="text" class="form-control" id="price" name="price"  placeholder="Harga"
                             value="{{ old('price') }}">
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="price_description">Deskripsi Harga</label>
                         <div class="radio-tile-group gap-3">
                             <div class="input-container">
@@ -175,7 +210,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="font-semibold" for="vehicle_features">Fitur kendaraan</label>
                         <div class="tabbable-panel">
@@ -291,33 +326,73 @@
         }
 
     </script>
+
+@endsection
+@section('scripts')
     <script type="text/javascript">
-        var rupiah = document.getElementById('price');
-        rupiah.addEventListener('keyup', function(e) {
-            // tambahkan 'Rp.' pada saat form di ketik
-            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        $('#merk_id').change(function() {
+            var merksID = $(this).val();
+            if (merksID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('admin/get-model-list') }}?merk_id=" + merksID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_model_id").empty();
+                            $("#car_model_id").append('<option>Pilih Model</option>');
+                            $.each(res, function(key, value) {
+                                $("#car_model_id").append('<option value="' + key + '">' +
+                                    value +
+                                    '</option>');
+                            });
+
+                        } else {
+                            $("#car_model_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_model_id").empty();
+                $("#car_variant_id").empty();
+            }
         });
+        $('#car_model_id').on('change', function() {
+            var car_modelsID = $(this).val();
+            if (car_modelsID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('admin/get-variant-list') }}?car_model_id=" + car_modelsID,
+                    success: function(res) {
+                        if (res) {
+                            $("#car_variant_id").empty();
+                            $("#car_variant_id").append('<option>Pilih Variant</option>');
+                            $.each(res, function(key, value) {
+                                $("#car_variant_id").append('<option value="' + key + '">' +
+                                    value +
+                                    '</option>');
+                            });
 
-        /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
+                        } else {
+                            $("#car_variant_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#car_variant_id").empty();
             }
 
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-        }
+        });
 
     </script>
+     <script>
+        $(document).ready(function() {
 
+            // Format mata uang.
+            $('#price , #km').mask('#.##0', {
+                reverse: true
+            });
 
+        })
+
+    </script>
 @endsection

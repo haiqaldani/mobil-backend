@@ -76,10 +76,10 @@ class CarVariantController extends Controller
      */
     public function edit($id)
     {
-        $item = CarVariant::findOrFail($id);
+        $vrnt = CarVariant::with('car_models')->findOrFail($id);
         $car_models = CarModel::all();
         return view('pages.admin.car-variant.edit', [
-            'item' => $item,
+            'vrnt' => $vrnt,
             'car_models' => $car_models
         ]);
     }

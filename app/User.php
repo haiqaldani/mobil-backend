@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lab404\AuthChecker\Models\HasLoginsAndDevices;
 use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
+use Overtrue\LaravelFavorite\Favorite;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Spatie\Activitylog\Models\Activity;
 
@@ -54,6 +55,11 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface, Must
     public function cars()
     {
         return $this->hasMany(Car::class, 'id_seller', 'id');
+    }
+    
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'user_id', 'id');
     }
 
     public function roles()

@@ -16,7 +16,7 @@
                             data-toggle="modal" data-target="#bannerModal"><i class="fa fa-file-excel"></i> Upload Excel
                         </button>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-body">
@@ -25,10 +25,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Merk</th>
                                 <th>Model Mobil</th>
                                 <th>Variant</th>
                                 <th>Edisi</th>
+                                <th>Warna</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,18 +37,27 @@
                             @forelse($items as $item)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $item->merks->merk }}</td>
                                     {{-- @if ($item->id == $images->car_model_id) --}}
                                     <td>
                                         <img src="{{ $item->car_galleries->count() ? Storage::url($item->car_galleries->first()->image) : '' }}"
                                             alt="" style="width: 200px" class="img-thumbnail">
                                     </td>
                                     {{-- @endif --}}
-                                    <td>{{ $item->model }}</td>
+                                    <td>{{ $item->merks->merk }} {{ $item->model }}</td>
                                     <td>
                                         <ul>
-                                            @foreach ($item->car_variants as $item)
-                                                <li>{{ $item->edition }}</li>
+                                            @foreach ($item->car_variants as $variants)
+                                                <li>{{ $variants->edition }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($clr as $clrs)
+                                                @if ($clrs->car_model_id == $item->id)
+                                                    <li>{{ $clrs->color_name }}</li>
+                                                @endif
+
                                             @endforeach
                                         </ul>
                                     </td>
@@ -56,10 +65,10 @@
                                         <a href="{{ route('car-model.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <a clas href="{{ route('model-image.edit', $item->id) }}" class="btn btn-info">
+                                        <a clas href="{{ route('model-galleries', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-file-image"></i>
                                         </a>
-                                        <a clas href="{{ route('model-variant.edit', $item->id) }}" class="btn btn-info">
+                                        <a clas href="{{ route('model-variant', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                         <form action="{{ route('car-model.destroy', $item->id) }}" method="post"

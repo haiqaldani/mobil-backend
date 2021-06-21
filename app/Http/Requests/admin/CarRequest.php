@@ -30,15 +30,11 @@ class CarRequest extends FormRequest
             'car_types_id' => 'required|integer|exists:car_types,id',
             'transmission' => 'required',
             'fuel' => 'required|max:255',
-            'edition' => 'max:255',
-            'cc' => 'integer',
             'kilometers' => 'integer',
             'price' => 'required',
-            'price_description' => 'required|max:500',
             'color' => 'max:255',
             'vehicle_features_id' => 'max:255',
             'description' => 'required',
-            'model' => 'required|max:255'
         ];
     }
 
@@ -46,7 +42,6 @@ class CarRequest extends FormRequest
     {
         return[
             'title.required'    => 'Judul iklan harus diisi',
-            'model.required'    => 'Model mobil harus diisi',
             'car_year.required'    => 'Tahun mobil harus diisi',
             'car_year.year'    => 'Tahun mobil harus dalam bentuk tahun ',
             'car_types_id.required'    => 'Tipe mobil harus dipilih ',

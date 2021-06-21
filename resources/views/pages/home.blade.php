@@ -52,7 +52,7 @@
     </section>
 
     {{-- cars type dan filter harga --}}
-    <section class="section-type">
+    {{-- <section class="section-type">
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
                 <h2 class="font-semibold md:text-left text-center text-xl md:text-2xl mb-5 text-gray-600">Lihat Bedasarkan
@@ -74,14 +74,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="section-cars mb-10">
         <div class="container">
             <div class="md:mx-20 mx-10">
                 <div class="grid grid-cols-2 justify-between">
-                    <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Model Mobil
-                        Terbaru</h2>
+                    <p class="md:text-left text-center text-xl md:text-2xl font-semibold text-gray-600">Model Mobil
+                        Terbaru</p>
                     <div class="justify-self-end">
                         <a href="{{ route('carsnew') }}"
                             class="border-blue-600 border p-2 rounded text-sm hover:bg-blue-600 hover:text-white">
@@ -98,25 +98,34 @@
                                 <div class="item cursor-default">
                                     {{-- <a href=""> --}}
                                     <div onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; "
-                                        class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md ">
+                                        class="card hover:bg-gray-500 hover:bg-opacity-25 m-1 shadow-md ">
                                         <div class="ring-1 rounded ring-gray-300">
                                             <div class="card-image">
-                                                <img class="object-fill object-center rounded"
-                                                    src="{{ url('/frontend/images/login.jpg') }}" alt="">
+                                                @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white">
+                                                    <img class="object-center object-cover rounded w-auto p-2 h-36"
+                                                        src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
+                                                        alt="">
+                                                    </div>
+                                                @else
+                                                    <div class="bg-gray-300 w-80 h-36">
+                                                    </div>
+                                                @endif
+
                                             </div>
                                             <div class="card-body">
                                                 <h3 class="font-semibold text-lg"> {{ $model->model }} </h3>
                                                 <p class="text-gray-500 mb-3">
                                                     @if ($model->car_variants->count() == 1)
                                                         Rp.
-                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
                                                     @elseif ( $model->car_variants->count() == 0 )
                                                         Harga Belum Ada
                                                     @else
                                                         Rp.
-                                                        {{ $model->car_variants->count() ? $model->car_variants->first()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
                                                         -
-                                                        {{ $model->car_variants->count() ? $model->car_variants->last()->price : '' }}
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
                                                     @endif
                                                 </p>
                                             </div>
@@ -138,9 +147,9 @@
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
                 <div class="border-transparent rounded-lg" style="background-image: url('{{ url('frontend/images/login.jpg') }}'); 
-                                                background-repeat: no-repeat;
-                                                background-size: 2000px;
-                                                background-position: center;  ">
+                                                    background-repeat: no-repeat;
+                                                    background-size: 2000px;
+                                                    background-position: center;  ">
                     <div class="px-5 py-3">
                         <p class="uppercase font-medium text-sm text-white mb-10">Penawaran Mobil Baru</p>
                         <h2 class="text-white font-bold text-4xl">

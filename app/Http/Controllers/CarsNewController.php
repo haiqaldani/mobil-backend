@@ -23,4 +23,5 @@ class CarsNewController extends Controller
             'models' => $models
         ]);
     }
+
 }

@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Car;
+use App\CarModel;
+use App\CarType;
+use App\Merk;
 use App\User;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Overtrue\LaravelFavorite\Favorite;
 use Spatie\Activitylog\Models\Activity;
 
 class ProfileController extends Controller
@@ -66,4 +72,54 @@ class ProfileController extends Controller
         $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
         return redirect()->back();
     }
+
+    public function password()
+    {  
+        return view('pages.changepassword');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request)
+    {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            }
+             
+            if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            }
+            if(!(strcmp($request->get('new-password'), $request->get('new-password-confirm'))) == 0){
+                        //New password and confirm password are not same
+                        return redirect()->back()->with("error","New Password should be same as your confirmed password. Please retype new password.");
+            }
+            //Change Password
+            $user = Auth::user();
+            $user->password = bcrypt($request->get('new-password'));
+            $user->save();
+             
+            return redirect()->back()->with("success","Password changed successfully !");
+    }
+
+    public function favorite()
+    {
+        $items = CarModel::with('favorites', 'car_galleries','car_variants')->get();
+        return view('pages.favorite', [
+            'items' => $items
+        ]);
+    }
+    public function myCar()
+    {
+        $items = Car::with('merks', 'galleries','car_variants', 'car_models')->where('id_seller', Auth::user()->id)->get();
+        return view('pages.mycar', [
+            'items' => $items
+        ]);
+    }
+
+    
 }

@@ -23,7 +23,7 @@
                     <div class="col-span-3 flex flex-col">
                         <div class="border rounded-md mb-5">
                             <div class="m-5 space-y-3">
-                                <h2 class="font-semibold text-lg">Mobil {{ $item->merk }} di Indonesia</h2>
+                                <p class="font-semibold text-lg">Mobil {{ $item->merk }} di Indonesia</p>
                                 <div data-expandable>
                                     <div data-expand-text>{!! $item->description !!}
                                     </div>
@@ -39,18 +39,38 @@
                             @foreach ($models as $model)
                                 @if ($model->merk_id == $item->id)
                                     <div class="border rounded-md cursor-pointer" id="myCard">
-                                        <div class="" onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}';">
-                                            <img class="object-scale-down border-b"
-                                                src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
-                                                alt="">
+                                        <div class=""
+                                            onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}';">
+
+
+                                            @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white border-b">
+                                                    <img class="object-center object-cover rounded w-auto p-2 h-36 "
+                                                        src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
+                                                        alt="">
+                                                </div>
+                                            @else
+                                                <div class="bg-gray-300 h-36">
+                                                </div>
+                                            @endif
                                             <div class="grid justify-center m-5 space-y-1">
-                                                <h3 class="text-center font-normal text-lg">
+                                                <p class="text-center font-normal text-lg">
                                                     {{ $model->model }}
-                                                </h3>
-                                                <p class="text-center font-bold text-lg">Rp.
-                                                    {{ $model->car_variants->count() ? Str::limit($model->car_variants->first()->price, 3, '') : '' }}
-                                                    -
-                                                    {{ $model->car_variants->count() ? Str::limit($model->car_variants->last()->price, 3, ' Juta') : '' }}
+                                                </p>
+                                                <p class="text-center font-semibold text-base">
+                                                    @if ($model->car_variants->count() == 1)
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                    @elseif ( $model->car_variants->count() == 0 )
+                                                        Harga Belum Ada
+                                                    @else
+                                                        Rp.
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                        -
+                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
+                                                    @endif
+
+
                                                 </p>
                                                 <div class="grid grid-cols-3 justify-between gap-2">
                                                     <div class="flex flex-col border-r">

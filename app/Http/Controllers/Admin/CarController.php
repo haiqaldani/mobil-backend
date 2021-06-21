@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Car;
+use App\CarModel;
 use App\CarType;
+use App\CarVariant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarRequest;
+use App\Merk;
 use App\User;
 use App\VehicleFeature;
 use Illuminate\Http\Request;
@@ -37,6 +40,7 @@ class CarController extends Controller
     public function create()
     {
         $car_types = CarType::all();
+        $merks = Merk::pluck('merk', 'id');
         $users = User::all();
         $eksteriors = VehicleFeature::where('category', 'Eksterior')->get();
         $interiors = VehicleFeature::where('category', 'Interior')->get();
@@ -47,7 +51,22 @@ class CarController extends Controller
             'interiors' => $interiors,
             'eksteriors' => $eksteriors,
             'perlengkapans' => $perlengkapans,
+            'merks' => $merks,
         ]);
+    }
+
+    public function getModel(Request $request)
+    {
+        $car_models = CarModel::where('merk_id', $request->get('merk_id'))->pluck('model', 'id');
+
+    return response()->json($car_models);
+    }
+
+    public function getVariant(Request $request)
+    {
+        $car_variants = CarVariant::where('car_model_id', $request->get('car_model_id'))->pluck('edition', 'id');
+
+    return response()->json($car_variants);
     }
 
     /**
@@ -95,8 +114,9 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        $item = Car::findOrFail($id);
+        $item = Car::with(['merks', 'car_models', 'car_variants'])->findOrFail($id);
         $car_types = CarType::all();
+        $merks = Merk::pluck('merk', 'id');
         $eksteriors = VehicleFeature::where('category', 'Eksterior')->get();
         $interiors = VehicleFeature::where('category', 'Interior')->get();
         $perlengkapans = VehicleFeature::where('category', 'Perlengkapan')->get();
@@ -106,6 +126,7 @@ class CarController extends Controller
             'interiors' => $interiors,
             'eksteriors' => $eksteriors,
             'perlengkapans' => $perlengkapans,
+            'merks' => $merks
         ]);
     }
 
@@ -156,5 +177,13 @@ class CarController extends Controller
 
         return redirect()->route('car.index');
 
+    }
+
+    public function carImage($id)
+    {
+        $item = Car::findOrFail($id);
+        return view('pages.admin.car.addimage',[
+            'item' => $item,
+        ]);
     }
 }

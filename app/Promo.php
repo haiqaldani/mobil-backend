@@ -32,7 +32,7 @@ class Promo extends Model
     }
 
     protected $fillable = [
-        'title','promo_type','amount','code','description'
+        'title','promo_type','amount','code','description', 'quantity'
     ];
 
     protected $hidden = [

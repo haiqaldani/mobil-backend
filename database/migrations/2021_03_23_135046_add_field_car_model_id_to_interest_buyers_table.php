@@ -14,7 +14,7 @@ class AddFieldCarModelIdToInterestBuyersTable extends Migration
     public function up()
     {
         Schema::table('interest_buyers', function (Blueprint $table) {
-            $table->integer('car_model_id');
+            $table->bigInteger('car_model_id');
         });
     }
 

@@ -225,7 +225,7 @@
                                 <div class="flex flex-wrap">
                                     <input
                                         class="px-2 py-2 w-5/12 border-t border-l border-b border-black rounded-sm outline-none focus:border-blue-400"
-                                        type="number" name="kilometers" placeholder="Cth: 20000"
+                                        type="number" name="kilometers" placeholder="Cth: 20000" id="km"
                                         value="{{ old('kilometers') }}">
                                     <div class="bg-blue-500 px-2 text-white">
                                         <p class="text-white my-2">KM</p>
@@ -522,17 +522,6 @@
         }
 
     </script>
-    <script>
-        $(document).ready(function() {
-
-            // Format mata uang.
-            $('#price').mask('000.000.000', {
-                reverse: true
-            });
-
-        })
-
-    </script>
     {{-- <script type="text/javascript">
         $(function() {
             $('#merk_id').on('change', function() {
@@ -600,6 +589,17 @@
             }
 
         });
+
+    </script>
+     <script>
+        $(document).ready(function() {
+
+            // Format mata uang.
+            $('#price , #km').mask('#.##0', {
+                reverse: true
+            });
+
+        })
 
     </script>
 @endsection

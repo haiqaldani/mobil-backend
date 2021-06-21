@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\CarGallery;
 use App\CarModel;
 use App\CarVariant;
+use App\Color;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarModelRequest;
 use App\Merk;
@@ -21,10 +22,12 @@ class CarModelController extends Controller
     public function index()
     {
         $items = CarModel::with(['merks', 'car_galleries', 'car_variants'])->get();
+        $clr = Color::with(['car_models'])->get();
         // $images = CarGallery::with(['car_models'])->get();
         // $variant = CarVariant::with(['car_models'])->get();
         return view('pages.admin.car-model.index', [
             'items' => $items,
+            'clr' => $clr,
             // 'images' => $images,
             // 'variant' => $variant,
         ]);
@@ -133,5 +136,21 @@ class CarModelController extends Controller
         $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
 
         return redirect()->route('car-model.index');
+    }
+
+    public function modelImage($id)
+    {
+        $item = CarModel::findOrFail($id);
+        return view('pages.admin.car-model.addimage',[
+            'item' => $item,
+        ]);
+    }
+
+    public function modelVariant($id)
+    {
+        $item = CarModel::findOrFail($id);
+        return view('pages.admin.car-model.addvariant',[
+            'item' => $item,
+        ]);
     }
 }

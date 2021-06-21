@@ -27,9 +27,9 @@
                                         <p class="text-xl font-semibold">{{ $item->merks->merk }} {{ $item->model }}
                                         </p>
                                         <p class="text-3xl font-semibold">Rp.
-                                            {{ $item->car_variants->count() ? Str::limit($item->car_variants->first()->price, 3, '') : '' }}
+                                            {{ $item->car_variants->count() ?  number_format($item->car_variants->first()->price, 0, ',', '.') : '' }}
                                             -
-                                            {{ $item->car_variants->count() ? Str::limit($item->car_variants->last()->price, 3, ' Juta') : '' }}
+                                            {{ $item->car_variants->count() ? number_format($item->car_variants->last()->price, 0, ',', '.') : '' }}
                                         </p>
                                         <p class="text-gray-500 text-xs">Diperbaharui pada: 21 Maret 2021</p>
                                     </div>
@@ -57,10 +57,21 @@
                                     </div>
                                 </div>
 
+                                {{-- @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white">
+                                                    <img class="object-center object-cover rounded w-auto p-2 h-36"
+                                                        src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
+                                                        alt="">
+                                                    </div>
+                                                @else
+                                                    <div class="bg-gray-300 w-80 h-36">
+                                                    </div>
+                                                @endif --}}
+
                                 <div id="sync3" class="owl-carousel owl-theme mt-2">
                                     @foreach ($item->car_galleries as $gallery)
                                         <div class="item">
-                                            <img class="rounded-md object-fill object-center"
+                                            <img class="rounded-md object-center object-cover w-auto h-96"
                                                 src="{{ Storage::url($gallery->image) }}"
                                                 alt="{{ Str::limit($item->model) }}">
                                         </div>
@@ -69,7 +80,7 @@
                                 <div id="sync4" class="owl-carousel owl-theme mt-5">
                                     @foreach ($item->car_galleries as $gallery)
                                         <div class="item rounded-md">
-                                            <img class="object-fill object-center"
+                                            <img class="rounded-md object-center object-cover w-auto h-28"
                                                 src="{{ Storage::url($gallery->image) }}"
                                                 alt="{{ Str::limit($item->model) }}">
                                         </div>
@@ -171,7 +182,7 @@
                                     @foreach ($item->car_variants as $item)
                                         <div class="item border rounded-md p-2">
                                             <p class="text-base">Edisi : {{ $item->edition }}</p>
-                                            <p class="text-base font-semibold">Rp. {{ $item->price }}</p>
+                                            <p class="text-base font-semibold">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
                                             <div class="grid grid-cols-2 text-xs mt-1">
                                                 <div class="flex flex-row space-x-1">
                                                     <p>CC :</p>
@@ -233,6 +244,9 @@
                                 </p>
                                 <form action="{{ route('interest.store') }}" class="space-y-3" method="POST">
                                     @csrf
+                                    @auth
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    @endauth
                                     <input type="hidden" name="car_model_id" id="car_model_id" value="{{ $item->id }}">
                                     <div class="flex flex-col">
                                         <label for="name">Nama <span class="font-light italic"> (Harus

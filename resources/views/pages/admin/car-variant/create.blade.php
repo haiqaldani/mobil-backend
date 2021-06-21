@@ -112,7 +112,7 @@
         $(document).ready(function() {
 
             // Format mata uang.
-            $('#price').mask('000.000.000', {
+            $('#price').mask('#.##0', {
                 reverse: true
             });
 
