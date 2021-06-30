@@ -21,33 +21,36 @@
     {{-- Search car --}}
     <section class="section-search">
         <div class="container mb-10">
-            <div class="border-transparent md:mx-20 mx-10 py-5 bg-blue-600 rounded-md">
-                <h1 class="text-center font-bold font-sans text-white text-xl md:text-3xl">Temukan Mobil Baru dan Mobil
+            <div class="mx-10 md:mx-20">
+                <p class="text-center font-semibold font-sans text-gray-700 text-xl md:text-3xl">Temukan Mobil Baru dan
+                    Mobil
                     Bekas Impian
-                    Anda</h1>
-                <div class="mt-5 mb:mt-0 lg:mx-15 mx-10">
-                    <form action="" class="flex md:flex-row gap-3 flex-col">
-                        <div class="flex-auto">
-                            <input class="w-full shadow-inner outline-none p-4 rounded-sm" type="text" name="address_street"
-                                placeholder="Search e.g. Toyota Avanza 2020 ">
+                    Anda</p>
+                <div class="mt-5 mb:mt-0">
+                    <form action="" class="md:grid-cols-7 gap-3 grid grid-cols-1">
+                        <div class="md:col-span-5">
+                            <input class="w-full  outline-none p-4 focus:ring-4 ring-offset-blue-600 rounded-md" type="text"
+                                name="address_street" placeholder="Search e.g. Toyota Avanza 2020 ">
                         </div>
                         <div class="">
-                            <select class="w-full shadow-inner p-4 outline-none  rounded-sm" type="text"
-                                name="address_number" placeholder="Semua">
-                                <option value="Semua">Semua</option>
-                                <option value="Semua">Baru</option>
-                                <option value="Semua">Bekas</option>
+                            <select class="w-full  p-4 outline-none focus:ring-4 ring-offset-blue-600 rounded-md"
+                                type="text" name="address_number" placeholder="Semua">
+                                <option value="Semua" class="p-2">Semua</option>
+                                <option value="Semua" class="p-2">Baru</option>
+                                <option value="Semua" class="p-2">Bekas</option>
                             </select>
                         </div>
                         <div class="">
                             <button
-                                class=" w-full justify-center py-4 md:px-4 text-white font-semibold rounded-sm bg-green-400"
+                                class="w-full justify-center py-3.5 px-4 focus:outline-none hover:shadow-md text-white font-medium rounded-md bg-blue-default"
                                 type="submit">Cari Sekarang </button>
                         </div>
 
                     </form>
                 </div>
             </div>
+
+
         </div>
     </section>
 
@@ -55,7 +58,7 @@
     {{-- <section class="section-type">
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
-                <h2 class="font-semibold md:text-left text-center text-xl md:text-2xl mb-5 text-gray-600">Lihat Bedasarkan
+                <h2 class="font-medium md:text-left text-center text-xl md:text-2xl mb-5 text-gray-700">Lihat Bedasarkan
                     Tipe</h2>
                 <div class="grid lg:grid-cols-5 xl:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2">
                     @foreach ($car_types as $car_type)
@@ -68,7 +71,7 @@
 
                                 </div>
                             </a>
-                            <a href="" class="flex justify-center font-semibold pb-2">{{ $car_type->title }} </a>
+                            <a href="" class="flex justify-center font-medium pb-2">{{ $car_type->title }} </a>
                         </div>
                     @endforeach
                 </div>
@@ -80,12 +83,14 @@
         <div class="container">
             <div class="md:mx-20 mx-10">
                 <div class="grid grid-cols-2 justify-between">
-                    <p class="md:text-left text-center text-xl md:text-2xl font-semibold text-gray-600">Model Mobil
-                        Terbaru</p>
+                    <div class="">
+                        <p class="text-left text-lg md:text-2xl font-semibold text-gray-700">Model Mobil
+                            Terbaru</p>
+                    </div>
                     <div class="justify-self-end">
                         <a href="{{ route('carsnew') }}"
-                            class="border-blue-600 border p-2 rounded text-sm hover:bg-blue-600 hover:text-white">
-                            Tampilkan Semua Mobil >>
+                            class="bg-blue-default p-2 rounded-md text-white text-sm hover:shadow-md">
+                            Lihat Semua Mobil >>
                         </a>
                     </div>
                 </div>
@@ -98,38 +103,37 @@
                                 <div class="item cursor-default">
                                     {{-- <a href=""> --}}
                                     <div onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; "
-                                        class="card hover:bg-gray-500 hover:bg-opacity-25 m-1 shadow-md ">
-                                        <div class="ring-1 rounded ring-gray-300">
-                                            <div class="card-image">
-                                                @if ($model->car_galleries->count() != null)
-                                                <div class="h-36 bg-white">
-                                                    <img class="object-center object-cover rounded w-auto p-2 h-36"
+                                        class="card hover:shadow-md m-1 rounded-md ">
+                                        <div class="card-image">
+                                            @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white rounded-t-md">
+                                                    <img class="object-center object-cover  w-auto p-2 h-36"
                                                         src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
                                                         alt="">
-                                                    </div>
-                                                @else
-                                                    <div class="bg-gray-300 w-80 h-36">
-                                                    </div>
-                                                @endif
+                                                </div>
+                                            @else
+                                                <div class="bg-gray-300 w-full rounded-t-md h-36">
+                                                </div>
+                                            @endif
 
-                                            </div>
-                                            <div class="card-body">
-                                                <h3 class="font-semibold text-lg"> {{ $model->model }} </h3>
-                                                <p class="text-gray-500 mb-3">
-                                                    @if ($model->car_variants->count() == 1)
-                                                        Rp.
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
-                                                    @elseif ( $model->car_variants->count() == 0 )
-                                                        Harga Belum Ada
-                                                    @else
-                                                        Rp.
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
-                                                        -
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
-                                                    @endif
-                                                </p>
-                                            </div>
                                         </div>
+                                        <div class="card-body">
+                                            <h3 class="font-medium text-gray-700 text-lg"> {{ $model->model }} </h3>
+                                            <p class="text-gray-500 mb-3 font-light">
+                                                @if ($model->car_variants->count() == 1)
+                                                    Rp.
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                @elseif ( $model->car_variants->count() == 0 )
+                                                    Harga Belum Ada
+                                                @else
+                                                    Rp.
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                    -
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
+                                                @endif
+                                            </p>
+                                        </div>
+
                                     </div>
                                     {{-- </a> --}}
                                 </div>
@@ -147,22 +151,22 @@
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
                 <div class="border-transparent rounded-lg" style="background-image: url('{{ url('frontend/images/login.jpg') }}'); 
-                                                    background-repeat: no-repeat;
-                                                    background-size: 2000px;
-                                                    background-position: center;  ">
+                                                                    background-repeat: no-repeat;
+                                                                    background-size: 2000px;
+                                                                    background-position: center;  ">
                     <div class="px-5 py-3">
                         <p class="uppercase font-medium text-sm text-white mb-10">Penawaran Mobil Baru</p>
-                        <h2 class="text-white font-bold text-4xl">
+                        <p class="text-white font-semibold text-4xl">
                             Penawaran Terbaik Untuk Anda
-                        </h2>
+                        </p>
                         <p class="font-light text-white text-2xl mb-10">Mudah, Cepat, dan Praktis</p>
-                        <div class="grid grid-cols-3 mb-5">
+                        <div class="grid grid-cols-1 gap-3 md:gap-1 md:grid-cols-3 mb-5">
                             <div class="grid grid-cols-5 gap-3">
                                 <div class="border-transparent bg-gray-400 bg-opacity-50 shadow-md rounded-md">
                                     <p class=" items-center text-center my-6 text-5xl text-white">1</p>
                                 </div>
                                 <div class="col-span-4">
-                                    <p class="text-white text-lg font-semibold">Tentukan mobil impian anda</p>
+                                    <p class="text-white text-lg font-medium">Tentukan mobil impian anda</p>
                                     <p class="text-gray-300 text-base font-normal">Kami memiliki semua informasi yang
                                         dibutuhkan termasuk gambar, ulasan, & harga</p>
                                 </div>
@@ -172,7 +176,7 @@
                                     <p class=" items-center text-center my-6 text-5xl text-white">2</p>
                                 </div>
                                 <div class="col-span-4">
-                                    <p class="text-white text-lg font-semibold">Tentukan mobil impian anda</p>
+                                    <p class="text-white text-lg font-medium">Tentukan mobil impian anda</p>
                                     <p class="text-gray-300 text-base font-normal">Kami memiliki semua informasi yang
                                         dibutuhkan termasuk gambar, ulasan, & harga</p>
                                 </div>
@@ -182,7 +186,7 @@
                                     <p class=" items-center text-center my-6 text-5xl text-white">3</p>
                                 </div>
                                 <div class="col-span-4">
-                                    <p class="text-white text-lg font-semibold">Tentukan mobil impian anda</p>
+                                    <p class="text-white text-lg font-medium">Tentukan mobil impian anda</p>
                                     <p class="text-gray-300 text-base font-normal">Kami memiliki semua informasi yang
                                         dibutuhkan termasuk gambar, ulasan, & harga</p>
                                 </div>
@@ -191,17 +195,17 @@
 
                         </div>
                         <hr />
-                        <div class="grid grid-cols-3 mt-5 mb-3">
-                            <div class="items-center py-3">
-                                <a href="" class="px-3 py-3 bg-blue-600 rounded text-white font-medium">Dapatkan Penawaran
+                        <div class="grid grid-cols-1 md:grid-cols-3 mt-5">
+                            <div class="col-span-1 items-center py-3">
+                                <a href="" class="px-12 md:px-3 py-3 bg-blue-default rounded-md text-white font-medium">Dapatkan Penawaran
                                     Mobil Baru</a>
                             </div>
-                            <div class="col-span-2">
-                                <div class="grid grid-cols-3">
-                                    <div class="py-3">
-                                        <p class="text-white">Temukan penawaran brand berikut</p>
+                            <div class="col-span-1 md:col-span-2">
+                                <div class="grid grid-cols-1 md:grid-cols-5">
+                                    <div class="py-3 col-span-1 md:col-span-2">
+                                        <p class="text-white md:text-left text-center">Temukan penawaran brand berikut</p>
                                     </div>
-                                    <div class="col-span-2 grid grid-cols-8 ">
+                                    <div class="col-span-1 md:col-span-3 grid grid-cols-8 ">
                                         <div class="bg-white py-3.5">
                                             <img src="{{ url('/frontend/images/logo_mobil.png') }}"
                                                 class="h-5 object-contain" alt="">
@@ -220,16 +224,16 @@
     <section class="section-merk">
         <div class="container mb-10">
             <div class="md:mx-20 mx-10">
-                <h2 class="md:text-left text-center text-xl md:text-2xl font-semibold mb-5 text-gray-600">Cari Mobil Baru
-                    Bedesarkan Merk</h2>
+                <p class="md:text-left text-center text-xl font-semibold mb-5 text-gray-700">Cari Mobil Baru
+                    Bedesarkan Merk</p>
                 <div class="grid lg:grid-cols-8 md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-3">
                     @foreach ($merks as $merk)
-                        <a class="border rounded" href="{{ route('merk-list', $merk->slug) }}">
+                        <a class="rounded-md bg-white hover:shadow-md" href="{{ route('merk-list', $merk->slug) }}">
                             <div class="m-2">
                                 <img class="h-20 m-auto" src="{{ Storage::url($merk->image) }}" alt="">
                             </div>
                             <hr />
-                            <p class="text-center font-medium text-gray-600 m-3">{{ $merk->merk }}</p>
+                            <p class="text-center font-medium text-gray-700 m-3">{{ $merk->merk }}</p>
                         </a>
                     @endforeach
 
@@ -295,6 +299,5 @@
                 ]
             })
             .on("changed.owl.carousel");
-
     </script>
 @endprepend

@@ -65,5 +65,4 @@ class CarModel extends Model
         return $this->hasMany( Color::class, 'car_model_id', 'id' );
     }
 
-
 }

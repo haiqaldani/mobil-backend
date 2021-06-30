@@ -5,8 +5,8 @@
 @section('content')
     <section class="section-create">
         <div class="container">
-            <div class="flex flex-col mt-10">
-                <h1 class="font-bold text-center text-3xl">Jual Mobil Anda</h1>
+            <div class="flex flex-col my-10">
+                <h1 class="font-bold text-center text-3xl mb-5">Jual Mobil Anda</h1>
                 <div class="flex flex-col border-2 border-gray-200 mx-56 rounded-md">
                     <form class="mx-10 my-5 space-y-3" action="{{ route('post-mobil') }}" enctype="multipart/form-data"
                         method="POST">

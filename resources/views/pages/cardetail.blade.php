@@ -5,29 +5,29 @@
 @section('content')
     <header class="nav-header">
         <div class="container border-gray-200 border-b border-opacity-50">
-            <div class="flex flex-row md:mx-20 mx-10 my-2 space-x-2">
-                <a class="px-1 font-semibold text-blue-600 hover:text-black" href="{{ url('/') }}">Beranda</a>
-                <p class="font-semibold"> &gt; </p>
-                <a class="px-1 font-semibold  text-blue-600 hover:text-black" href="{{ url('/cars') }}">Mobil</a>
-                <p class="font-semibold"> &gt; </p>
-                <p class="font-semibold"> {{ $item->title }}</p>
+            <div class="flex flex-row md:mx-20 mx-10 my-2 space-x-2 font-medium">
+                <a class="px-1 text-blue-600 hover:text-black" href="{{ url('/') }}">Beranda</a>
+                <p class=""> &gt; </p>
+                <a class="px-1 text-blue-600 hover:text-black" href="{{ url('/cars') }}">Mobil</a>
+                <p class=""> &gt; </p>
+                <p class=""> {{ $item->model }}</p>
             </div>
         </div>
     </header>
 
     <main class="cars-detail">
-        <div class="container my-5">
+        <div class="container my-5 bg-gray-soft">
             <div class="md:mx-20 mx-10">
                 <div class="flex flex-col md:grid md:grid-cols-11 justify-center gap-5">
                     <div class="col-span-8 flex flex-col space-y-5">
-                        <div class="bg-white border rounded-md border-gray-700">
+                        <div class="bg-white shadow-md rounded-md ">
                             <div class="m-5">
                                 <div class="grid grid-cols-5">
                                     <div class="flex flex-col col-span-4">
-                                        <p class="text-xl font-semibold">{{ $item->merks->merk }} {{ $item->model }}
+                                        <p class="text-xl text-gray-800">{{ $item->merks->merk }} {{ $item->model }}
                                         </p>
-                                        <p class="text-3xl font-semibold">Rp.
-                                            {{ $item->car_variants->count() ?  number_format($item->car_variants->first()->price, 0, ',', '.') : '' }}
+                                        <p class="text-3xl font-medium">Rp.
+                                            {{ $item->car_variants->count() ? number_format($item->car_variants->first()->price, 0, ',', '.') : '' }}
                                             -
                                             {{ $item->car_variants->count() ? number_format($item->car_variants->last()->price, 0, ',', '.') : '' }}
                                         </p>
@@ -56,18 +56,6 @@
                                        
                                     </div>
                                 </div>
-
-                                {{-- @if ($model->car_galleries->count() != null)
-                                                <div class="h-36 bg-white">
-                                                    <img class="object-center object-cover rounded w-auto p-2 h-36"
-                                                        src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
-                                                        alt="">
-                                                    </div>
-                                                @else
-                                                    <div class="bg-gray-300 w-80 h-36">
-                                                    </div>
-                                                @endif --}}
-
                                 <div id="sync3" class="owl-carousel owl-theme mt-2">
                                     @foreach ($item->car_galleries as $gallery)
                                         <div class="item">
@@ -88,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col bg-white border rounded-md border-gray-700 md:w-21">
+                        <div class="flex flex-col bg-white shadow-md rounded-md md:w-21">
                             <div class="flex flex-row m-5 justify-around">
                                 <div class="flex flex-col">
                                     <h3 class="text-sm">Transmisi</h3>
@@ -141,65 +129,31 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- <div class="md:w-21 bg-white rounded-md">
-                            <div class="relative mb-1">
-
-                                <input type="checkbox" id="toggle1" class="toggle hidden" />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle1">
-                                    Eksterior
-                                </label>
-                                <div class="content bg-white overflow-hidden"></div>
-                                </div>
-                            </div>
-
-                            <div class="relative mb-1">
-                                <input type="checkbox" id="toggle2" class="toggle hidden" />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle2">
-                                    Title goes here
-                                </label>
-                                <div class="content bg-white overflow-hidden">
-                                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                                </div>
-                            </div>
-                            <div class="relative mb-1">
-                                <input type="checkbox" id="toggle3" class="toggle hidden" />
-                                <label class="title block font-bold bg-white p-4 cursor-pointer" for="toggle3">
-                                    Title goes here
-                                </label>
-                                <div class="content bg-white overflow-hidden">
-                                    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="flex flex-col border rounded-md border-gray-700">
+                        <div class="flex flex-col shadow-md rounded-md bg-white">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Daftar Harga {{ $item->model }}</h3>
-                                <div id="sync5" class="owl-carousel owl-theme mt-5">
-                                    @foreach ($item->car_variants as $item)
-                                        <div class="item border rounded-md p-2">
-                                            <p class="text-base">Edisi : {{ $item->edition }}</p>
-                                            <p class="text-base font-semibold">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
-                                            <div class="grid grid-cols-2 text-xs mt-1">
+                                <div id="sync5" class="owl-carousel owl-theme">
+                                    @foreach ($item->car_variants as $items)
+                                        <div class="item rounded-md p-2 border border-gray-200 hover:shadow-md my-2 bg-white">
+                                            <p class="text-base">Edisi : {{ $items->edition }}</p>
+                                            <p class="text-base font-semibold">Rp. {{ number_format($items->price, 0, ',', '.') }}</p>
+                                            <div class="grid grid-cols-3 text-xs mt-1">
                                                 <div class="flex flex-row space-x-1">
                                                     <p>CC :</p>
-                                                    <p> {{ $item->cc }}</p>
+                                                    <p> {{ $items->cc }}</p>
                                                 </div>
-                                                <div class="flex flex-row space-x-1">
+                                                <div class="col-span-2 flex flex-row space-x-1">
                                                     <p>Bahan Bakar :</p>
-                                                    <p> {{ $item->fuel }}</p>
+                                                    <p> {{ $items->fuel }}</p>
                                                 </div>
                                                 <div class="flex flex-row space-x-1">
                                                     <p>Varian :</p>
-                                                    <p> {{ $item->variant }}</p>
+                                                    <p> {{ $items->variant }}</p>
                                                 </div>
 
-                                                <div class="flex flex-row space-x-1">
+                                                <div class="col-span-2 flex flex-row space-x-1">
                                                     <p>Transmisi :</p>
-                                                    <p> {{ $item->transmission }}</p>
+                                                    <p> {{ $items->transmission }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,14 +162,14 @@
                             </div>
 
                         </div>
-                        <div class="flex flex-col border rounded-md border-gray-700">
+                        <div class="flex flex-col shadow-md rounded-md bg-white">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Deskripsi</h3>
                                 {!! $color->description !!}
                             </div>
 
                         </div>
-                        <div class="flex flex-col border rounded-md border-gray-700">
+                        <div class="flex flex-col shadow-md rounded-md bg-white">
                             <div class="m-5">
                                 <h3 class="font-semibold text-lg">Warna Tersedia</h3>
                                 <div id="sync6" class="owl-carousel owl-theme text-center mt-3">
@@ -230,7 +184,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col col-span-3 space-y-5">
-                        <div class="flex flex-col bg-white border rounded-md border-gray-700">
+                        <div class="flex flex-col bg-white rounded-md shadow-md">
                             <div class="flex flex-col m-5 space-y-3">
                                 <a class="flex flex-wrap justify-center space-x-1 bg-green-500 text-center rounded-md py-3 hover:bg-green-700 text-base font-semibold text-white"
                                     target="_blank"
@@ -247,20 +201,20 @@
                                     @auth
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     @endauth
-                                    <input type="hidden" name="car_model_id" id="car_model_id" value="{{ $item->id }}">
+                                        <input type="hidden" name="car_model_id" id="car_model_id" value="{{ $item->id }}">
                                     <div class="flex flex-col">
                                         <label for="name">Nama <span class="font-light italic"> (Harus
                                                 diisi)</span></label>
-                                        <input type="text" class="p-3 border rounded focus:outline-none"
+                                        <input type="text" class="p-3 border rounded-md focus:outline-none"
                                             placeholder="Masukkan nama anda" name="name" id="name" @auth value="@if (Auth::user()->full_name != null) {{ Auth::user()->full_name }} @endif" @endauth>
                                     </div>
                                     <div class="flex flex-col">
                                         <label for="phone_number">Nomor Handphone <span class="font-light italic">
                                                 (Harus diisi)</span></label>
                                         <div class="flex flex-row">
-                                            <p class="p-3">+62</p>
+                                            <p class="p-3 bg-blue-600 rounded-l-md text-white">+62</p>
                                             <input type="text" name="phone_number"
-                                                class="p-3 border rounded focus:outline-none w-full"
+                                                class="p-3 border rounded-r-md focus:outline-none w-full"
                                                 placeholder="Cth: 85359186052" id="phone_number" @auth value="@if (Auth::user()->phone_number != null) {{ Auth::user()->phone_number }} @endif" @endauth>
 
                                         </div>
@@ -268,12 +222,12 @@
                                     <div class="flex flex-col">
                                         <label for="city">Kota <span class="font-light italic"> (Harus
                                                 diisi)</span></label>
-                                        <input type="text" name="city" class="p-3 border rounded focus:outline-none"
-                                            placeholder="Medan, Sumatera Utara" id="city" @auth value="@if (Auth::user()->city != null) {{ Auth::user()->city }} @endif" @endauth>
+                                        <input type="text" name="city" class="p-3 border rounded-md focus:outline-none"
+                                            placeholder="Medan" id="city" @auth value="@if (Auth::user()->city != null) {{ Auth::user()->city }} @endif" @endauth>
                                     </div>
                                     <div class="flex flex-col">
                                         <label for="city">Atur jadwal survey*</label>
-                                        <input type="text" name="schedule" class="p-3 border rounded focus:outline-none"
+                                        <input type="text" name="schedule" class="p-3 border rounded-md focus:outline-none"
                                             id="schedule" placeholder="Pilih jadwal berkunjung anda">
                                     </div>
 
@@ -296,7 +250,7 @@
                                         {{-- <button
                                             class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button> --}}
                                         <button type="submit"
-                                            class="focus:outline-none px-4 border w-full bg-green-500 text-white p-3 rounded hover:bg-teal-400">Kirim</button>
+                                            class="focus:outline-none px-4 border w-full bg-green-500 text-white p-3 rounded-md hover:bg-teal-400">Kirim</button>
                                     </div>
                                 </form>
                             </div>

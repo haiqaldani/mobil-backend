@@ -6,7 +6,7 @@
 
 @section('content')
     <header class="nav-header">
-        <div class="container border-gray-200 border-b border-opacity-50">
+        <div class="container border-gray-200 border-b border-opacity-50 bg-gray-soft">
             <div class="flex flex-row md:mx-20 mx-10 my-2 space-x-2">
                 <a class="px-1 font-semibold text-blue-600 hover:text-black" href="{{ url('/') }}">Beranda</a>
                 <p class="font-semibold"> &gt; </p>
@@ -21,14 +21,14 @@
             <div class="mx-20 flex flex-col ">
                 <div class="grid grid-cols-4 space-x-5">
                     <div class="col-span-3 flex flex-col">
-                        <div class="border rounded-md mb-5">
+                        <div class="shadow-lg rounded-md mb-5 bg-white">
                             <div class="m-5 space-y-3">
-                                <p class="font-semibold text-lg">Mobil {{ $item->merk }} di Indonesia</p>
+                                <p class="font-semibold text-lg text-gray-800">Mobil {{ $item->merk }} di Indonesia</p>
                                 <div data-expandable>
-                                    <div data-expand-text>{!! $item->description !!}
+                                    <div data-expand-text class="text-gray-700">{!! $item->description !!}
                                     </div>
                                     <div class="grid justify-end">
-                                        <button class="focus:outline-none text-blue-600 mr-5 mt-5"
+                                        <button class="focus:outline-none text-blue-default mr-5 mt-5"
                                             data-expand-button></button>
                                     </div>
                                 </div>
@@ -36,28 +36,26 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-3 gap-3">
-                            @foreach ($models as $model)
-                                @if ($model->merk_id == $item->id)
-                                    <div class="border rounded-md cursor-pointer" id="myCard">
-                                        <div class=""
-                                            onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}';">
-
-
+                            @foreach ($item->car_models as $model)
+                                {{-- @if ($model->merk_id == $item->id) --}}
+                                @if ($model->car_variants->count() >= 1)
+                                    <div class="rounded-md cursor-pointer shadow-lg bg-white" id="myCard">
+                                        <div class="" onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}';">
                                             @if ($model->car_galleries->count() != null)
-                                                <div class="h-36 bg-white border-b">
-                                                    <img class="object-center object-cover rounded w-auto p-2 h-36 "
+                                                <div class="bg-white rounded-t-md">
+                                                    <img class="object-cover object-center rounded-t-md w-full h-36 "
                                                         src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
                                                         alt="">
                                                 </div>
                                             @else
-                                                <div class="bg-gray-300 h-36">
+                                                <div class="bg-gray-300 rounded-t-md h-36">
                                                 </div>
                                             @endif
-                                            <div class="grid justify-center m-5 space-y-1">
-                                                <p class="text-center font-normal text-lg">
+                                            <div class="grid justify-center rounded-t-md m-5 space-y-1">
+                                                <p class="text-center font-normal text-lg text-gray-800">
                                                     {{ $model->model }}
                                                 </p>
-                                                <p class="text-center font-semibold text-base">
+                                                <p class="text-center font-medium text-base text-gray-700">
                                                     @if ($model->car_variants->count() == 1)
                                                         Rp.
                                                         {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
@@ -73,7 +71,7 @@
 
                                                 </p>
                                                 <div class="grid grid-cols-3 justify-between gap-2">
-                                                    <div class="flex flex-col border-r">
+                                                    <div class="flex flex-col border-r text-gray-700">
                                                         <p class="text-sm pr-2 font-medium">
                                                             @if ($model->car_variants->contains('fuel', 'Listrik'))
                                                                 Otomatis
@@ -88,7 +86,7 @@
                                                                 Tidak Ada
                                                             @endif
                                                         </p>
-                                                        <p class="text-sm pr-2">Transmisi</p>
+                                                        <p class="text-xs pr-2">Transmisi</p>
                                                     </div>
                                                     <div class="flex-col">
                                                         <p class="text-sm text-center font-medium">
@@ -108,31 +106,30 @@
                                                                 Tidak Ada
                                                             @endif
                                                         </p>
-                                                        <p class="text-sm text-center">Bahan Bakar</p>
+                                                        <p class="text-xs text-center">Bahan Bakar</p>
                                                     </div>
                                                     <div class="flex flex-col border-l">
                                                         <p class="text-sm pl-2 font-medium">
                                                             {{ $model->car_variants->count() ? $model->car_variants->first()->cc : '' }}cc
                                                         </p>
-                                                        <p class="text-sm pl-2">Mesin</p>
+                                                        <p class="text-xs pl-2">Mesin</p>
                                                     </div>
                                                 </div>
-                                                <p class="text-sm text-center">Tersedia
-                                                    {{ $model->car_variants->count() }} Varian dan 3 Warna</p>
+                                                <p class="text-sm pt-5 text-center">Tersedia
+                                                    {{ $model->car_variants->count() }} Varian dan {{ $model->colors->count() }} Warna</p>
                                             </div>
                                         </div>
 
                                         <div class="flex flex-col m-5">
-                                            <a class="hidden" href="aku" id="link"></a>
                                             <p class="text-center uppercase text-sm mb-2">Dapatkan Penawaran Terkini</p>
 
                                             <div class="grid grid-cols-4 gap-2">
-                                                <input type="hidden" value="{{ $model->id }}" id="model_id"
-                                                    name="model_id">
-                                                <button href="" onclick="openModal()" data-model-id="{{ $model->id }}"
-                                                    id="modalButton"
+                                                {{-- <input type="hidden" value="{{ $model->id }}" id="model_id"
+                                                    name="model_id"> --}}
+                                                <a onclick="openModal(this.id)" data-id="{{ $model->id }}"
+                                                    id="{{ $model->id }}"
                                                     class="col-span-3 border rounded-md z-10 py-3.5 text-center hover:bg-green-600 text-green-600 hover:text-white font-medium uppercase">Cari
-                                                    Tahu</button>
+                                                    Tahu</a>
                                                 <a href="" class="bg-green-600 hover:bg-green-700 p-3 rounded-md">
                                                     <img class=" w-8 h-8" src="{{ url('frontend/images/whatsapp.svg') }}"
                                                         alt="">
@@ -141,6 +138,8 @@
                                         </div>
                                     </div>
                                 @endif
+                                    
+                                {{-- @endif --}}
                             @endforeach
 
                         </div>
@@ -167,10 +166,14 @@
                                     <p class="text-sm">Isi detail Anda dan dapatkan penawaran terbaik <br /> yang
                                         akan Anda dapatkan </p>
                                     <!--Body-->
-                                    <div class="my-5">
+                                    <div class="body-modal my-5">
                                         <form action="{{ route('interest.store') }}" class="space-y-3" method="POST">
                                             @csrf
-                                            <input type="hidden" name="car_model_id" id="car_model_id">
+                                            <input type="hidden" name="car_model_id" id="car_model_id" value="">
+                                            @auth
+                                                <input type="hidden" name="user_id" id="user_id"
+                                                    value="{{ Auth::user()->id }}">
+                                            @endauth
                                             <div class="flex flex-col">
                                                 <label for="name">Nama <span class="font-light italic"> (Harus
                                                         diisi)</span></label>
@@ -181,9 +184,9 @@
                                                 <label for="phone_number">Nomor Handphone <span class="font-light italic">
                                                         (Harus diisi)</span></label>
                                                 <div class="flex flex-row">
-                                                    <p class="p-3">+62</p>
+                                                    <p class="p-3 bg-blue-600 text-white rounded-l-md">+62</p>
                                                     <input type="text" name="phone_number"
-                                                        class="p-3 border rounded focus:outline-none w-full"
+                                                        class="p-3 border rounded-r-md focus:outline-none w-full"
                                                         placeholder="Cth: 85359186052" id="phone_number">
 
                                                 </div>
@@ -220,7 +223,7 @@
                                                 {{-- <button
                                                     class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">Cancel</button> --}}
                                                 <button type="submit"
-                                                    class="focus:outline-none px-4 border bg-green-500 text-white p-3 ml-3 rounded-lg hover:bg-teal-400">Confirm</button>
+                                                    class="focus:outline-none px-4 border bg-green-500 w-full text-white py-2 rounded-lg hover:bg-green-600">Pesan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -237,11 +240,8 @@
 
 
 @endsection
-@section('scripts')
-    {{-- <script>
-        const modal = document.querySelector(".main-modal");
-        const closeButton = document.querySelectorAll(".modal-close");
-
+@push('addon-script')
+    <script>
         const modalClose = () => {
             modal.classList.remove("fadeIn");
             modal.classList.add("fadeOut");
@@ -250,12 +250,18 @@
             }, 500);
         };
 
-        const openModal = () => {
+        const openModal = (id) => {
             modal.classList.remove("fadeOut");
             modal.classList.add("fadeIn");
             modal.style.display = "flex";
-            // var bookId = $(e.relatedTarget).data('id');
-            // $(e.currentTarget).find('input[name="car_model_id"]').val(bookId);
+            // var id = $(this).attr('data-id');
+            // var id = $('#modalButton').attr('data-id');
+            // $(e.currentTarget).find('input[name="car_model_id"]').val(id);
+            // $(".body-modal").find('input[name="car_model_id"]').each(function() {
+            //     $(this).val($(this).attr("data-id"));
+            // });
+            // var id = $(this).attr('data-id');
+            $(".body-modal").find('input[name="car_model_id"]').val(id);
         };
 
         for (let i = 0; i < closeButton.length; i++) {
@@ -268,17 +274,15 @@
             window.onclick = function(event) {
                 if (event.target == modal) modalClose();
             };
+
         }
 
-    </script> --}}
-
-@endsection
-@prepend('addon-script')
-    {{-- <script>
-        $("#schedule").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
-   </script> --}}
+        // $("#modalButton").click(function() {
+        //     var id = $('#modalButton').attr('data-id');
+        //     $(".body-modal").find('input[name="car_model_id"]').val(id);
+        // });
+    </script>
     <script>
         jQuery('#schedule').datetimepicker();
-
     </script>
-@endprepend
+@endpush

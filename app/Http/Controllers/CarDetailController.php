@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CarModel;
 use App\InterestBuyer;
 use App\Merk;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,26 @@ class CarDetailController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        InterestBuyer::create($data);
+       
+
+        $interest = InterestBuyer::create([
+            'car_model_id' => $request->car_model_id,
+            'user_id' => $request->user_id,
+            'schedule' => $request->schedule,
+            'paymenty' => $request->payment
+        ]);
+
+        $inv = 'INV-' . mt_rand(00000, 99999);
+        Transaction::create([
+            'user_id'   => $request->user_id,
+            'transaction_status' => 1,
+            'code'  => $inv,
+            'interest_id' => $interest->id
+        ]);
+
+        $user = Auth::user();
+        $user->update($request->except('schedule', 'car_model_id', 'user_id', 'payment'));
+        
 
         $activity = Activity::all()->last();
 

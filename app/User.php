@@ -87,5 +87,12 @@ class User extends Authenticatable implements HasLoginsAndDevicesInterface, Must
     {
         return $this->belongsToMany(Promo::class, 'users_promos', 'users_id' , 'promos_id');
     }
+    public function transactions(){
+        return $this->hasOne( Transaction::class, 'user_id', 'id' );
+    }
+
+    public function interest_buyers(){
+        return $this->hasMany( InterestBuyer::class, 'user_id', 'id' );
+    }
 
 }

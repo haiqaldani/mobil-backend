@@ -88,8 +88,8 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" name="status" aria-label="Default select example">
-                            <option value="1" @if ($item->status = 1) selected @endif>Active</option>
-                            <option value="0" @if ($item->status = 0) selected @endif>Non Active</option>
+                            <option value="1" @if ($item->status == 1) selected @endif>Active</option>
+                            <option value="0" @if ($item->status == 0) selected @endif>Non Active</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">

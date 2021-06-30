@@ -118,4 +118,31 @@ class CreateMobilController extends Controller
         $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
         return redirect()->back();
     }
+
+    public function carDelete($id)
+    {
+        $item = Car::findorFail($id);
+        $item->delete();
+        
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+        return redirect()->back();
+    }
+
+    public function carSold(Request $request, $id)
+    {
+        $data = $request->all();
+        $item = Car::findorFail($id);
+        $item->update($data);
+        
+        $activity = Activity::all()->last();
+
+        $activity->description; //returns 'created'
+        $activity->subject; //returns the instance of NewsItem that was created
+        $activity->changes; //returns ['attributes' => ['name' => 'original name', 'text' => 'Lorum']];
+        return redirect()->back();
+    }
 }

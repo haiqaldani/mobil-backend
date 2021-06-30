@@ -12,7 +12,7 @@ class InterestBuyer extends Model
     use SoftDeletes, LogsActivity;
 
     //log the changed attributes for allevent
-    protected static $logAttributes = ['name', 'phone_number', 'city', 'schedule', 'payment', 'car_model_id'];
+    protected static $logAttributes = ['schedule', 'payment', 'car_model_id','user_id'];
 
     //changing password and update_at will not trigger an activity being logged
     protected static $ignoreChangedAttributes = ['update_at'];
@@ -32,7 +32,7 @@ class InterestBuyer extends Model
     }
 
     protected $fillable = [
-        'name', 'phone_number', 'city', 'schedule', 'payment', 'car_model_id'
+         'schedule', 'payment', 'car_model_id', 'user_id'
     ];
 
     protected $hidden = [
@@ -40,6 +40,16 @@ class InterestBuyer extends Model
 
     public function car_models(){
         return $this->belongsTo( CarModel::class, 'car_model_id', 'id' );
+    }
+    public function car_variants(){
+        return $this->belongsTo( CarVariant::class, 'car_variant_id', 'id' );
+    }
+
+    public function users(){
+        return $this->belongsTo( User::class, 'user_id', 'id' );
+    }
+    public function transactions(){
+        return $this->hasOne( Transaction::class, 'interest_id', 'id' );
     }
 
 }

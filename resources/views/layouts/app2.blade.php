@@ -10,9 +10,10 @@
     @stack('addon-style')
     
   </head>
-  <body>
+  <body style="background-color: #F6F8FD">
     @include('includes.alternate-navbar')
     @yield('content')
+    @include('includes.alternate-footer')
      
 
     @stack('prepend-script')

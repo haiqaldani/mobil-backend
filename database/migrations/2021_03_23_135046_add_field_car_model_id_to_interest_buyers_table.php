@@ -14,7 +14,8 @@ class AddFieldCarModelIdToInterestBuyersTable extends Migration
     public function up()
     {
         Schema::table('interest_buyers', function (Blueprint $table) {
-            $table->bigInteger('car_model_id');
+            $table->bigInteger('car_model_id')->nullable();
+            $table->bigInteger('car_variant_id')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddFieldCarModelIdToInterestBuyersTable extends Migration
     {
         Schema::table('interest_buyers', function (Blueprint $table) {
             $table->dropColumn('car_model_id');
+            $table->dropColumn('car_variant_id');
 
         });
     }

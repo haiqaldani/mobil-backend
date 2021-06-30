@@ -6,7 +6,7 @@
                     <img src="{{ url('frontend/images/logo_mobil.png') }}" alt="Logo Mobil" class="h-auto">
                 </a>
             </div>
-            <div class="flex justify-end font-semibold flex-row w-full m-1.5 space-x-4">
+            <div class="flex justify-end font-medium flex-row w-full m-1.5 space-x-4">
                 <a href="{{ url('/') }}" class="flex hover:text-blue-500">Home</a>
                 <a href="{{ url('cars/new') }}" class="flex hover:text-blue-500">Mobil Baru</a>
                 <a href="{{ url('cars/used') }}" class="flex hover:text-blue-500">Mobil Bekas</a>
@@ -26,7 +26,7 @@
                 @endguest
                 @auth
                     <div class="dropdown inline-block relative">
-                        <button class="font-semibold px-2 inline-flex items-center">
+                        <button class="font-medium px-2 inline-flex items-center">
                             <img src="{{ url('frontend/images/person-black-24dp.svg') }}" alt="My Account" class="">
                         </button>
                         @if (Auth::user()->adminAndOperator())
@@ -66,7 +66,7 @@
 <header>
     <div class="container">
         <!-- navbar goes here -->
-        <nav class="bg-blue-600">
+        <nav class="bg-blue-default">
             <div class="max-w-6xl mx-auto px-4 py-3">
                 <div class="flex justify-between">
 
@@ -98,14 +98,14 @@
                     @guest
                         <div class="hidden md:flex items-center space-x-1">
                             <a href="{{ url('login') }}"
-                                class="px-6 py-2 text-white font-semibold bg-green-400 hover:bg-green-500 border-transparent rounded-md">Masuk</a>
+                                class="px-6 py-2 text-white font-medium bg-green-400 hover:bg-green-500 border-transparent rounded-md">Masuk</a>
                         </div>
                     @endguest
                     @auth
                         <div class="hidden md:flex items-center space-x-1">
                             <div class="dropdown inline-block relative">
                                 <button
-                                    class="text-white font-semibold py-2 rounded focus:outline-none inline-flex items-center space-x-2">
+                                    class="text-white font-medium py-2 rounded focus:outline-none inline-flex items-center space-x-2">
                                     <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-10 rounded-full"
                                         alt="">
                                     <span class="mr-1">Hi, {{ Str::before(Auth::user()->full_name, ' ') }}</span>
@@ -115,7 +115,7 @@
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                     </svg>
                                 </button>
-                                
+
                                 <ul class="dropdown-menu absolute hidden pt-5 z-10">
                                     <li class=""><a
                                             class="rounded-t bg-white hover:bg-green-400 hover:text-white py-2 px-4 block w-40"
@@ -136,15 +136,16 @@
                                             href="{{ url('logout') }}">Keluar</a></li>
                                 </ul>
                             </div>
-                            <a href="{{ route('create-mobil') }}" class="text-white font-semibold px-3 py-2.5 rounded bg-yellow-500">Pasang Iklan</a>
+                            <a href="{{ route('create-mobil') }}"
+                                class="text-white font-medium px-3 py-2.5 rounded bg-yellow-500">Pasang Iklan</a>
                         </div>
-                        
+
                     @endauth
 
 
                     <!-- mobile button goes here -->
                     <div class="md:hidden flex items-center">
-                        <button class="mobile-menu-button">
+                        <button class="focus:outline-none mobile-menu-button">
                             <svg class="w-8 h-8 fill-current text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,20 +158,21 @@
             </div>
 
             <!-- mobile menu -->
-            <div class="mobile-menu hidden md:hidden">
-                <a href="" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Home</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Baru</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Bekas</a>
-                <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Promo</a>
+            <div class="mobile-menu hidden md:hidden font-medium">
+                <a href="{{ url('/') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Home</a>
+                <a href="{{ url('cars') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Baru</a>
+                <a href="{{ url('cars/used') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Bekas</a>
+                <a href="{{ url('promo') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Promo</a>
                 @guest
-                <div class="block py-4 px-4">
-                    <a href="#" class="flex w-full text-sm text-white rounded-sm justify-center py-3 border-transparent bg-green-400 hover:bg-green-500 border-b">Masuk</a>
-                </div>
+                    <div class="block py-4 px-4">
+                        <a href="#"
+                            class="flex w-full text-sm text-gray-700 hover:bg-gray-100 font-medium rounded-md justify-center py-3 bg-white border-b">Masuk</a>
+                    </div>
                 @endguest
                 @auth
                     <div class="flex flex-row py-4 px-4">
                         <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full" alt="">
-                        <p class="text-white font-semibold px-2 py-1">Hi, {{ Auth::user()->first_name }}</p>
+                        <p class="text-white font-medium px-2 py-1">Hi, {{ Auth::user()->first_name }}</p>
                     </div>
                     <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Profile</a>
                     <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Tersimpan</a>

@@ -19,10 +19,10 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Nomor HP</th>
-                                <th>Kota</th>
-                                <th>Jadwal Ingin Ke Showroom</th>
+                                <th>Nomor HP/WA</th>
+                                <th>Jadwal</th>
                                 <th>Pembayaran</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,19 +31,61 @@
                             @forelse($items as $item)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->city }}</td>
-                                    <td>62{{ $item->phone_number }}</td>
-                                    <td>{{ $item->schedule }}</td>
+                                    <td><a
+                                            href="{{ route('user.edit', $item->users->id) }}">{{ $item->users->full_name }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="http://wa.me/62{{ $item->phone_number }}">
+                                            62{{ $item->users->phone_number }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($item->schedule)->format('d F Y h:m') }}</p>
+                                    </td>
                                     <td>{{ $item->payment }}</td>
                                     <td>
-                                        <a href="http://wa.me/62{{ $item->phone_number }}" class="btn btn-success">
+                                        @if ($item->transactions->transaction_status == 0)
+                                            CANCEL
+                                        @elseif($item->transactions->transaction_status == 1)
+                                            PENDING
+                                        @elseif($item->transactions->transaction_status == 2)
+                                            PROCESS
+                                        @elseif($item->transactions->transaction_status == 3)
+                                            WAITING BOOKING FEE
+                                        @elseif($item->transactions->transaction_status == 4)
+                                            BOKING FEE IN VERIFICATION
+                                        @elseif($item->transactions->transaction_status == 5)
+                                            PAYMENT SUCCESS
+                                        @elseif($item->transactions->transaction_status == 6)
+                                           WAITING FOR PAYMENT FULL OR DP
+                                        @elseif($item->transactions->transaction_status == 7)
+                                            WAITING CAR
+                                        @elseif($item->transactions->transaction_status == 8)
+                                            CAR RECIVED
+                                        @else
+                                            SUCCESS
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{-- <a href="http://wa.me/62{{ $item->phone_number }}" class="btn btn-success">
                                             <i class="fa fa-comment"></i>
-                                        </a>
-                                        <a href="{{ route('merk.edit', $item->id) }}" class="btn btn-info">
+                                        </a> --}}
+                                        @if ($item->transactions->transaction_status == 2)
+                                            <a href="{{ route('transaction.edit', $item->transactions->id) }}"
+                                                class="btn btn-info">
+                                                <i class="fa fa-plus"></i>
+                                                Booking Fee
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ route('interest-buyer.edit', $item->transactions->id) }}"
+                                            class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('merk.destroy', $item->id) }}" method="post" class="d-inline">
+
+                                
+                                        <form action="{{ route('interest-buyer.destroy', $item->id) }}" method="post"
+                                            class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger">
@@ -73,6 +115,5 @@
 
         );
     });
-
 </script>
 @endsection

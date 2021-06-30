@@ -45,5 +45,8 @@ class CarVariant extends Model
     public function cars(){
         return $this->hasMany( Car::class, 'car_variant_id', 'id' );
     }
+    public function interest_buyers(){
+        return $this->hasMany( InterestBuyer::class, 'car_variant_id', 'id' );
+    }
 
 }

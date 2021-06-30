@@ -34,11 +34,6 @@
                         <label class="font-semibold" for="merk_id">Merk*</label>
                         <select name="merk_id" id="merk_id" class="form-control">
                             <option value="">Pilih Merk</option>
-                            {{-- @foreach ($merks as $id => $merk)
-                                    <option class="text-black" value="{{ $id }}">
-                                        {{ $merk }}
-                                    </option>
-                                @endforeach --}}
                             @foreach ($merks as $id => $merk)
                                 <option class="text-black" value="{{ $id }}">
                                     {{ $merk }}

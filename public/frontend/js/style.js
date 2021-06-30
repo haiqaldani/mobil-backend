@@ -37,42 +37,11 @@ function setExpandButtonText(button) {
     const expandableElement = button.closest("[data-expandable]");
     const expanded = expandableElement.classList.contains("expanded");
     button.innerText = expanded
-        ? "Tampilkan Lainnya"
-        : "Tampilkan Lebih Sedikit";
+        ? "Tampilkan Lebih Sedikit"
+        : "Tampilkan Lainnya";
 }
 
 const modal = document.querySelector(".main-modal");
 const closeButton = document.querySelectorAll(".modal-close");
 
-const modalClose = () => {
-    modal.classList.remove("fadeIn");
-    modal.classList.add("fadeOut");
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 500);
-};
 
-const openModal = () => {
-    modal.classList.remove("fadeOut");
-    modal.classList.add("fadeIn");
-    modal.style.display = "flex";
-     var modelId = $(e.relatedTarget).data('model-id');
-    $(e.currentTarget).find('input[name="car_model_id"]').val(modelId);
-};
-
-for (let i = 0; i < closeButton.length; i++) {
-    const elements = closeButton[i];
-
-    elements.onclick = e => modalClose();
-
-    modal.style.display = "none";
-
-    window.onclick = function(event) {
-        if (event.target == modal) modalClose();
-    };
-}
-
-$("#modalButton").click(function () { 
-    var id = $("#model_id").val(); 
-    $(".main-modal").find('input[name="car_model_id"]').val(id);
-}); 

@@ -5,20 +5,20 @@
 @section('content')
     <main class="merk-main my-10">
         <div class="container">
-            <div class="grid justify-center mx-20 space-y-5">
-                <h1 class="text-4xl font-semibold text-center">Pilih Merk</h1>
-                <p class="text-center font-light">
+            <div class="grid justify-center md:mx-20 mx-10 space-y-5">
+                <h1 class="text-4xl font-semibold text-center text-gray-700">Pilih Merk</h1>
+                <p class="text-center font-light text-gray-700">
                     Pilih salah merk berikut ini untuk mendapat info mobil yang lebih lengkap.
                 </p>
-                <div class="grid grid-cols-6 gap-7 justify-start">
+                <div class="grid md:grid-cols-6 grid-cols-2 gap-7 justify-start">
                     @foreach ($merks as $merk)
-                        <div class="">
+                        <div class="bg-white rounded-md p-2 hover:shadow-md">
                             <a href="{{ route('merk-list', $merk->slug) }}">
                                 <div class="m-3">
                                     {{-- <img class="object-scale-down" src="{{ url('storage/assets/merk/daihatsu.png') }}" alt=""> --}}
                                     <img class="object-scale-down h-24" src="{{ Storage::url($merk->image) }}" alt="">
                                 </div>
-                                <p class="font-medium text-center w-full">
+                                <p class="font-medium text-center text-gray-800 w-full">
                                     {{ $merk->merk }}
                                 </p>
                             </a>
@@ -41,36 +41,36 @@
                         <div id="sync2" class="owl-carousel">
                             @foreach ($models as $model)
                                 <div class="item">
-                                    <div class="card hover:bg-black hover:bg-opacity-25 m-1 shadow-md cursor-pointer"
+                                    <div class="card m-1 hover:shadow-md cursor-pointer rounded-md"
                                         onclick="location.href='{{ route('model-detail', [$model->merks->slug, $model->slug_model]) }}'; ">
-                                        <div class="ring-1 rounded ring-gray-300">
-                                            <div class="card-image">
-                                                @if ($model->car_galleries->count() != null)
-                                                <div class="h-36 bg-white">
-                                                    <img class="object-fill object-center rounded max-h-36 my-auto p-2" src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}" alt="">
+                                        <div class="card-image">
+                                            @if ($model->car_galleries->count() != null)
+                                                <div class="h-36 bg-white rounded-t-md ">
+                                                    <img class="object-cover object-center max-h-36 my-auto p-1"
+                                                        src="{{ $model->car_galleries->count() ? Storage::url($model->car_galleries->first()->image) : '' }}"
+                                                        alt="">
                                                 </div>
-                                                   
+
+                                            @else
+                                                <div class="bg-gray-300 w-full md:w-80 rounded-t-md h-36">
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="font-semibold text-lg text-gray-800">{{ $model->model }}</h3>
+                                            <p class="text-gray-500 mb-3 text-sm">
+                                                @if ($model->car_variants->count() == 1)
+                                                    Rp.
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                @elseif ( $model->car_variants->count() == 0 )
+                                                    Harga Belum Ada
                                                 @else
-                                                <div class="bg-gray-300 w-80 h-36">
-                                                </div>
+                                                    Rp.
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
+                                                    -
+                                                    {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
                                                 @endif
-                                            </div>
-                                            <div class="card-body">
-                                                <h3 class="font-semibold text-lg">{{ $model->model }}</h3>
-                                                <p class="text-gray-500 mb-3">
-                                                    @if ($model->car_variants->count() == 1)
-                                                        Rp.
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
-                                                    @elseif ( $model->car_variants->count() == 0 )
-                                                        Harga Belum Ada
-                                                    @else
-                                                        Rp.
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->first()->price, 0, ',', '.') : '' }}
-                                                        -
-                                                        {{ $model->car_variants->count() ? number_format($model->car_variants->last()->price, 0, ',', '.') : '' }}
-                                                    @endif
-                                                </p>
-                                            </div>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -123,6 +123,5 @@
                 ]
             })
             .on("changed.owl.carousel");
-
     </script>
 @endprepend

@@ -6,7 +6,7 @@
     <section class="section-profile">
         <div class="container">
             <div class="md:mx-20 mx-10 my-10">
-                <h1 class="text-2xl font-bold text-center mb-5">Profile</h1>
+                {{-- <h1 class="text-2xl font-bold text-center mb-5">Profile</h1> --}}
                 {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -24,31 +24,34 @@
                 @endif
                 <div class="grid grid-cols-3 justify-center gap-5">
                     <div class="space-y-5">
-                        <div class="border rounded">
+                        <div class="border rounded-md bg-white">
                             <div class="flex flex-row m-5">
                                 <img src="{{ Storage::url(Auth::user()->profil_picture) }}"
                                     class="rounded-full w-24 h-24 shadow-md object-cover z-10 border"
                                     alt="Foto {{ Auth::user()->username }}">
-                                <div class="flex flex-col mx-3 my-5">
-                                    <p class="text-xl font-semibold">{{ Auth::user()->full_name }}</p>
-                                    <p class="text-sm">{{ Auth::user()->email }}</p>
+                                <div class="flex flex-col mx-3 my-7">
+                                    <p class="text-base font-medium">{{ Auth::user()->full_name }}</p>
+                                    <p class="text-xs">{{ Auth::user()->email }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col border">
+                        <div class="flex flex-col border rounded-md bg-white text-gray-700">
                             <a href="{{ route('profile-seller.edit') }}"
-                                class="p-3 text-gray-500 hover:bg-opacity-10 hover:bg-gray-500">Profile</a>
+                                class="p-3 hover:bg-opacity-10 hover:bg-gray-500">Profile</a>
                             <hr />
                             <a href="{{ route('mycar') }}"
-                                class="p-3 text-gray-500 hover:bg-opacity-10 hover:bg-gray-500">Iklan Saya</a>
+                                class="p-3  hover:bg-opacity-10 hover:bg-gray-500">Iklan Saya</a>
                             <hr />
                             <a href="{{ route('favorite') }}"
-                                class="p-3 text-gray-500 hover:bg-opacity-10 hover:bg-gray-500">Mobil Tersimpan</a>
+                                class="p-3  hover:bg-opacity-10 hover:bg-gray-500">Mobil Tersimpan</a>
+                            <hr />
+                            <a href="{{ route('mytransaction') }}"
+                                class="p-3 hover:bg-opacity-10 hover:bg-gray-500">Pesanan Saya</a>
                             <hr />
                             {{-- <a href="" class="p-3 text-gray-500 hover:bg-opacity-10 hover:bg-gray-500">Profile</a>
                             <hr /> --}}
                             <a href="{{ route('change-password') }}"
-                                class="p-3 text-gray-500 hover:bg-opacity-10 hover:bg-gray-500">Change Password</a>
+                                class="p-3  hover:bg-opacity-10 hover:bg-gray-500">Change Password</a>
                         </div>
                     </div>
 
