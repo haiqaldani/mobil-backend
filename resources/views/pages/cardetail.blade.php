@@ -83,11 +83,11 @@
                                     <h4 class="text-lg font-semibold">
                                         @if ($item->car_variants->contains('fuel', 'Listrik'))
                                             Otomatis
-                                        @elseif($item->car_variants->contains('transmission','Otomatis'))
+                                        @elseif($item->car_variants->contains('transmission','Automatic'))
                                             Otomatis
                                         @elseif($item->car_variants->contains('transmission','Manual'))
                                             Manual
-                                        @elseif($item->car_variants->contains('transmission',['Otomatis','Manual']))
+                                        @elseif($item->car_variants->contains('transmission',['Automatic','Manual']))
                                             Otomatis
                                             Manual
                                         @else

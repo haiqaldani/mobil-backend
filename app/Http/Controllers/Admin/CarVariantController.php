@@ -46,6 +46,7 @@ class CarVariantController extends Controller
     public function store(CarVariantRequest $request)
     {
         $data = $request->all();
+        $data['price'] = str_replace(".","", $request->price);
         CarVariant::create($data);
 
         $activity = Activity::all()->last();
@@ -94,6 +95,8 @@ class CarVariantController extends Controller
     public function update(CarVariantRequest $request, $id)
     {
         $data = $request->all();
+        $data['price'] = str_replace(".","", $request->price);
+       
         $item = CarVariant::findOrFail($id);
 
         $item->update($data);

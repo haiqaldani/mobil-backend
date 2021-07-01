@@ -14,7 +14,7 @@ class MerkDetailController extends Controller
     {
 
         $item = Merk::with('car_models.car_variants', 'car_models.car_variants', 'car_models.colors')->where('slug', $slug)->firstOrFail();
-        $models = CarModel::with(['merks', 'car_galleries', 'car_variants', 'colors'])->get();
+        $models = CarModel::with(['merks', 'car_galleries', 'car_variants', 'colors'])->take(10)->get();
         // $variants = CarVariant::with(['car_models'])->get();
         return view('pages.merkdetail', [
             'item' => $item,

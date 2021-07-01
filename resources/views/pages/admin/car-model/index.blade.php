@@ -43,7 +43,10 @@
                                             alt="" style="width: 200px" class="img-thumbnail">
                                     </td>
                                     {{-- @endif --}}
-                                    <td>{{ $item->merks->merk }} {{ $item->model }}</td>
+                                    <td> <a href="{{ route('car-model.edit', $item->id) }}">
+                                            {{ $item->model }}
+                                        </a>
+                                    </td>
                                     <td>
                                         <ul>
                                             @foreach ($item->car_variants as $variants)
@@ -62,8 +65,9 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        <a href="{{ route('car-model.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
+
+                                        <a clas href="{{ route('model-color', $item->id) }}" class="btn btn-info">
+                                            <i class="fa fa-plus"></i> Warna
                                         </a>
                                         <a clas href="{{ route('model-galleries', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-file-image"></i>
@@ -102,6 +106,5 @@
 
         );
     });
-
 </script>
 @endsection

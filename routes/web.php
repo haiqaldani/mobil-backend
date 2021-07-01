@@ -141,6 +141,7 @@ Route::prefix('admin')
         Route::resource('car-gallery', 'CarGalleryController');
         Route::resource('favorite', 'FavoriteController');
         Route::get('/car-model/galleries/{id}', 'CarModelController@modelImage')->name('model-galleries');
+        Route::get('/car-model/colors/{id}', 'CarModelController@modelColor')->name('model-color');
         Route::get('/car/galleries/{id}', 'CarController@carImage')->name('car-galleries');
         Route::get('/car-model/variant/{id}', 'CarModelController@modelVariant')->name('model-variant');
         Route::resource('car', 'CarController');
@@ -154,6 +155,7 @@ Route::prefix('admin')
         Route::resource('interest-buyer', 'InterestBuyerController');
         Route::resource('car-model', 'CarModelController');
         Route::resource('car-variant', 'CarVariantController');
+        Route::resource('color', 'ColorController');
         Route::resource('gallery', 'GalleryController');
         Route::resource('vehicle-feature', 'VehicleFeatureController');
         Route::resource('profile', 'ProfileController');

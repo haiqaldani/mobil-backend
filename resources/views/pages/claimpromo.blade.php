@@ -29,8 +29,8 @@
                 </div>
             </div>
 
-            <div class="grid justify-items-start mx-20 mb-10">
-                <div class="grid grid-cols-3 gap-3">
+            <div class="grid justify-items-start mx-10 md:mx-20 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {{-- @if ($items->users_id == Auth::user()->id) --}}
 
                     @foreach ($items->promos as $item)

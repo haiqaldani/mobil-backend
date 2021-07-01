@@ -22,7 +22,7 @@
                         verification link.
                     </div>
                 @endif
-                <div class="grid grid-cols-3 justify-center gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-3 justify-center gap-0 md:gap-5 space-y-4 md:space-y-0">
                     <div class="space-y-5">
                         <div class="border rounded-md bg-white">
                             <div class="flex flex-row m-5">

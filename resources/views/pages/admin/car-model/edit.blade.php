@@ -38,6 +38,10 @@
                         <input type="text" class="form-control" name="model" placeholder="cth: Avanza"
                             value="{{ $item->model }}">
                     </div>
+                    <div class="form-group">
+                        <label for="description">Deskripsi</label>
+                        <textarea id="description" name="description" rows="10">{{ old('description') }}</textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah
                     </button>
@@ -46,4 +50,9 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+@endsection
+@section('script')
+    <script>
+        CKEDITOR.replace('description');
+    </script>
 @endsection

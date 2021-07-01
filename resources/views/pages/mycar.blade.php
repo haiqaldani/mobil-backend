@@ -3,7 +3,7 @@
 
 @section('profile')
     <div class="border col-span-2">
-        <div class="grid grid-cols-3 m-5 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-3 m-5 gap-5">
             @foreach ($items as $item)
                 <div class="border rounded-md cursor-pointer relative"
                     onclick="location.href='{{ route('carsused', $item->slug) }}'; ">

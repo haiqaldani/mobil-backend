@@ -71,6 +71,7 @@
                 <a class="collapse-item" href="{{ route('merk.index') }}">Merk</a>
                 <a class="collapse-item" href="{{ route('car-model.index') }}">Model Mobil</a>
                 <a class="collapse-item" href="{{ route('car-variant.index') }}">Varian Mobil</a>
+                <a class="collapse-item" href="{{ route('color.index') }}">Warna Mobil</a>
                 <h6 class="collapse-header">Foto</h6>
                 <a class="collapse-item" href="{{ route('car-gallery.index') }}">Foto Mobil</a>
                 <div class="collapse-divider"></div>

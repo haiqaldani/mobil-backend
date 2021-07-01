@@ -18,8 +18,8 @@
     </header>
     <main>
         <div class="container my-5">
-            <div class="mx-20 flex flex-col ">
-                <div class="grid grid-cols-4 space-x-5">
+            <div class="md:mx-20 mx-10 flex flex-col ">
+                <div class="grid grid-cols-1 md:grid-cols-4 space-x-5">
                     <div class="col-span-3 flex flex-col">
                         <div class="shadow-lg rounded-md mb-5 bg-white">
                             <div class="m-5 space-y-3">
@@ -35,7 +35,7 @@
 
                             </div>
                         </div>
-                        <div class="grid grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                             @foreach ($item->car_models as $model)
                                 {{-- @if ($model->merk_id == $item->id) --}}
                                 @if ($model->car_variants->count() >= 1)
@@ -75,11 +75,11 @@
                                                         <p class="text-sm pr-2 font-medium">
                                                             @if ($model->car_variants->contains('fuel', 'Listrik'))
                                                                 Otomatis
-                                                            @elseif($model->car_variants->contains('transmission','Otomatis'))
+                                                            @elseif($model->car_variants->contains('transmission','Automatic'))
                                                                 Otomatis
                                                             @elseif($model->car_variants->contains('transmission','Manual'))
                                                                 Manual
-                                                            @elseif($model->car_variants->contains('transmission',['Otomatis','Manual']))
+                                                            @elseif($model->car_variants->contains('transmission',['Automatic','Manual']))
                                                                 Otomatis
                                                                 Manual
                                                             @else
@@ -123,15 +123,15 @@
                                         <div class="flex flex-col m-5">
                                             <p class="text-center uppercase text-sm mb-2">Dapatkan Penawaran Terkini</p>
 
-                                            <div class="grid grid-cols-4 gap-2">
+                                            <div class="grid grid-cols-5 md:grid-cols-4 gap-2">
                                                 {{-- <input type="hidden" value="{{ $model->id }}" id="model_id"
                                                     name="model_id"> --}}
                                                 <a onclick="openModal(this.id)" data-id="{{ $model->id }}"
                                                     id="{{ $model->id }}"
-                                                    class="col-span-3 border rounded-md z-10 py-3.5 text-center hover:bg-green-600 text-green-600 hover:text-white font-medium uppercase">Cari
+                                                    class="md:col-span-3 col-span-4 border rounded-md z-10 py-3.5 text-center hover:bg-green-600 text-green-600 hover:text-white font-medium uppercase">Cari
                                                     Tahu</a>
                                                 <a href="" class="bg-green-600 hover:bg-green-700 p-3 rounded-md">
-                                                    <img class=" w-8 h-8" src="{{ url('frontend/images/whatsapp.svg') }}"
+                                                    <img class="w-8 h-8" src="{{ url('frontend/images/whatsapp.svg') }}"
                                                         alt="">
                                                 </a>
                                             </div>

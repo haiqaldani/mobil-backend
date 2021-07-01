@@ -54,7 +54,7 @@
                     </div>
                    
                 </div>
-                <div class="form-group grid grid-flow-col space-x-3">
+                <div class="form-group grid grid-cols-2 space-x-3">
                     <div class="flex flex-col">
                         <label for="province" class="text-gray-700">Province</label>
                         <input type="text" class="px-3 py-2 rounded-md focus:outline-none border-gray-200 focus:border-blue-default border" name="province" placeholder="Province"

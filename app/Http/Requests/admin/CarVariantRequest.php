@@ -28,7 +28,7 @@ class CarVariantRequest extends FormRequest
             'edition' => 'required|max:255',
             'transmission' => 'required',
             'cc' => 'required|integer',
-            'variant' => 'required|max:255',
+            'variant' => 'max:255',
 
         ];
     }
@@ -42,7 +42,7 @@ class CarVariantRequest extends FormRequest
             'transmission.required'    => 'Transmisi harus dipilih',
             'cc.required'    => 'CC Mobil harus diisi',
             'cc.integer'    => 'CC Mobil harus berupa angka',
-            'variant.required'    => 'Variant Mobil harus diisi',
+            // 'variant.required'    => 'Variant Mobil harus diisi',
             'variant.max:255'    => 'Variant Mobil maksimal 255 huruf',
             
         ];

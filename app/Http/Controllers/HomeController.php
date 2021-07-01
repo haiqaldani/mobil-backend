@@ -21,7 +21,7 @@ class HomeController extends Controller
         $car_types = CarType::all();
         $banners = Banner::all();
         $merks = Merk::all();
-        $models = CarModel::with('car_variants', 'car_galleries', 'merks')->get(); 
+        $models = CarModel::with('car_variants', 'car_galleries', 'merks')->take(10)->get(); 
         $cars = Car::with(['galleries'])->get();
         return view('pages.home',[
             'car_types' => $car_types,

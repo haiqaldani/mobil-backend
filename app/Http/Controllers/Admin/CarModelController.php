@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CarModelRequest;
 use App\Merk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\Models\Activity;
 
 class CarModelController extends Controller
@@ -55,7 +56,7 @@ class CarModelController extends Controller
     public function store(CarModelRequest $request)
     {
         $data = $request->all();
-
+        $data['slug_model'] = Str::slug($request->model);
         CarModel::create($data);
 
         $activity = Activity::all()->last();
@@ -104,7 +105,7 @@ class CarModelController extends Controller
     public function update(CarModelRequest $request, $id)
     {
         $data = $request->all();
-
+        $data['slug_model'] = Str::slug($request->model);
         $item = CarModel::findOrFail($id);
 
         $item->update($data);
@@ -150,6 +151,14 @@ class CarModelController extends Controller
     {
         $item = CarModel::findOrFail($id);
         return view('pages.admin.car-model.addvariant',[
+            'item' => $item,
+        ]);
+    }
+
+    public function modelColor($id)
+    {
+        $item = CarModel::findOrFail($id);
+        return view('pages.admin.car-model.addcolor',[
             'item' => $item,
         ]);
     }

@@ -5,21 +5,21 @@
 @section('content')
     <header class="nav-header  bg-blue-500">
         <div class="container border-gray-200">
-            <div class="flex flex-row md:mx-15 mx-5 justify-center space-x-3">
-                <form action="" class="my-4">
-                    <input class="border rounded-sm py-2 px-2" style="width: 10cm" type="text"
+            <div class="flex md:mx-15 mx-5 justify-center">
+                <form action="" class="my-4  grid grid-cols-4 md:grid-cols-7 gap-5">
+                    <input class="col-span-3 md:col-span-6 border rounded-md py-2 px-2" type="text"
                         placeholder="Cari, merek, tipe, tahun, lokasi lainnya">
-                    <button class="bg-yellow-300 rounded-sm py-2 px-6 text-white" type="submit">Cari</button>
+                    <button class="bg-yellow-300 rounded-md py-2 px-6 text-white" type="submit">Cari</button>
                 </form>
             </div>
         </div>
     </header>
     <main class="list-car-used">
         <div class="container bg-gray-100">
-            <div class="grid grid-cols-5 md:mx-20 space-x-10 py-10">
-                <div class="grid ">
+            <div class="grid grid-cols-1 md:grid-cols-5 mx-10 md:mx-20 space-x-0 md:space-x-10 py-10">
+                <div class="grid">
                     <div class="flex flex-col justify-center space-y-3">
-                        <div class="md:w-21 bg-white rounded-md">
+                        <div class=" bg-white rounded-md">
                             <div class="relative mb-1 border-b rounded">
                                 <input type="checkbox" id="toggle1" class="toggle hidden" checked />
                                 <label class="title rounded block font-bold bg-white text-sm p-4 cursor-pointer"
@@ -73,13 +73,13 @@
                         </div>
                     </div>
                     <div class="md:justify-start justify-center space-x-4">
-                        <div class="grid grid-cols-3 gap-5">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                             @foreach ($items as $item)
                                 <div class="border"  onclick="location.href='{{ route('detail', $item->slug) }}'; " >
                                     <div class="relative">
                                         @if ($item->galleries)
                                             <img src="{{ $item->galleries->count() ? Storage::url($item->galleries->first()->image) : '' }}"
-                                                alt="" class="p-2" style="max-width: 290px; max-height: 210px">
+                                                alt="" class="object-cover object-center rounded-t-md w-full h-36 ">
                                         @endif
                                         <div class="absolute bottom-0 right-0 bg-gray-700 opacity-80">
                                             <p class="text-white m-3 opacity-100">{{ $item->condition }}</p>

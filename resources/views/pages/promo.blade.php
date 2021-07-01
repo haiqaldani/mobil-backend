@@ -7,7 +7,7 @@
         <div class="container">
             <div class="mx-10 flex flex-col space-y-4">
                 <h3 class="text-xl font-bold" >Semua Promo</h3>
-                <div class="grid grid-cols-4 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                     @foreach ($items as $item)
                         <div class="border rounded cursor-pointer" onclick="location.href='{{ route('promo-detail', $item->slug) }}' ; ">
                             <img class="object-cover object-center w-full h-36 rounded" src="{{ Storage::url($item->image) }}" alt="">

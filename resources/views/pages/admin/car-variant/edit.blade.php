@@ -42,7 +42,7 @@
                         <label for="transmission">Transmisi</label>
                         <div class="radio-tile-group">
                             <div class="input-container mr-3">
-                                <input type="radio" class="radio-button" name="transmission" value="Otomatis">
+                                <input type="radio" class="radio-button" name="transmission" value="Automatic">
                                 <div class="radio-tile">
                                     <label class="radio-tile-label" for="transmission">Otomatis</label>
                                 </div>

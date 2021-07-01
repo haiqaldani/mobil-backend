@@ -2,7 +2,7 @@
 
 
 @section('profile')
-    <div class="border col-span-2">
+    <div class="border col-span-2 bg-white">
         <div class="m-5">
             @if (session('error'))
                 <div class="alert alert-danger">
@@ -19,7 +19,7 @@
                 @method('patch')
                 <div class="form-group flex flex-col">
                     <label for="current-password">Password Lama</label>
-                    <input type="password" class="mt-2 py-2 border rounded px-2" name="current-password"
+                    <input type="password" class="mt-2 py-2 border focus:border-blue-default focus:outline-none rounded-md px-2" name="current-password"
                         placeholder="Password Lama">
                     @if ($errors->has('current-password'))
                         <span class="help-block">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group flex flex-col">
                     <label for="new_password">Password Baru</label>
-                    <input type="password" class="mt-2 py-2 border rounded px-2" name="new_password"
+                    <input type="password" class="mt-2 py-2 border rounded-md focus:border-blue-default focus:outline-none px-2" name="new_password"
                         placeholder="Password Baru">
 
                     @if ($errors->has('new-password'))
@@ -40,10 +40,10 @@
                 </div>
                 <div class="form-group flex flex-col">
                     <label for="confirm_password">Confirm Password</label>
-                    <input type="password" class="mt-2 py-2 border rounded px-2" name="confirm_password"
+                    <input type="password" class="mt-2 py-2 border rounded-md focus:border-blue-default  focus:outline-none px-2" name="confirm_password"
                         placeholder="Confirm Password">
                 </div>
-                <button type="submit" class="py-2 text-white bg-blue-500 hover:bg-blue-600 w-full">
+                <button type="submit" class="py-2 text-white rounded-md bg-blue-default hover:bg-blue-500 w-full">
                     Ubah Password
                 </button>
 

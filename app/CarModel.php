@@ -14,7 +14,7 @@ class CarModel extends Model
     use SoftDeletes, LogsActivity, Favoriteable;
 
     //log the changed attributes for allevent
-    protected static $logAttributes = ['merk_id', 'model'];
+    protected static $logAttributes = ['merk_id', 'model', 'description', 'slug_model'];
 
     //changing password and update_at will not trigger an activity being logged
     protected static $ignoreChangedAttributes = ['update_at'];
@@ -33,7 +33,7 @@ class CarModel extends Model
         return "{$user} have {$eventName} model";
     }
     protected $fillable = [
-        'merk_id', 'model', 'description'
+        'merk_id', 'model', 'description', 'slug_model'
     ];
 
     protected $hidden = [

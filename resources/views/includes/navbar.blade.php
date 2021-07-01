@@ -172,12 +172,12 @@
                 @auth
                     <div class="flex flex-row py-4 px-4">
                         <img src="{{ Storage::url(Auth::user()->profil_picture) }}" class="w-8 rounded-full" alt="">
-                        <p class="text-white font-medium px-2 py-1">Hi, {{ Auth::user()->first_name }}</p>
+                        <p class="text-white font-medium px-2 py-1">Hi, {{ Auth::user()->full_name }}</p>
                     </div>
-                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Profile</a>
-                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Tersimpan</a>
-                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Profile</a>
-                    <a href="#" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Keluar</a>
+                    <a href="{{ route('profile-seller.edit') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Profile</a>
+                    <a href="{{ route('favorite') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Mobil Tersimpan</a>
+                    <a href="{{ url('claim-promo') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400 border-b">Promo</a>
+                    <a href="{{ url('logout') }}" class="block py-4 px-4 text-sm text-white hover:bg-green-400">Keluar</a>
                 @endauth
 
 
